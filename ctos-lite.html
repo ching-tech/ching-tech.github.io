@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>擎添助理 CTOS-Lite — AI 員工，住在你的 LINE 裡</title>
+  <meta name="description" content="擎添助理是你公司的 LINE AI 員工。上傳公司文件，AI 學會你的業務知識，24 小時幫員工和客戶回答問題。免費試用，加 LINE 立即開始。">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans TC", sans-serif;
+      background: #0a0a0f;
+      color: #e0e0e8;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .glow-bg {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 0;
+      background:
+        radial-gradient(ellipse 600px 400px at 20% 20%, rgba(6, 199, 85, 0.06), transparent),
+        radial-gradient(ellipse 500px 500px at 80% 60%, rgba(56, 130, 246, 0.07), transparent),
+        radial-gradient(ellipse 400px 300px at 50% 90%, rgba(139, 92, 246, 0.05), transparent);
+    }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+    /* Nav */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(10, 10, 15, 0.8);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    nav .container {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 1.05rem; font-weight: 700; letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #3882f6, #8b5cf6);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .nav-logo img { width: 32px; height: 32px; }
+    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .nav-links a { font-size: 0.9rem; color: #888; transition: color 0.2s; }
+    .nav-links a:hover { color: #e0e0e8; }
+    .nav-cta {
+      background: #06c755; color: #fff !important;
+      padding: 8px 18px; border-radius: 8px; font-weight: 600;
+      font-size: 0.85rem !important;
+      transition: all 0.2s !important;
+    }
+    .nav-cta:hover { background: #05b34b !important; transform: translateY(-1px); }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 120px 24px 80px;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 700px; height: 700px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(6, 199, 85, 0.08), transparent 70%);
+      animation: pulse 6s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+    }
+    .hero-content { position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(6, 199, 85, 0.1); border: 1px solid rgba(6, 199, 85, 0.25);
+      color: #4ade80; padding: 6px 16px; border-radius: 20px;
+      font-size: 0.82rem; font-weight: 600; letter-spacing: 0.05em;
+      margin-bottom: 24px;
+    }
+    .hero-badge span { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; animation: blink 2s infinite; }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+    .hero h1 {
+      font-size: clamp(2.4rem, 5.5vw, 3.8rem);
+      font-weight: 800; letter-spacing: -0.03em;
+      line-height: 1.15; margin-bottom: 20px;
+      background: linear-gradient(135deg, #fff 0%, #86efac 50%, #4ade80 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: #8888a0; max-width: 540px; margin: 0 auto 40px;
+    }
+    .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 12px; font-size: 1rem; font-weight: 600;
+      transition: all 0.25s; cursor: pointer; border: none;
+    }
+    .btn-line {
+      background: #06c755; color: #fff;
+      box-shadow: 0 4px 24px rgba(6, 199, 85, 0.35);
+    }
+    .btn-line:hover { box-shadow: 0 8px 36px rgba(6, 199, 85, 0.55); transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent; color: #a5b4fc;
+      border: 1px solid rgba(165, 180, 252, 0.3);
+    }
+    .btn-outline:hover {
+      background: rgba(165, 180, 252, 0.08);
+      border-color: rgba(165, 180, 252, 0.5);
+      transform: translateY(-2px);
+    }
+
+    /* Stats */
+    .stats {
+      display: flex; gap: 48px; justify-content: center; flex-wrap: wrap;
+      margin-top: 64px; padding-top: 48px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .stat-item { text-align: center; }
+    .stat-num {
+      font-size: 2rem; font-weight: 800; letter-spacing: -0.03em;
+      background: linear-gradient(135deg, #4ade80, #22d3ee);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .stat-label { font-size: 0.85rem; color: #6666a0; margin-top: 4px; }
+
+    /* Section */
+    section { padding: 100px 0; }
+    .section-label {
+      display: inline-block; font-size: 0.78rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      padding: 6px 14px; border-radius: 20px; margin-bottom: 16px;
+    }
+    .label-green { color: #4ade80; background: rgba(74, 222, 128, 0.1); border: 1px solid rgba(74, 222, 128, 0.2); }
+    .label-blue { color: #60a5fa; background: rgba(96, 165, 250, 0.1); border: 1px solid rgba(96, 165, 250, 0.2); }
+    .label-purple { color: #a78bfa; background: rgba(167, 139, 250, 0.1); border: 1px solid rgba(167, 139, 250, 0.2); }
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 800; letter-spacing: -0.02em; margin-bottom: 12px;
+    }
+    .section-desc { font-size: 1.05rem; color: #8888a0; max-width: 600px; margin-bottom: 48px; }
+
+    /* How it works */
+    #how { border-top: 1px solid rgba(255,255,255,0.04); }
+    .steps {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0; margin-top: 48px; position: relative;
+    }
+    .steps::before {
+      content: '';
+      position: absolute; top: 32px; left: 10%; right: 10%; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(74, 222, 128, 0.3), transparent);
+    }
+    .step-item { text-align: center; padding: 32px 24px; position: relative; }
+    .step-num {
+      width: 56px; height: 56px; border-radius: 50%; margin: 0 auto 20px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; font-weight: 800;
+      background: linear-gradient(135deg, rgba(74, 222, 128, 0.15), rgba(34, 211, 238, 0.15));
+      border: 1px solid rgba(74, 222, 128, 0.3);
+      color: #4ade80; position: relative; z-index: 1;
+    }
+    .step-item h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
+    .step-item p { font-size: 0.9rem; color: #7777a0; }
+
+    /* Features */
+    #features { border-top: 1px solid rgba(255,255,255,0.04); }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .feature-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px; padding: 28px;
+      transition: all 0.3s;
+    }
+    .feature-card:hover {
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(74, 222, 128, 0.15);
+      transform: translateY(-4px);
+    }
+    .feature-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+    }
+    .feature-icon svg { width: 22px; height: 22px; }
+    .icon-green { background: rgba(34, 197, 94, 0.12); }
+    .icon-green svg { stroke: #4ade80; }
+    .icon-blue { background: rgba(56, 130, 246, 0.12); }
+    .icon-blue svg { stroke: #60a5fa; }
+    .icon-purple { background: rgba(139, 92, 246, 0.12); }
+    .icon-purple svg { stroke: #a78bfa; }
+    .icon-cyan { background: rgba(6, 182, 212, 0.12); }
+    .icon-cyan svg { stroke: #22d3ee; }
+    .icon-pink { background: rgba(236, 72, 153, 0.12); }
+    .icon-pink svg { stroke: #f472b6; }
+    .icon-amber { background: rgba(245, 158, 11, 0.12); }
+    .icon-amber svg { stroke: #fbbf24; }
+    .feature-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; color: #f0f0f8; }
+    .feature-card p { font-size: 0.9rem; color: #7777a0; line-height: 1.6; }
+    .feature-tag {
+      display: inline-block; margin-top: 12px;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.05em;
+      padding: 3px 10px; border-radius: 10px;
+      background: rgba(74, 222, 128, 0.08); color: #4ade80;
+      border: 1px solid rgba(74, 222, 128, 0.15);
+    }
+
+    /* Compare */
+    #compare { border-top: 1px solid rgba(255,255,255,0.04); }
+    .compare-table {
+      width: 100%; border-collapse: collapse; margin-top: 48px;
+      background: rgba(255,255,255,0.02); border-radius: 16px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .compare-table th {
+      padding: 20px 24px; text-align: center;
+      font-size: 0.95rem; font-weight: 700;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .compare-table th:first-child { text-align: left; }
+    .th-free { color: #4ade80; background: rgba(74, 222, 128, 0.05); }
+    .th-pro { color: #a78bfa; background: rgba(167, 139, 250, 0.05); }
+    .compare-table td {
+      padding: 16px 24px; font-size: 0.9rem;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      text-align: center; color: #9999b0;
+    }
+    .compare-table td:first-child { text-align: left; color: #c0c0d0; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table tr:hover td { background: rgba(255,255,255,0.02); }
+    .yes { color: #4ade80; font-size: 1.1rem; }
+    .no { color: #4b4b6b; font-size: 1.1rem; }
+    .val { color: #e0e0e8; font-weight: 600; }
+
+    /* CTA */
+    #cta { border-top: 1px solid rgba(255,255,255,0.04); }
+    .cta-box {
+      text-align: center; padding: 80px 48px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(6, 199, 85, 0.06), rgba(56, 130, 246, 0.06));
+      border: 1px solid rgba(6, 199, 85, 0.12);
+      position: relative; overflow: hidden;
+    }
+    .cta-box::before {
+      content: '';
+      position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
+      width: 500px; height: 300px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(6, 199, 85, 0.08), transparent);
+    }
+    .cta-box h2 {
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 800; letter-spacing: -0.02em;
+      margin-bottom: 16px; position: relative;
+    }
+    .cta-box p { color: #8888a0; font-size: 1.05rem; margin-bottom: 36px; position: relative; }
+    .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; position: relative; }
+    .cta-note { margin-top: 20px; font-size: 0.82rem; color: #5555a0; position: relative; }
+
+    /* Upgrade */
+    #upgrade { border-top: 1px solid rgba(255,255,255,0.04); }
+    .upgrade-box {
+      padding: 56px; border-radius: 24px;
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.07), rgba(56, 130, 246, 0.07));
+      border: 1px solid rgba(139, 92, 246, 0.15);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+    }
+    .upgrade-text h2 {
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      font-weight: 800; letter-spacing: -0.02em; margin-bottom: 16px;
+    }
+    .upgrade-text p { color: #8888a0; margin-bottom: 28px; }
+    .upgrade-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .upgrade-list li {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: 0.95rem; color: #c0c0d0;
+    }
+    .upgrade-list li::before {
+      content: '✦'; color: #a78bfa; font-size: 0.7rem; margin-top: 5px; flex-shrink: 0;
+    }
+    .contact-card {
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px; padding: 32px;
+    }
+    .contact-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 20px; color: #f0f0f8; }
+    .contact-row {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: 0.9rem; color: #9999c0;
+    }
+    .contact-row:last-child { border-bottom: none; }
+    .contact-row svg { width: 18px; height: 18px; stroke: #a78bfa; flex-shrink: 0; }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 40px 0; text-align: center;
+      color: #555; font-size: 0.85rem;
+    }
+    footer a { color: #8888a0; }
+    footer a:hover { color: #a5b4fc; }
+    .footer-links { display: flex; gap: 24px; justify-content: center; margin-bottom: 16px; }
+
+    /* Fade-in */
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links { gap: 14px; }
+      .nav-links a { font-size: 0.8rem; }
+      section { padding: 64px 0; }
+      .features-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .steps::before { display: none; }
+      .upgrade-box { grid-template-columns: 1fr; }
+      .stats { gap: 32px; }
+      .compare-table { font-size: 0.82rem; }
+      .compare-table th, .compare-table td { padding: 12px 16px; }
+      .cta-box { padding: 48px 24px; }
+    }
+    @media (max-width: 480px) {
+      .steps { grid-template-columns: 1fr; }
+      .hero-buttons, .cta-buttons { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="glow-bg"></div>
+
+<!-- Nav -->
+<nav>
+  <div class="container">
+    <a href="https://ching-tech.github.io" class="nav-logo">
+      <img src="images/CTLogo.svg" alt="擎添工業">擎添工業 ChingTech
+    </a>
+    <div class="nav-links">
+      <a href="#how">如何使用</a>
+      <a href="#features">功能</a>
+      <a href="#compare">方案比較</a>
+      <a href="#upgrade">企業升級</a>
+      <a href="https://line.me/R/ti/p/@285fjkky" target="_blank" class="nav-cta">免費試用</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge"><span></span> 現在開放免費試用</div>
+    <h1>AI 員工，<br>住在你的 LINE 裡</h1>
+    <p>上傳公司文件，AI 立刻學會你的業務知識。24 小時回答員工和客戶問題，你只要負責點頭。</p>
+    <div class="hero-buttons">
+      <a href="https://line.me/R/ti/p/@285fjkky" target="_blank" class="btn btn-line">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        加 LINE 開始試用（免費）
+      </a>
+      <a href="#compare" class="btn btn-outline">看方案比較 →</a>
+    </div>
+    <div class="stats">
+      <div class="stat-item">
+        <div class="stat-num">50 次</div>
+        <div class="stat-label">每日免費 AI 對話</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">0 元</div>
+        <div class="stat-label">試用完全免費</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">5 分鐘</div>
+        <div class="stat-label">加好友即可上手</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">24 小時</div>
+        <div class="stat-label">全天候自動回應</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How it works -->
+<section id="how">
+  <div class="container">
+    <div class="fade-in">
+      <span class="section-label label-green">三步驟開始</span>
+      <h2 class="section-title">五分鐘讓 AI 員工上工</h2>
+      <p class="section-desc">不需要安裝任何軟體，不需要設定帳號，LINE 掃碼就能用。</p>
+    </div>
+    <div class="steps fade-in">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <h3>加入 LINE 好友</h3>
+        <p>掃描 QR Code 或點連結，加入擎添助理的 LINE 官方帳號。</p>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <h3>給 AI 取個名字</h3>
+        <p>輸入「/名字 小菁」，幫你的 AI 員工命名，設定喜歡的語言風格。</p>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <h3>上傳公司文件</h3>
+        <p>把產品說明、SOP、FAQ 傳給 AI，她學會之後就能幫你回答問題。</p>
+      </div>
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <h3>開始使用</h3>
+        <p>邀請進群組，或讓員工直接加好友。AI 全天候待命，你負責收結果。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section id="features">
+  <div class="container">
+    <div class="fade-in">
+      <span class="section-label label-blue">全部功能</span>
+      <h2 class="section-title">一個 LINE 好友，十種能力</h2>
+      <p class="section-desc">從聊天問答到公司知識庫，擎添助理把企業等級的 AI 功能裝進 LINE 裡。</p>
+    </div>
+    <div class="features-grid">
+
+      <div class="feature-card fade-in">
+        <div class="feature-icon icon-green">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><line x1="8" y1="7" x2="16" y2="7"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+        </div>
+        <h3>公司知識庫 RAG</h3>
+        <p>上傳 PDF、Word、Excel、CSV 等文件，AI 向量搜尋後精準回答，引用來源清楚標示。</p>
+        <span class="feature-tag">企業核心</span>
+      </div>
+
+      <div class="feature-card fade-in">
+        <div class="feature-icon icon-blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3>AI 多輪對話</h3>
+        <p>Claude AI 驅動，記住整段對話脈絡，問複雜問題也能前後連貫地回答。</p>
+      </div>
+
+      <div class="feature-card fade-in">
+        <div class="feature-icon icon-purple">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M3 21v-2a7 7 0 0 1 7-7h4a7 7 0 0 1 7 7v2"/></svg>
+        </div>
+        <h3>自訂 AI 人設</h3>
+        <p>給 AI 取名字、設定稱呼方式、語言風格。品牌調性你說了算，不是罐頭回覆。</p>
+      </div>
+
+      <div class="feature-card fade-in">
+        <div class="feature-icon icon-amber">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44A2.5 2.5 0 0 1 2 17.5v-15A2.5 2.5 0 0 1 4.5 0h.5"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44A2.5 2.5 0 0 0 22 17.5v-15A2.5 2.5 0 0 0 19.5 0h-.5"/></svg>
+        </div>
+        <h3>長期記憶</h3>
+        <p>記住你說過的重要事情、偏好、近期行程。聊天時自動提醒，不需要你再重複說。</p>
+      </div>
+
+      <div class="feature-card fade-in">
+        <div class="feature-icon icon-cyan">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+        </div>
+        <h3>語音互動</h3>
+        <p>傳語音訊息 AI 聽懂並回覆，也能要求 AI「唸出來」。開車、工地都能用。</p>
+      </div>
+
+      <div class="feature-card fade-in">
+        <div class="feature-icon icon-pink">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/></svg>
+        </div>
+        <h3>AI 圖片生成</h3>
+        <p>一句話描述，AI 生成各種風格的圖片，直接在 LINE 傳給你。</p>
+      </div>
+
+      <div class="feature-card fade-in">
+        <div class="feature-icon icon-blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        </div>
+        <h3>圖片辨識</h3>
+        <p>傳照片給 AI，分析文字、場景、物件。估價單、手寫便條、產品照都能看。</p>
+      </div>
+
+      <div class="feature-card fade-in">
+        <div class="feature-icon icon-green">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+        </div>
+        <h3>影片摘要</h3>
+        <p>丟 YouTube 連結，AI 下載、轉成逐字稿、整理重點，存進你的知識庫。</p>
+      </div>
+
+      <div class="feature-card fade-in">
+        <div class="feature-icon icon-purple">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>群組支援</h3>
+        <p>加進公司 LINE 群組，@提及或叫名字就回應。不吵到別人，需要時才出現。</p>
+        <span class="feature-tag">群組可用</span>
+      </div>
+
+      <div class="feature-card fade-in">
+        <div class="feature-icon icon-cyan">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <h3>Web 管理後台</h3>
+        <p>LINE Login 登入，在網頁上管理知識庫筆記、AI 記憶、人設設定，比傳訊息更方便。</p>
+      </div>
+
+      <div class="feature-card fade-in">
+        <div class="feature-icon icon-amber">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <h3>個人筆記知識庫</h3>
+        <p>請 AI 幫你記筆記，隨時搜尋。每個人的資料完全獨立，不會互相看到。</p>
+      </div>
+
+      <div class="feature-card fade-in">
+        <div class="feature-icon icon-pink">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>安全防護</h3>
+        <p>Prompt 注入偵測、路徑保護、每日使用量限制，企業資料不外洩。</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Compare -->
+<section id="compare">
+  <div class="container">
+    <div class="fade-in">
+      <span class="section-label label-purple">方案比較</span>
+      <h2 class="section-title">試用版 vs 完整版</h2>
+      <p class="section-desc">試用版已包含核心功能，確認有效果後再升級，不用一開始就投入大預算。</p>
+    </div>
+    <table class="compare-table fade-in">
+      <thead>
+        <tr>
+          <th>功能</th>
+          <th class="th-free">✨ 試用版（免費）</th>
+          <th class="th-pro">🏢 完整版（企業）</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>AI 對話</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+        <tr><td>自訂 AI 人設</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+        <tr><td>個人知識庫</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+        <tr><td>長期記憶</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+        <tr><td>語音互動</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+        <tr><td>圖片生成 / 辨識</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+        <tr><td>影片摘要</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+        <tr><td>群組支援</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+        <tr><td>Web 管理後台</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+        <tr><td>公司知識庫（RAG）</td><td class="val">Admin 管理</td><td class="val">Admin 管理 + 自動同步</td></tr>
+        <tr><td>每日 AI 對話次數</td><td class="val">50 次 / 人</td><td class="val">無限制</td></tr>
+        <tr><td>Google Drive 同步</td><td class="no">—</td><td class="yes">✓</td></tr>
+        <tr><td>ERP / 庫存管理</td><td class="no">—</td><td class="yes">✓</td></tr>
+        <tr><td>多平台（LINE + Telegram）</td><td class="no">—</td><td class="yes">✓</td></tr>
+        <tr><td>客製 Agent 工作流程</td><td class="no">—</td><td class="yes">✓</td></tr>
+        <tr><td>專屬 AI 員工角色設計</td><td class="no">—</td><td class="yes">✓</td></tr>
+        <tr><td>FDE 工程師現場導入</td><td class="no">—</td><td class="yes">✓</td></tr>
+        <tr><td>Admin 儀表板（用戶統計、AI 日誌）</td><td class="no">—</td><td class="yes">✓</td></tr>
+        <tr><td>費用</td><td class="val" style="color:#4ade80;">免費</td><td class="val" style="color:#a78bfa;">月費制，聯繫報價</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="container">
+    <div class="cta-box fade-in">
+      <h2>現在就讓 AI 員工上工</h2>
+      <p>加 LINE 好友，五分鐘之內你就有一個 AI 在幫你做事。完全免費，不需要信用卡。</p>
+      <div class="cta-buttons">
+        <a href="https://line.me/R/ti/p/@285fjkky" target="_blank" class="btn btn-line">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          加入 LINE 好友，立即體驗
+        </a>
+        <a href="#upgrade" class="btn btn-outline">了解企業完整版 →</a>
+      </div>
+      <p class="cta-note">每日 50 次免費 · 不需要安裝 App · 不需要信用卡</p>
+    </div>
+  </div>
+</section>
+
+<!-- Upgrade -->
+<section id="upgrade">
+  <div class="container">
+    <div class="upgrade-box fade-in">
+      <div class="upgrade-text">
+        <span class="section-label label-purple">企業完整版</span>
+        <h2>讓 AI 真正融入你的業務流程</h2>
+        <p>試用版讓你感受 AI 的潛力，完整版讓 AI 變成你公司真正的一份子。</p>
+        <ul class="upgrade-list">
+          <li>ERP 庫存管理，LINE 直接查庫存、記帳</li>
+          <li>Google Drive 自動同步，文件更新 AI 自動學</li>
+          <li>LINE + Telegram 雙平台，不同部門各自用</li>
+          <li>多個 AI 員工角色，各司其職（客服、業務、倉管）</li>
+          <li>FDE 工程師現場導入，確保 AI 真的被用起來</li>
+          <li>Admin 儀表板，掌握 AI 使用狀況和效益</li>
+        </ul>
+      </div>
+      <div class="contact-card">
+        <h3>聯繫擎添工業</h3>
+        <div class="contact-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          (02) 2903-2788
+        </div>
+        <div class="contact-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          chieu@ms43.hinet.net
+        </div>
+        <div class="contact-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          新北市五股區成泰路一段194-8號 J棟
+        </div>
+        <div style="margin-top: 24px;">
+          <a href="https://line.me/R/ti/p/@285fjkky" target="_blank" class="btn btn-line" style="width:100%; justify-content:center; font-size:0.95rem; padding:12px 20px;">
+            先免費試用，再決定要不要升級
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-links">
+      <a href="https://ching-tech.github.io">擎添工業官網</a>
+      <a href="https://line.me/R/ti/p/@285fjkky" target="_blank">LINE 試用</a>
+      <a href="mailto:chieu@ms43.hinet.net">聯繫我們</a>
+    </div>
+    <p>&copy; 2026 擎添工業 ChingTech Industrial Co., Ltd.</p>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
