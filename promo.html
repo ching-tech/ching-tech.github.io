@@ -121,7 +121,11 @@
   .hero-badge .dot{width:6px;height:6px;border-radius:50%;background:#4ade80;animation:blink 2s infinite}
   @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
   .hero h1{margin-bottom:24px}
-  .hero h1 em{font-style:normal;background:var(--cyan);color:#fff;padding:0 .12em;border-radius:8px}
+  .hero h1 em{
+    font-style:normal;color:var(--paper);
+    background:linear-gradient(transparent 62%, var(--cyan) 62%, var(--cyan) 92%, transparent 92%);
+    padding:0 .06em;
+  }
   .hero p.lead{max-width:640px;margin:0 auto 36px}
   .hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
   .btn{
