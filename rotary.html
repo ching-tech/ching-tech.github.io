@@ -153,7 +153,79 @@
   .s-hook .display{max-width:20ch;margin:0 auto}
   .s-hook .lead{margin:32px auto 0}
 
-  /* ============ s3 enemy ============ */
+  /* ============ s2 about us ============ */
+  .s-about{
+    background:
+      radial-gradient(900px 600px at 80% 0%, rgba(8,145,178,.18), transparent 55%),
+      radial-gradient(700px 500px at 20% 100%, rgba(234,88,12,.10), transparent 55%),
+      var(--bg);
+    display:grid !important;grid-template-columns:1fr 1fr;align-items:center;gap:64px;
+  }
+  .about-left h2{margin-top:8px}
+  .about-meta{margin-top:32px;display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .about-meta .cell{
+    border:1px solid var(--line);border-radius:12px;padding:18px;background:rgba(240,240,240,.03);
+  }
+  .about-meta .k{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;color:var(--cyan-2);text-transform:uppercase}
+  .about-meta .v{font-size:22px;font-weight:700;margin-top:6px;color:var(--paper)}
+  .about-meta .v small{font-size:13px;color:var(--muted);font-weight:400;margin-left:6px}
+  .about-pillars{
+    display:flex;flex-direction:column;gap:14px;
+  }
+  .pillar-card{
+    border:1px solid var(--line);border-radius:14px;padding:20px 22px;
+    background:linear-gradient(135deg,rgba(8,145,178,.10),rgba(240,240,240,.02));
+    display:flex;gap:16px;align-items:flex-start;
+  }
+  .pillar-card .ico{
+    width:42px;height:42px;border-radius:10px;display:grid;place-items:center;
+    background:rgba(8,145,178,.18);color:var(--cyan-2);flex-shrink:0;
+  }
+  .pillar-card h3{font-size:18px;font-weight:700;margin-bottom:4px}
+  .pillar-card p{font-size:13px;color:#bdbec3;line-height:1.5}
+  .customer-strip{
+    margin-top:18px;padding:18px 22px;border-radius:12px;
+    background:rgba(240,240,240,.03);border:1px solid var(--line);
+  }
+  .customer-strip .label{
+    font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;color:var(--orange-2);
+    text-transform:uppercase;margin-bottom:10px;display:block;
+  }
+  .customer-strip .list{
+    display:flex;flex-wrap:wrap;gap:8px;
+  }
+  .customer-strip .tag{
+    font-size:13px;padding:6px 12px;border-radius:999px;background:rgba(240,240,240,.05);
+    color:#dcdde2;border:1px solid var(--line);
+  }
+
+  /* ============ s3 bridge: 為什麼老廠做 AI ============ */
+  .s-bridge{
+    background:
+      radial-gradient(1000px 700px at 50% 50%, rgba(234,88,12,.18), transparent 60%),
+      var(--bg);
+    align-items:center;text-align:center;
+  }
+  .bridge-arrow{
+    display:flex;align-items:center;gap:24px;justify-content:center;margin:36px auto 0;flex-wrap:wrap;
+  }
+  .bridge-pill{
+    border:1px solid var(--line);border-radius:14px;padding:24px 28px;background:rgba(240,240,240,.03);
+    min-width:200px;
+  }
+  .bridge-pill .y{font-family:"JetBrains Mono",monospace;font-size:38px;font-weight:700;color:var(--cyan-2);line-height:1}
+  .bridge-pill .l{font-size:13px;color:var(--muted);margin-top:6px;font-family:"JetBrains Mono",monospace;letter-spacing:.18em;text-transform:uppercase}
+  .bridge-plus{font-family:"JetBrains Mono",monospace;font-size:32px;color:var(--orange-2);font-weight:700}
+  .bridge-equals{
+    margin-top:36px;padding:28px 36px;border-radius:18px;
+    background:linear-gradient(135deg,rgba(8,145,178,.18),rgba(234,88,12,.12));
+    border:1px solid rgba(34,211,238,.25);max-width:62ch;margin-inline:auto;
+  }
+  .bridge-equals .product{font-family:"Noto Serif TC",serif;font-size:42px;font-weight:900;color:var(--paper);letter-spacing:-.02em}
+  .bridge-equals .product em{font-style:normal;background:var(--cyan);color:#fff;padding:0 .15em;border-radius:6px}
+  .bridge-equals p{margin-top:14px;font-size:16px;color:#dcdde2;line-height:1.6}
+
+  /* ============ s4 enemy (was s3) ============ */
   .three-up{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
   .three-up .item{
     border:1px solid var(--line);border-radius:12px;padding:28px;
@@ -480,7 +552,9 @@
     .three-up,.pro-grid,.stat-grid,.why-grid,.steps-row,.deadline{grid-template-columns:1fr 1fr}
     .mod-grid{grid-template-columns:1fr 1fr}
     .mod.feature{grid-column:span 2}
-    .s-shift,.offer-card,.s-close,.s-deep,.desktop-row{grid-template-columns:1fr !important}
+    .s-shift,.offer-card,.s-close,.s-deep,.desktop-row,.s-about{grid-template-columns:1fr !important}
+    .about-meta{grid-template-columns:1fr 1fr}
+    .bridge-arrow{flex-direction:column;gap:14px}
     .display{font-size:60px}
     .intro-display{font-size:64px}
   }
@@ -552,7 +626,115 @@
     </div>
   </section>
 
-  <!-- ============== 02 hook ============== -->
+  <!-- ============== 02 自我介紹 · 擎添工業 ============== -->
+  <section class="slide s-about" data-title="關於擎添工業">
+    <div class="about-left">
+      <span class="eyebrow">在開始之前 · 先讓您認識我們</span>
+      <h2 class="h2">擎添工業，<br/><span class="glow-cyan">40 年</span>的<br/>機電老廠。</h2>
+      <p class="lead" style="margin-top:20px">
+        1984 年成立於新北五股，<br/>
+        從 PLC、機械手臂、AGV 一路做到智慧工廠 —— <br/>
+        我們在工廠裡，用工程能力解決真實問題 <b style="color:var(--paper)">超過 40 年</b>。
+      </p>
+      <div class="about-meta">
+        <div class="cell">
+          <div class="k">成立</div>
+          <div class="v">1984<small>年</small></div>
+        </div>
+        <div class="cell">
+          <div class="k">總部</div>
+          <div class="v">新北 · 五股</div>
+        </div>
+        <div class="cell">
+          <div class="k">核心專業</div>
+          <div class="v">工業 4.0<small>系統整合</small></div>
+        </div>
+        <div class="cell">
+          <div class="k">最重載重</div>
+          <div class="v">2,000<small>kg AGV</small></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-pillars">
+      <div class="pillar-card">
+        <div class="ico">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M5 11V7a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v4"/></svg>
+        </div>
+        <div>
+          <h3>AGV / AMR 無人搬運</h3>
+          <p>360° 全方位移動、智能路徑、重載 2 噸級，整合 KUKA / FANUC / YASKAWA 機械手臂。</p>
+        </div>
+      </div>
+      <div class="pillar-card">
+        <div class="ico">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        </div>
+        <div>
+          <h3>機電自動化 + SCADA</h3>
+          <p>PLC 程式設計、Motion Control、電氣監控，把工廠的訊號變成可決策的數據。</p>
+        </div>
+      </div>
+      <div class="pillar-card">
+        <div class="ico">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        </div>
+        <div>
+          <h3>智慧工廠 · 工業 4.0</h3>
+          <p>系統整合、IIoT 物聯網、大數據分析、跨平台串接，從一條產線到整廠數位轉型。</p>
+        </div>
+      </div>
+
+      <div class="customer-strip">
+        <span class="label">服務跨產業客戶 · 國內外知名企業</span>
+        <div class="list">
+          <span class="tag">半導體封測</span>
+          <span class="tag">PCB 製造</span>
+          <span class="tag">面板生產</span>
+          <span class="tag">玻璃製造</span>
+          <span class="tag">CNC 加工</span>
+          <span class="tag">日系光學</span>
+          <span class="tag">金屬加工 (2T)</span>
+          <span class="tag">美系科技</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== 03 為什麼老廠在做 AI ============== -->
+  <section class="slide s-bridge" data-title="為什麼機電老廠在做 AI">
+    <span class="eyebrow" style="margin:0 auto">承先啟後 · 為什麼是我們做 CTOS</span>
+    <h2 class="h2" style="margin-top:8px">不是 AI 新創，<br/>是<span class="glow-cyan">用 40 年工程力</span>，<br/>把 AI 真的<span class="glow-orange">放進你的事業</span>裡。</h2>
+
+    <div class="bridge-arrow">
+      <div class="bridge-pill">
+        <div class="y">40<span style="font-size:.5em">年</span></div>
+        <div class="l">機電工程</div>
+      </div>
+      <span class="bridge-plus">+</span>
+      <div class="bridge-pill">
+        <div class="y">4<span style="font-size:.5em">個月</span></div>
+        <div class="l">AI 軟體研發</div>
+      </div>
+      <span class="bridge-plus">=</span>
+      <div class="bridge-pill" style="background:rgba(234,88,12,.10);border-color:rgba(234,88,12,.3)">
+        <div class="y" style="color:var(--orange-2)">CTOS</div>
+        <div class="l">企業第二作業系統</div>
+      </div>
+    </div>
+
+    <div class="bridge-equals">
+      <div class="product">把工程基因放進 <em>AI</em></div>
+      <p>
+        我們踩過幾百個工廠的痛點，<br/>
+        知道哪些事該被自動化、哪些事自動化會壞 ——<br/>
+        所以我們做的 AI 工具，<b style="color:var(--paper)">是真的能進你公司運轉的</b>，<br/>
+        不是 demo、不是 PPT、不是 vibe coding。
+      </p>
+    </div>
+  </section>
+
+  <!-- ============== 04 hook ============== -->
   <section class="slide s-hook" data-title="開場提問">
     <span class="eyebrow">開場 · 一個小提問</span>
     <h1 class="display display-serif">
