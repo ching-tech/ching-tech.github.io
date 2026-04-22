@@ -264,43 +264,32 @@
       gap: 40px; align-items: start;
       margin-top: 48px;
     }
-    /* Ambient glow wrapper · 電影院模式 */
+    /* mac-stage 簡化為居中容器(glow 移到 ent-demo-layout 層) */
     .mac-stage {
       position: relative;
       display: flex; justify-content: center; align-items: center;
       padding: 40px 0;
+      z-index: 1;
     }
-    /* 內層強光 */
-    .mac-stage::before {
+    .mac-stage > .mac-window { position: relative; z-index: 1; }
+
+    /* Ambient glow · 掛在 ent-demo-layout 這層,焦點落在 mac-window 側(左) */
+    .ent-demo-layout { position: relative; }
+    .ent-demo-layout::before {
       content: "";
       position: absolute;
-      inset: -40px -80px;
+      inset: -150px -150px;
       z-index: 0;
       background: radial-gradient(
-        ellipse 55% 55% at center,
-        rgba(34, 211, 238, 0.60) 0%,
-        rgba(139, 92, 246, 0.36) 40%,
+        ellipse 36% 50% at 35% 50%,
+        rgba(34, 211, 238, 0.52) 0%,
+        rgba(139, 92, 246, 0.26) 42%,
         transparent 72%
       );
-      filter: blur(50px);
+      filter: blur(75px);
       pointer-events: none;
     }
-    /* 外層大擴散 */
-    .mac-stage::after {
-      content: "";
-      position: absolute;
-      inset: -200px -240px;
-      z-index: 0;
-      background: radial-gradient(
-        ellipse 50% 48% at center,
-        rgba(34, 211, 238, 0.40) 0%,
-        rgba(139, 92, 246, 0.24) 45%,
-        transparent 75%
-      );
-      filter: blur(110px);
-      pointer-events: none;
-    }
-    .mac-stage > .mac-window { position: relative; z-index: 2; }
+    .ent-demo-layout > * { position: relative; z-index: 1; }
     .mac-window {
       background: #1a1a1e;
       border-radius: 12px; overflow: hidden;

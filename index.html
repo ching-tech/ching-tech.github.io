@@ -415,61 +415,43 @@
     }
     .demo-cta.enterprise:hover { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(34,211,238,0.3); }
 
-    /* Ambient glow stage · YouTube 電影院模式的靜態版
-       關鍵:inset 用絕對像素大擴散、不用 isolation,光暈才能真正漫出去 */
+    /* mini-stage 簡化為居中容器(glow 移到 demo-panel-layout 這層) */
     .mini-stage {
       position: relative;
       display: flex; justify-content: center; align-items: center;
       padding: 40px 10px;
-      /* overflow 不能 hidden,否則 glow 被截 */
+      z-index: 1;
     }
-    /* 內層強光暈(集中在 phone 周圍) */
-    .mini-stage::before {
+
+    /* Ambient glow · 掛在 demo-panel-layout 這層,光暈落在 mockup 所在那一側 */
+    .demo-panel-layout { position: relative; }
+    .demo-panel-layout::before {
       content: "";
       position: absolute;
-      inset: -40px -80px;
+      inset: -120px -120px;
       z-index: 0;
+      filter: blur(70px);
+      pointer-events: none;
+    }
+    .demo-panel-layout > * { position: relative; z-index: 1; }
+
+    /* 個人版:phone 在右,光暈焦點 right 側、LINE 綠主色 */
+    #panelPersonal .demo-panel-layout::before {
       background: radial-gradient(
-        ellipse 55% 55% at center,
-        var(--glow-primary, rgba(6, 199, 85, 0.65)) 0%,
-        var(--glow-secondary, rgba(139, 92, 246, 0.32)) 40%,
+        ellipse 32% 45% at 78% 50%,
+        rgba(6, 199, 85, 0.52) 0%,
+        rgba(139, 92, 246, 0.22) 42%,
         transparent 72%
       );
-      filter: blur(50px);
-      pointer-events: none;
     }
-    /* 外層大擴散(當背景氛圍光) */
-    .mini-stage::after {
-      content: "";
-      position: absolute;
-      inset: -180px -220px;
-      z-index: 0;
+    /* 企業版:window 在左,光暈焦點 left 側、cyan 主色 */
+    #panelEnterprise .demo-panel-layout::before {
       background: radial-gradient(
-        ellipse 50% 48% at center,
-        var(--glow-wide, rgba(6, 199, 85, 0.40)) 0%,
-        var(--glow-wide-2, rgba(139, 92, 246, 0.18)) 45%,
-        transparent 75%
+        ellipse 32% 45% at 22% 50%,
+        rgba(34, 211, 238, 0.50) 0%,
+        rgba(139, 92, 246, 0.26) 42%,
+        transparent 72%
       );
-      filter: blur(100px);
-      pointer-events: none;
-    }
-    /* phone/mac 浮在光暈之上 */
-    .mini-stage > .mini-phone,
-    .mini-stage > .mini-mac { position: relative; z-index: 2; }
-
-    /* 個人版:LINE 綠主色 + 紫尾韻 */
-    .mini-stage.personal {
-      --glow-primary: rgba(6, 199, 85, 0.68);
-      --glow-secondary: rgba(139, 92, 246, 0.30);
-      --glow-wide: rgba(6, 199, 85, 0.42);
-      --glow-wide-2: rgba(139, 92, 246, 0.22);
-    }
-    /* 企業版:cyan 主色 + 紫尾韻 */
-    .mini-stage.enterprise {
-      --glow-primary: rgba(34, 211, 238, 0.60);
-      --glow-secondary: rgba(139, 92, 246, 0.35);
-      --glow-wide: rgba(34, 211, 238, 0.38);
-      --glow-wide-2: rgba(139, 92, 246, 0.25);
     }
 
     /* LINE phone(個人版)· 比例 1:2 同 ctos-lite 主 phone */
@@ -586,6 +568,17 @@
       .mini-phone, .mini-mac { order: 1; }
       #unified-demo .demo-tabs { display: flex; width: 100%; }
       #unified-demo .demo-tab { flex: 1; }
+      /* 手機版 glow 改居中 */
+      #panelPersonal .demo-panel-layout::before,
+      #panelEnterprise .demo-panel-layout::before {
+        background: radial-gradient(
+          ellipse 55% 35% at 50% 35%,
+          var(--gm, rgba(6, 199, 85, 0.45)) 0%,
+          rgba(139, 92, 246, 0.20) 45%,
+          transparent 72%
+        );
+      }
+      #panelEnterprise .demo-panel-layout::before { --gm: rgba(34, 211, 238, 0.45); }
     }
   </style>
 <!-- Meta Pixel Code -->
