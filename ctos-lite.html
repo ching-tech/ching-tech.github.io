@@ -380,6 +380,241 @@
       .steps { grid-template-columns: 1fr; }
       .hero-buttons, .cta-buttons { flex-direction: column; align-items: center; }
     }
+
+    /* ============================================================
+       Demo Section · LINE 聊天 mockup autoplay
+       ============================================================ */
+    #demo { border-top: 1px solid rgba(255,255,255,0.04); background: linear-gradient(180deg, transparent, rgba(6, 199, 85, 0.02) 50%, transparent); }
+    .demo-layout {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 56px;
+      align-items: start;
+      margin-top: 48px;
+    }
+    .demo-phone-wrap { display: flex; justify-content: center; }
+
+    .phone {
+      width: 320px; height: 640px;
+      background: #1a1a1e;
+      border-radius: 42px;
+      padding: 10px;
+      box-shadow:
+        0 30px 80px rgba(0,0,0,0.55),
+        0 0 0 1px rgba(255,255,255,0.06) inset,
+        0 0 40px rgba(6, 199, 85, 0.08);
+      position: relative;
+    }
+    .phone::before {
+      content: "";
+      position: absolute; top: 22px; left: 50%; transform: translateX(-50%);
+      width: 100px; height: 24px; background: #0a0a0c; border-radius: 14px;
+      z-index: 3;
+    }
+    .phone-screen {
+      width: 100%; height: 100%;
+      background: #7a8597;
+      border-radius: 34px;
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      position: relative;
+    }
+    .line-statusbar {
+      height: 36px;
+      padding: 0 22px;
+      display: flex; align-items: flex-end; justify-content: space-between;
+      padding-bottom: 4px;
+      font-family: -apple-system, "JetBrains Mono", monospace;
+      font-size: 11px; font-weight: 700; color: #1a1a1e;
+      background: #06c755;
+    }
+    .line-statusbar .sb-right { display: flex; gap: 6px; align-items: center; }
+    .line-header {
+      height: 54px;
+      background: #06c755;
+      padding: 0 16px;
+      display: flex; align-items: center; gap: 12px;
+      color: #fff;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    .line-back { font-size: 20px; font-weight: 300; opacity: 0.9; line-height: 1; }
+    .line-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: linear-gradient(135deg, #22d3ee, #0891b2);
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-weight: 800; font-size: 14px;
+      font-family: "Noto Serif TC", serif;
+      border: 2px solid rgba(255,255,255,0.5);
+    }
+    .line-title-wrap { flex: 1; min-width: 0; }
+    .line-title { font-size: 15px; font-weight: 700; }
+    .line-subtitle { font-size: 11px; opacity: 0.85; }
+    .line-header-icons { display: flex; gap: 14px; opacity: 0.9; font-size: 16px; }
+
+    .chat-area {
+      flex: 1;
+      background: #7a8597;
+      padding: 14px 12px;
+      overflow: hidden;
+      position: relative;
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .chat-area::after {
+      content: "";
+      position: absolute; top: 0; left: 0; right: 0; height: 14px;
+      background: linear-gradient(180deg, #7a8597, transparent);
+      pointer-events: none;
+    }
+
+    .msg {
+      max-width: 74%;
+      padding: 8px 12px;
+      font-size: 13px;
+      line-height: 1.5;
+      border-radius: 16px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      animation: msgPop 0.28s ease-out;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+    }
+    @keyframes msgPop {
+      0% { opacity: 0; transform: translateY(6px) scale(0.96); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .msg.from-ai {
+      align-self: flex-start;
+      background: #fff;
+      color: #1a1a1e;
+      border-top-left-radius: 4px;
+    }
+    .msg.from-user {
+      align-self: flex-end;
+      background: #06c755;
+      color: #fff;
+      border-top-right-radius: 4px;
+    }
+    .msg.from-user + .msg.from-user,
+    .msg.from-ai + .msg.from-ai { margin-top: -2px; }
+    .msg .role {
+      font-size: 10px; color: rgba(255,255,255,0.85);
+      margin-bottom: 2px; letter-spacing: 0.04em;
+    }
+    .msg.from-ai .role { color: #8a9095; }
+    .msg pre.log {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px; color: #333;
+      background: #f4f5f6;
+      padding: 6px 8px; border-radius: 6px; margin-top: 4px;
+      white-space: pre; overflow-x: auto;
+    }
+
+    .typing {
+      align-self: flex-start;
+      background: #fff;
+      padding: 10px 14px;
+      border-radius: 16px;
+      border-top-left-radius: 4px;
+      display: inline-flex; gap: 4px;
+      animation: msgPop 0.2s ease-out;
+    }
+    .typing span {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: #a8acb2;
+      animation: typingDot 1.3s infinite ease-in-out;
+    }
+    .typing span:nth-child(2) { animation-delay: 0.18s; }
+    .typing span:nth-child(3) { animation-delay: 0.36s; }
+    @keyframes typingDot {
+      0%, 80%, 100% { opacity: 0.25; transform: translateY(0); }
+      40% { opacity: 1; transform: translateY(-3px); }
+    }
+
+    .line-inputbar {
+      height: 48px; padding: 0 14px;
+      display: flex; align-items: center; gap: 10px;
+      background: #f2f3f5;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .line-inputbar .ib-icon {
+      width: 24px; height: 24px; color: #707783;
+    }
+    .line-inputbar .ib-text {
+      flex: 1; font-size: 12px; color: #a0a4ac;
+      background: #fff;
+      padding: 6px 12px; border-radius: 18px;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    /* Scenarios side panel */
+    .demo-side { padding-top: 8px; }
+    .scenario-now {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12px; letter-spacing: 0.14em;
+      color: #4ade80; text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .scenario-title {
+      font-size: 1.5rem; font-weight: 800; color: #f0f0f8;
+      margin-bottom: 6px;
+    }
+    .scenario-desc {
+      font-size: 0.95rem; color: #9999b0;
+      margin-bottom: 28px;
+    }
+    .scenario-list {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .scenario-btn {
+      padding: 14px 16px; border-radius: 12px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      color: #c0c0d0;
+      font-family: inherit; font-size: 0.88rem; font-weight: 600;
+      text-align: left; cursor: pointer;
+      transition: all 0.2s; display: flex; align-items: center; gap: 10px;
+    }
+    .scenario-btn:hover {
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.12);
+    }
+    .scenario-btn.active {
+      background: linear-gradient(135deg, rgba(6, 199, 85, 0.12), rgba(34, 211, 238, 0.08));
+      border-color: rgba(6, 199, 85, 0.35);
+      color: #fff;
+    }
+    .scenario-btn .idx {
+      width: 22px; height: 22px; border-radius: 50%;
+      display: grid; place-items: center;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px;
+      background: rgba(255,255,255,0.06);
+      color: #8888a0;
+      flex-shrink: 0;
+    }
+    .scenario-btn.active .idx {
+      background: rgba(6, 199, 85, 0.8); color: #fff;
+    }
+    .scenario-btn .lbl { flex: 1; line-height: 1.3; }
+    .demo-hint {
+      margin-top: 20px;
+      font-size: 0.82rem; color: #666676;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .demo-hint::before {
+      content: ""; width: 8px; height: 8px; border-radius: 50%;
+      background: #4ade80; animation: blink 2s infinite;
+    }
+
+    @media (max-width: 900px) {
+      .demo-layout { grid-template-columns: 1fr; gap: 36px; }
+      .demo-phone-wrap { order: 2; }
+      .demo-side { order: 1; }
+    }
+    @media (max-width: 480px) {
+      .scenario-list { grid-template-columns: 1fr; }
+      .phone { width: 300px; height: 600px; }
+    }
   </style>
 <!-- Meta Pixel Code -->
 <script>
@@ -461,6 +696,57 @@ window.addEventListener('DOMContentLoaded', function(){
       <div class="stat-item">
         <div class="stat-num">24 小時</div>
         <div class="stat-label">全天候自動回應</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Live Demo · LINE 聊天 mockup -->
+<section id="demo">
+  <div class="container">
+    <div class="fade-in">
+      <span class="section-label label-green">即時互動</span>
+      <h2 class="section-title">看它怎麼回答不同產業的問題</h2>
+      <p class="section-desc">6 個真實場景循環展示,不是樣板答覆,是產業細節。點任一場景即時切換。</p>
+    </div>
+
+    <div class="demo-layout fade-in">
+      <div class="demo-phone-wrap">
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="line-statusbar">
+              <span>9:41</span>
+              <span class="sb-right"><span>5G</span><span>●●●</span></span>
+            </div>
+            <div class="line-header">
+              <div class="line-back">&lt;</div>
+              <div class="line-avatar">擎</div>
+              <div class="line-title-wrap">
+                <div class="line-title">擎添助理</div>
+                <div class="line-subtitle">上線中</div>
+              </div>
+              <div class="line-header-icons"><span>☏</span><span>≡</span></div>
+            </div>
+            <div class="chat-area" id="chatArea" aria-live="polite"></div>
+            <div class="line-inputbar">
+              <svg class="ib-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <div class="ib-text">訊息</div>
+              <svg class="ib-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-side">
+        <div class="scenario-now" id="scenarioNow">場景 1 / 6 · 進行中</div>
+        <div class="scenario-title" id="scenarioTitle">ERP 進銷存</div>
+        <div class="scenario-desc" id="scenarioDesc">老闆隨口問,AI 從公司資料抓明細回答。不用開 ERP、不用找 Excel。</div>
+
+        <div class="scenario-list" id="scenarioList">
+          <!-- 六個場景按鈕由 JS 自動注入 -->
+        </div>
+
+        <div class="demo-hint">實時循環展示 · 點卡片切換</div>
       </div>
     </div>
   </div>
@@ -696,7 +982,7 @@ window.addEventListener('DOMContentLoaded', function(){
         </div>
         <div class="contact-row">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          yazelin@ching-tech.com
+          chieu@ms43.hinet.net
         </div>
         <div class="contact-row">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -740,7 +1026,7 @@ window.addEventListener('DOMContentLoaded', function(){
     <div class="footer-col">
       <div class="footer-label">聯絡</div>
       <a href="contact.html">聯絡表單</a>
-      <a href="mailto:yazelin@ching-tech.com">yazelin@ching-tech.com</a>
+      <a href="mailto:chieu@ms43.hinet.net">chieu@ms43.hinet.net</a>
       <a href="https://ching-tech.com" target="_blank">ching-tech.com</a>
     </div>
   </div>
@@ -753,7 +1039,7 @@ window.addEventListener('DOMContentLoaded', function(){
        style="width:40px;height:40px;border-radius:50%;background:rgba(6,199,85,.12);display:grid;place-items:center;color:#06c755;transition:transform .15s">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
     </a>
-    <a href="mailto:yazelin@ching-tech.com" aria-label="Email"
+    <a href="mailto:chieu@ms43.hinet.net" aria-label="Email"
        style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.05);display:grid;place-items:center;color:#a5b4fc;transition:transform .15s">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
     </a>
@@ -770,6 +1056,213 @@ window.addEventListener('DOMContentLoaded', function(){
     });
   }, { threshold: 0.08 });
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+<!-- LINE Chat Demo Script · 六場景 autoplay -->
+<script>
+(function() {
+  "use strict";
+
+  const scenarios = [
+    {
+      title: "ERP 進銷存",
+      desc: "老闆隨口問,AI 從公司資料抓明細回答。不用開 ERP、不用找 Excel。",
+      role: "老闆",
+      turns: [
+        { from: "user", text: "A 客戶本月出貨多少?" },
+        { from: "ai", text: "本月出了 132 pcs,比上月多 18%。" },
+        { from: "ai", text: "要看明細嗎?" },
+        { from: "user", text: "看" },
+        { from: "ai", log: "2026-04-03  PN-001   30 pcs\n2026-04-11  PN-001   42 pcs\n2026-04-19  PN-007   60 pcs\n─────────────\n合計           132 pcs" },
+      ],
+    },
+    {
+      title: "診所衛教 QA",
+      desc: "病患用 LINE 問藥品、副作用,AI 從院所衛教資料回答,減少櫃台姊姊重複問答。",
+      role: "病患",
+      turns: [
+        { from: "user", text: "醫生開的 A 酸可以跟 B 群一起吃嗎?" },
+        { from: "ai", text: "A 酸(Isotretinoin)建議飯後服用,跟 B 群不衝突。" },
+        { from: "ai", text: "要避開的是維他命 A,會加成副作用。" },
+        { from: "user", text: "那曬太陽呢?" },
+        { from: "ai", text: "吃 A 酸期間皮膚對紫外線敏感,戴帽子、擦 SPF 50+。" },
+        { from: "ai", text: "出門 30 分鐘以上建議補擦。" },
+      ],
+    },
+    {
+      title: "律師判例查詢",
+      desc: "律師問時效、類似判決,AI 從事務所案件庫與判決資料回。",
+      role: "律師",
+      turns: [
+        { from: "user", text: "雇主未付加班費超過 2 年,追訴時效過了嗎?" },
+        { from: "ai", text: "工資請求權時效是 5 年(民法第 126 條),不是 2 年。" },
+        { from: "ai", text: "勞基法罰鍰時效才是 3 年,兩個不要混。" },
+        { from: "user", text: "有類似判決嗎?" },
+        { from: "ai", text: "最高法院 108 年台上字第 1866 號:認定加班費屬工資,適用 5 年時效。" },
+        { from: "ai", text: "臺高院 110 年勞上字第 45 號:時效從「得請求時」起算。" },
+      ],
+    },
+    {
+      title: "員工 SOP 查詢",
+      desc: "新進員工不用翻手冊,直接 LINE 問流程。AI 從公司 SOP 回答,步驟清楚。",
+      role: "業務",
+      turns: [
+        { from: "user", text: "客戶要退貨,流程怎麼跑?" },
+        { from: "ai", text: "1. 收到退貨需求 24 小時內確認原因" },
+        { from: "ai", text: "2. 商品狀況 OK → 開折讓單(當月可作廢)" },
+        { from: "ai", text: "3. 倉庫收回 → 品管檢驗 48 小時" },
+        { from: "ai", text: "4. 退款由會計在月底前處理" },
+        { from: "user", text: "檢驗沒過呢?" },
+        { from: "ai", text: "啟動客訴流程,Sales 聯絡客戶,可換貨或協議退款比例。" },
+      ],
+    },
+    {
+      title: "個人秘書",
+      desc: "行程、翻譯、摘要。跟真的秘書一樣,但 24 小時在線。",
+      role: "我",
+      turns: [
+        { from: "user", text: "下週三下午 3 點有空開會嗎?訂會議室" },
+        { from: "ai", text: "看了行事曆,3–4 點你已經有「產品週會」。" },
+        { from: "ai", text: "要改 4–5 點嗎?B 會議室那時段空著。" },
+        { from: "user", text: "好,順便翻譯給日本客戶:「本週內會回覆報價,謝謝」" },
+        { from: "ai", text: "今週中にお見積もりをお返事いたします。ありがとうございます。" },
+      ],
+    },
+    {
+      title: "半導體技術員",
+      desc: "機台報 alarm,AI 從維修 SOP 與歷史紀錄給建議,減少 call PE 次數。",
+      role: "技術員",
+      turns: [
+        { from: "user", text: "機台報 alarm 2104,怎麼處理?" },
+        { from: "ai", text: "2104 = Wafer Handler Servo Error。" },
+        { from: "ai", text: "1. 先按 RESET 試一次" },
+        { from: "ai", text: "2. 無效 → 檢查 E87 port load pin 是否歸位" },
+        { from: "ai", text: "3. 仍無效 → call PE" },
+        { from: "user", text: "pin 歸位了還是 alarm" },
+        { from: "ai", text: "可能是 sensor SE-203 訊號雜訊。" },
+        { from: "ai", text: "查維修紀錄,這支 sensor 去年 11 月換過一次,建議再換。" },
+      ],
+    },
+  ];
+
+  const chatArea = document.getElementById("chatArea");
+  const scenarioList = document.getElementById("scenarioList");
+  const scenarioNow = document.getElementById("scenarioNow");
+  const scenarioTitle = document.getElementById("scenarioTitle");
+  const scenarioDesc = document.getElementById("scenarioDesc");
+
+  let currentIdx = 0;
+  let turnTimer = null;
+  let nextScenarioTimer = null;
+
+  // 渲染場景按鈕
+  scenarios.forEach((s, i) => {
+    const btn = document.createElement("button");
+    btn.className = "scenario-btn" + (i === 0 ? " active" : "");
+    btn.dataset.idx = i;
+    btn.innerHTML = `<span class="idx">${String(i + 1).padStart(2, "0")}</span><span class="lbl">${s.title}</span>`;
+    btn.addEventListener("click", () => jumpTo(i));
+    scenarioList.appendChild(btn);
+  });
+
+  function updateSideLabels() {
+    const s = scenarios[currentIdx];
+    scenarioNow.textContent = `場景 ${currentIdx + 1} / ${scenarios.length} · 進行中`;
+    scenarioTitle.textContent = s.title;
+    scenarioDesc.textContent = s.desc;
+    document.querySelectorAll(".scenario-btn").forEach((b) => {
+      b.classList.toggle("active", Number(b.dataset.idx) === currentIdx);
+    });
+  }
+
+  function clearTimers() {
+    if (turnTimer) clearTimeout(turnTimer);
+    if (nextScenarioTimer) clearTimeout(nextScenarioTimer);
+    turnTimer = null;
+    nextScenarioTimer = null;
+  }
+
+  function clearChat() {
+    chatArea.innerHTML = "";
+  }
+
+  function appendMessage(turn) {
+    const div = document.createElement("div");
+    div.className = "msg from-" + turn.from;
+    if (turn.log) {
+      const pre = document.createElement("pre");
+      pre.className = "log";
+      pre.textContent = turn.log;
+      div.appendChild(pre);
+    } else {
+      div.textContent = turn.text;
+    }
+    chatArea.appendChild(div);
+    // 超出視窗時把最舊的 hide(保持 3-6 條可見)
+    while (chatArea.scrollHeight > chatArea.clientHeight + 10) {
+      const first = chatArea.querySelector(".msg, .typing");
+      if (!first) break;
+      first.remove();
+    }
+  }
+
+  function showTyping() {
+    const t = document.createElement("div");
+    t.className = "typing";
+    t.innerHTML = "<span></span><span></span><span></span>";
+    chatArea.appendChild(t);
+    while (chatArea.scrollHeight > chatArea.clientHeight + 10) {
+      const first = chatArea.querySelector(".msg, .typing");
+      if (!first || first === t) break;
+      first.remove();
+    }
+    return t;
+  }
+
+  function runScenario(idx, turnIdx) {
+    const s = scenarios[idx];
+    if (turnIdx >= s.turns.length) {
+      // 本場景播完,3 秒後換下一個
+      nextScenarioTimer = setTimeout(() => {
+        const next = (idx + 1) % scenarios.length;
+        jumpTo(next);
+      }, 3200);
+      return;
+    }
+
+    const turn = s.turns[turnIdx];
+
+    if (turn.from === "user") {
+      // 使用者訊息:直接 pop
+      turnTimer = setTimeout(() => {
+        appendMessage(turn);
+        turnTimer = setTimeout(() => runScenario(idx, turnIdx + 1), 900);
+      }, 400);
+    } else {
+      // AI 訊息:typing dots → 換成訊息
+      turnTimer = setTimeout(() => {
+        const typing = showTyping();
+        turnTimer = setTimeout(() => {
+          typing.remove();
+          appendMessage(turn);
+          turnTimer = setTimeout(() => runScenario(idx, turnIdx + 1), 700);
+        }, 1100);
+      }, 350);
+    }
+  }
+
+  function jumpTo(idx) {
+    clearTimers();
+    currentIdx = idx;
+    clearChat();
+    updateSideLabels();
+    turnTimer = setTimeout(() => runScenario(idx, 0), 200);
+  }
+
+  // 啟動
+  updateSideLabels();
+  runScenario(0, 0);
+})();
 </script>
 
 </body>
