@@ -809,6 +809,7 @@ window.addEventListener('DOMContentLoaded', function(){
       </div>
       <p class="scenario-desc" id="scenarioDesc">老闆隨口問,AI 從公司資料抓明細回答。不用開 ERP、不用找 Excel。</p>
       <div class="scenario-list" id="scenarioList"></div>
+      <p style="margin-top:16px;font-size:0.78rem;color:#6e6e78;font-family:'JetBrains Mono',monospace;letter-spacing:0.04em;">※ 對話為示範內容,實際 AI 回應依貴公司匯入之知識庫、ERP、歷史紀錄而定。</p>
     </div>
   </div>
 </section>
@@ -1152,15 +1153,15 @@ window.addEventListener('DOMContentLoaded', function(){
     },
     {
       title: "律師判例查詢",
-      desc: "律師問時效、類似判決,AI 從事務所案件庫與判決資料回。",
+      desc: "律師問時效、類似判決,AI 從事務所案件庫與判決資料庫回。",
       role: "律師",
       turns: [
         { from: "user", text: "雇主未付加班費超過 2 年,追訴時效過了嗎?" },
         { from: "ai", text: "工資請求權時效是 5 年(民法第 126 條),不是 2 年。" },
         { from: "ai", text: "勞基法罰鍰時效才是 3 年,兩個不要混。" },
-        { from: "user", text: "有類似判決嗎?" },
-        { from: "ai", text: "最高法院 108 年台上字第 1866 號:認定加班費屬工資,適用 5 年時效。" },
-        { from: "ai", text: "臺高院 110 年勞上字第 45 號:時效從「得請求時」起算。" },
+        { from: "user", text: "有實務見解嗎?" },
+        { from: "ai", text: "最高法院 97 年度台上字第 2178 號:加班費屬工資,適用 5 年時效。" },
+        { from: "ai", text: "新北地院 106 年度勞訴字第 145 號:特休未休工資同樣適用 5 年時效。" },
       ],
     },
     {
@@ -1186,22 +1187,22 @@ window.addEventListener('DOMContentLoaded', function(){
         { from: "ai", text: "看了行事曆,3–4 點你已經有「產品週會」。" },
         { from: "ai", text: "要改 4–5 點嗎?B 會議室那時段空著。" },
         { from: "user", text: "好,順便翻譯給日本客戶:「本週內會回覆報價,謝謝」" },
-        { from: "ai", text: "今週中にお見積もりをお返事いたします。ありがとうございます。" },
+        { from: "ai", text: "今週中にお見積もりをお送りいたします。よろしくお願いいたします。" },
       ],
     },
     {
-      title: "半導體技術員",
-      desc: "機台報 alarm,AI 從維修 SOP 與歷史紀錄給建議,減少 call PE 次數。",
+      title: "半導體廠技術員",
+      desc: "機台報 alarm,AI 從貴廠維修 SOP 與歷史紀錄給建議,減少 call PE 次數。",
       role: "技術員",
       turns: [
-        { from: "user", text: "機台報 alarm 2104,怎麼處理?" },
-        { from: "ai", text: "2104 = Wafer Handler Servo Error。" },
+        { from: "user", text: "機台報 Wafer Handler 異常,怎麼處理?" },
+        { from: "ai", text: "查了貴廠 SOP 的排除順序:" },
         { from: "ai", text: "1. 先按 RESET 試一次" },
-        { from: "ai", text: "2. 無效 → 檢查 E87 port load pin 是否歸位" },
-        { from: "ai", text: "3. 仍無效 → call PE" },
+        { from: "ai", text: "2. 無效 → 檢查 Load Port pin 是否歸位" },
+        { from: "ai", text: "3. 仍無效 → 通知 PE" },
         { from: "user", text: "pin 歸位了還是 alarm" },
-        { from: "ai", text: "可能是 sensor SE-203 訊號雜訊。" },
-        { from: "ai", text: "查維修紀錄,這支 sensor 去年 11 月換過一次,建議再換。" },
+        { from: "ai", text: "可能是感測器訊號雜訊。" },
+        { from: "ai", text: "維修紀錄顯示這台感測器去年 11 月換過一次,建議再換並排週保。" },
       ],
     },
   ];
