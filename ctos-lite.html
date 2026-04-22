@@ -115,7 +115,7 @@
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1fr 360px;
+      grid-template-columns: 1fr 400px;
       gap: 56px;
       align-items: center;
       position: relative; z-index: 1;
@@ -146,7 +146,7 @@
     .hero-phone-wrap {
       display: flex; justify-content: center; align-items: center;
       position: relative;
-      padding: 80px 60px;
+      padding: 40px 0;
     }
     /* Ambient glow · 內層強光 */
     .hero-phone-wrap::before {
@@ -494,6 +494,7 @@
 
     .phone {
       width: 320px; height: 640px;
+      flex-shrink: 0;
       background: #1a1a1e;
       border-radius: 42px;
       padding: 10px;
