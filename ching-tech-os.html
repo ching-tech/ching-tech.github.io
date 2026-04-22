@@ -253,6 +253,217 @@
       .footer-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; gap: 24px; } }
+
+    /* ============================================================
+       Enterprise Demo · macOS window mockup
+       ============================================================ */
+    #ent-demo { border-top: 1px solid rgba(255,255,255,0.05); padding: 80px 0; }
+    .ent-demo-layout {
+      display: grid;
+      grid-template-columns: 1fr 260px;
+      gap: 40px; align-items: start;
+      margin-top: 48px;
+    }
+    .mac-window {
+      background: #1a1a1e;
+      border-radius: 12px; overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.08) inset;
+      width: 100%;
+    }
+    .mac-bar {
+      height: 36px;
+      background: linear-gradient(180deg, #2a2a30, #1f1f25);
+      display: flex; align-items: center;
+      padding: 0 14px; gap: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .mac-dots { display: flex; gap: 8px; }
+    .mac-dots .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .mac-dots .dot.r { background: #ff5f57; }
+    .mac-dots .dot.y { background: #ffbd2e; }
+    .mac-dots .dot.g { background: #28c941; }
+    .mac-title {
+      flex: 1; text-align: center;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12px; color: #9999a0; letter-spacing: 0.08em;
+    }
+    .mac-title .agent-name { color: #22d3ee; }
+    .mac-body { display: flex; min-height: 420px; }
+    .mac-sidebar {
+      width: 200px; background: #14141a;
+      border-right: 1px solid rgba(255,255,255,0.05);
+      padding: 14px 8px;
+      display: flex; flex-direction: column; gap: 2px;
+      flex-shrink: 0;
+    }
+    .mac-sidebar .sb-section {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px; letter-spacing: 0.18em;
+      color: #5a5a68; text-transform: uppercase;
+      padding: 10px 10px 6px; margin-top: 6px;
+    }
+    .mac-sidebar .sb-section:first-child { margin-top: 0; }
+    .mac-sidebar .sb-item {
+      padding: 7px 10px; border-radius: 6px;
+      font-size: 12px; color: #8888a0;
+      display: flex; align-items: center; gap: 8px;
+      transition: all 0.2s;
+    }
+    .mac-sidebar .sb-item.current {
+      background: linear-gradient(90deg, rgba(34,211,238,0.1), transparent);
+      color: #22d3ee;
+      border-left: 2px solid #22d3ee;
+      padding-left: 8px;
+    }
+    .mac-sidebar .sb-item .sb-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: currentColor; opacity: 0.6;
+    }
+    .mac-chat { flex: 1; display: flex; flex-direction: column; background: #0e0e10; }
+    .chat-thread {
+      flex: 1; padding: 16px 18px;
+      overflow: hidden; min-height: 0;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .ent-msg {
+      max-width: 85%;
+      padding: 10px 14px; border-radius: 12px;
+      font-size: 13px; line-height: 1.6;
+      white-space: pre-wrap;
+      animation: entMsgIn 0.28s ease-out;
+    }
+    @keyframes entMsgIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .ent-msg.from-user {
+      align-self: flex-end;
+      background: linear-gradient(135deg, #0891b2, #0e7490);
+      color: #fff;
+    }
+    .ent-msg.from-agent {
+      align-self: flex-start;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      color: #e0e0e8;
+    }
+    .ent-msg .speaker {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px; letter-spacing: 0.12em;
+      opacity: 0.65; margin-bottom: 4px; text-transform: uppercase;
+    }
+    .ent-msg.from-user .speaker { color: #a5f3fc; }
+    .ent-msg.from-agent .speaker { color: #a78bfa; }
+    .ent-typing {
+      align-self: flex-start;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 12px 16px; border-radius: 12px;
+      display: inline-flex; gap: 4px;
+    }
+    .ent-typing span {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: #8888a0;
+      animation: typingDot 1.3s infinite ease-in-out;
+    }
+    .ent-typing span:nth-child(2) { animation-delay: 0.18s; }
+    .ent-typing span:nth-child(3) { animation-delay: 0.36s; }
+    @keyframes typingDot {
+      0%, 80%, 100% { opacity: 0.25; transform: translateY(0); }
+      40% { opacity: 1; transform: translateY(-3px); }
+    }
+    .mac-input {
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 10px 14px;
+      display: flex; align-items: center; gap: 10px;
+      background: rgba(255,255,255,0.02);
+    }
+    .mac-input .input-fake {
+      flex: 1; font-size: 12px; color: #666676;
+      padding: 8px 12px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 8px;
+      font-family: "JetBrains Mono", monospace;
+      letter-spacing: 0.04em;
+    }
+    .mac-input .cmd-hint {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px; color: #5a5a68; letter-spacing: 0.1em;
+    }
+    .ent-agents { padding-top: 8px; }
+    .ent-agents-label {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px; letter-spacing: 0.18em;
+      color: #a78bfa; text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .ent-agent-btn {
+      display: flex; flex-direction: column; width: 100%;
+      padding: 12px 14px; margin-bottom: 8px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 10px;
+      color: #c0c0d0; cursor: pointer;
+      transition: all 0.2s;
+      text-align: left;
+      font-family: inherit; font-size: 0.88rem;
+    }
+    .ent-agent-btn:hover {
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.12);
+    }
+    .ent-agent-btn.active {
+      background: linear-gradient(135deg, rgba(34,211,238,0.1), rgba(167,139,250,0.08));
+      border-color: rgba(34,211,238,0.4);
+      color: #fff;
+    }
+    .ent-agent-btn .ab-row { display: flex; align-items: center; gap: 10px; }
+    .ent-agent-btn .ab-idx {
+      width: 24px; height: 24px; border-radius: 6px;
+      background: rgba(255,255,255,0.06);
+      display: grid; place-items: center;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px; color: #8888a0;
+      flex-shrink: 0;
+    }
+    .ent-agent-btn.active .ab-idx {
+      background: linear-gradient(135deg, #22d3ee, #0891b2);
+      color: #fff;
+    }
+    .ent-agent-btn .ab-name { font-weight: 600; }
+    .ent-agent-btn .ab-desc {
+      font-size: 0.76rem; color: #7777a0;
+      margin-top: 6px; line-height: 1.5;
+    }
+    .ent-agent-btn.active .ab-desc { color: #a0a0c0; }
+    .ent-live-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.78rem; color: #4ade80;
+      margin-top: 10px;
+    }
+    .ent-live-tag .d {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: #4ade80;
+      animation: blink 2s infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; } 50% { opacity: 0.3; }
+    }
+    @media (max-width: 1000px) {
+      .ent-demo-layout { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 720px) {
+      .mac-body { flex-direction: column; }
+      .mac-sidebar {
+        width: 100%; flex-direction: row;
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+        padding: 8px; overflow-x: auto; gap: 4px;
+      }
+      .mac-sidebar .sb-section { display: none; }
+      .mac-sidebar .sb-item { white-space: nowrap; flex-shrink: 0; }
+    }
   </style>
 </head>
 <body>
@@ -286,6 +497,53 @@
     <div class="hero-os-buttons">
       <a href="pricing.html#ching-tech-os" class="btn btn-primary">查看方案價格 →</a>
       <a href="contact.html" class="btn btn-outline">預約 demo</a>
+    </div>
+  </div>
+</section>
+
+<!-- Enterprise Live Demo · macOS window mockup -->
+<section id="ent-demo">
+  <div class="container">
+    <span class="section-eyebrow">Live Demo</span>
+    <h2 class="section-h2">6 個 Agent 分工,跟真的員工一樣。</h2>
+    <p class="section-lead">法務、財務、產線、業務、客服、知識庫 — 各司其職,從公司實際資料回答。不是樣板答覆,是你公司的內部知識 × AI。</p>
+
+    <div class="ent-demo-layout">
+      <div class="mac-window">
+        <div class="mac-bar">
+          <div class="mac-dots"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div>
+          <div class="mac-title">ChingTech OS · <span class="agent-name" id="entAgentLabel">法務 Agent</span></div>
+          <div style="width: 52px;"></div>
+        </div>
+        <div class="mac-body">
+          <div class="mac-sidebar">
+            <div class="sb-section">Agents</div>
+            <div class="sb-item current" id="sbLegal"><span class="sb-dot"></span> 法務</div>
+            <div class="sb-item" id="sbFinance"><span class="sb-dot"></span> 財務</div>
+            <div class="sb-item" id="sbLine"><span class="sb-dot"></span> 產線</div>
+            <div class="sb-item" id="sbSales"><span class="sb-dot"></span> 業務</div>
+            <div class="sb-item" id="sbCS"><span class="sb-dot"></span> 客服</div>
+            <div class="sb-item" id="sbKB"><span class="sb-dot"></span> 知識庫</div>
+            <div class="sb-section">Sources</div>
+            <div class="sb-item"><span class="sb-dot"></span> ERP</div>
+            <div class="sb-item"><span class="sb-dot"></span> NAS</div>
+            <div class="sb-item"><span class="sb-dot"></span> CRM</div>
+          </div>
+          <div class="mac-chat">
+            <div class="chat-thread" id="entChat" aria-live="polite"></div>
+            <div class="mac-input">
+              <div class="input-fake">$ ask —</div>
+              <div class="cmd-hint">⌘ + K</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ent-agents">
+        <div class="ent-agents-label">選擇 Agent</div>
+        <div id="entAgentList"></div>
+        <div class="ent-live-tag"><span class="d"></span> 循環展示 · 點卡片切換</div>
+      </div>
     </div>
   </div>
 </section>
@@ -427,6 +685,198 @@
     © 2026 ChingTech Co., Ltd. All rights reserved.
   </div>
 </footer>
+
+<!-- Enterprise Demo Script · 6 Agent autoplay -->
+<script>
+(function() {
+  "use strict";
+
+  const agents = [
+    {
+      id: "sbLegal",
+      name: "法務 Agent",
+      short: "法務",
+      desc: "合約、NDA、授權條款風險比對,連接內部案件庫。",
+      turns: [
+        { from: "user", text: "這份 NDA 要簽了,有什麼風險?" },
+        { from: "agent", text: "我拿過去 3 份 NDA 跟這份比,有幾處偏離慣例:" },
+        { from: "agent", text: "1. 違約賠償上限:本份「無上限」,慣例是「年度合約額 × 2」\n2. IP 歸屬:本份歸甲方,上次類似案是雙方共有\n3. 終止條款:未明載提前終止的通知期" },
+        { from: "user", text: "列上次參考的條文" },
+        { from: "agent", text: "參考 2025-09 XX 產業 NDA 修訂版 § 7:\n\"違約之損害賠償以本合約年度契約總價之二倍為上限。\"" },
+      ],
+    },
+    {
+      id: "sbFinance",
+      name: "財務 Agent",
+      short: "財務",
+      desc: "從 ERP / 會計系統抓數字,比對歷史、找異常。",
+      turns: [
+        { from: "user", text: "Q1 毛利率為什麼比去年低 3%?" },
+        { from: "agent", text: "從 ERP 拉 Q1 對比資料,主要三項:" },
+        { from: "agent", text: "原料  +5.2%(鋼材主因)\n運費  +12.3%(海運指數波動)\n人事  +2.1%(年中調薪)" },
+        { from: "user", text: "哪個客戶被影響最大?" },
+        { from: "agent", text: "按毛利率跌幅排序:\n· XX 客戶  -4.5%\n· YY 客戶  -3.8%\n· ZZ 客戶  -2.1%\n\n建議優先跟 XX 談價格調整。" },
+      ],
+    },
+    {
+      id: "sbLine",
+      name: "產線 Agent",
+      short: "產線",
+      desc: "從 MES / PLC 抓當日異常,追溯歷史保養紀錄。",
+      turns: [
+        { from: "user", text: "產線 3 今天停機了幾次?" },
+        { from: "agent", text: "今日 2 次停機,總計 47 分鐘:" },
+        { from: "agent", text: "08:14  供料異常 — 8 分鐘,已復歸\n14:32  軸承過熱 alarm — 39 分鐘,等簽單" },
+        { from: "user", text: "軸承過熱這台上次保養什麼時候?" },
+        { from: "agent", text: "2025-11-08 保養完成,週期 90 天。\n目前逾期 42 天,建議排今週保養。" },
+      ],
+    },
+    {
+      id: "sbSales",
+      name: "業務 Agent",
+      short: "業務",
+      desc: "從 CRM 彙整客戶歷程,下次拜訪要準備什麼都幫你想好。",
+      turns: [
+        { from: "user", text: "下週要拜訪 XX 公司,準備什麼?" },
+        { from: "agent", text: "查了 CRM 與近三個月紀錄:" },
+        { from: "agent", text: "上次見面 2025-12-03\n未結報價  Q20251203\n他們在評估自動化產線,競爭 2 家" },
+        { from: "user", text: "上次討論重點?" },
+        { from: "agent", text: "1. 對方要 ROI < 18 個月\n2. 需要重載 AGV(2T 以上)\n3. 希望春節前決策\n\n建議帶:AGV 規格單 + ROI 試算表。" },
+      ],
+    },
+    {
+      id: "sbCS",
+      name: "客服 Agent",
+      short: "客服",
+      desc: "客訴從接收到分派,自動查單號、歷史、連動業務。",
+      turns: [
+        { from: "user", text: "客戶反應收到的貨少一箱" },
+        { from: "agent", text: "查出貨紀錄:" },
+        { from: "agent", text: "SO-20260418 · 5 箱\n物流單 ABC123456 · 4 箱已簽收\n缺 1 箱 — 待查" },
+        { from: "user", text: "先怎麼處理?" },
+        { from: "agent", text: "已派任務給倉管盤點,同時 call 業務先回客戶。\n若盤點確認少出,開補貨單(不開折讓)。" },
+      ],
+    },
+    {
+      id: "sbKB",
+      name: "知識庫 Agent",
+      short: "知識庫",
+      desc: "公司 SOP、人事、法規全文搜尋 + RAG,員工自助查。",
+      turns: [
+        { from: "user", text: "外籍員工工傷通報流程?" },
+        { from: "agent", text: "從 HR SOP §6.2 摘要:" },
+        { from: "agent", text: "1. 24 小時內通報雇主\n2. 就醫需附雇主證明 + 健保卡\n3. 勞保理賠申請限 5 年" },
+        { from: "user", text: "外籍跟本國有差嗎?" },
+        { from: "agent", text: "外籍需額外:\n· 居留證影本\n· 勞動部外勞中心通報(表格 F012)\n\n表格放在 NAS: /HR/Forms/F012_外籍工傷通報.pdf" },
+      ],
+    },
+  ];
+
+  const chatThread = document.getElementById("entChat");
+  const agentLabel = document.getElementById("entAgentLabel");
+  const agentList = document.getElementById("entAgentList");
+
+  let currentIdx = 0;
+  let turnTimer = null;
+  let nextTimer = null;
+
+  agents.forEach((a, i) => {
+    const btn = document.createElement("button");
+    btn.className = "ent-agent-btn" + (i === 0 ? " active" : "");
+    btn.dataset.idx = i;
+    btn.innerHTML = `
+      <div class="ab-row">
+        <span class="ab-idx">${String(i + 1).padStart(2, "0")}</span>
+        <span class="ab-name">${a.name}</span>
+      </div>
+      <div class="ab-desc">${a.desc}</div>
+    `;
+    btn.addEventListener("click", () => jumpTo(i));
+    agentList.appendChild(btn);
+  });
+
+  function clearTimers() {
+    if (turnTimer) clearTimeout(turnTimer);
+    if (nextTimer) clearTimeout(nextTimer);
+    turnTimer = null; nextTimer = null;
+  }
+  function clearChat() { chatThread.innerHTML = ""; }
+
+  function updateUI() {
+    const a = agents[currentIdx];
+    agentLabel.textContent = a.name;
+    // agent btn active
+    document.querySelectorAll(".ent-agent-btn").forEach(b => {
+      b.classList.toggle("active", Number(b.dataset.idx) === currentIdx);
+    });
+    // sidebar sync
+    agents.forEach((ag, i) => {
+      const el = document.getElementById(ag.id);
+      if (el) el.classList.toggle("current", i === currentIdx);
+    });
+  }
+
+  function append(turn, speakerLabel) {
+    const div = document.createElement("div");
+    div.className = "ent-msg from-" + turn.from;
+    div.innerHTML = `<div class="speaker">${speakerLabel}</div>` + turn.text.split("\n").map(l => l).join("<br>");
+    chatThread.appendChild(div);
+    while (chatThread.scrollHeight > chatThread.clientHeight + 10) {
+      const first = chatThread.querySelector(".ent-msg, .ent-typing");
+      if (!first) break;
+      first.remove();
+    }
+  }
+
+  function showTyping() {
+    const t = document.createElement("div");
+    t.className = "ent-typing";
+    t.innerHTML = "<span></span><span></span><span></span>";
+    chatThread.appendChild(t);
+    while (chatThread.scrollHeight > chatThread.clientHeight + 10) {
+      const first = chatThread.querySelector(".ent-msg, .ent-typing");
+      if (!first || first === t) break;
+      first.remove();
+    }
+    return t;
+  }
+
+  function runAgent(idx, turnIdx) {
+    const a = agents[idx];
+    if (turnIdx >= a.turns.length) {
+      nextTimer = setTimeout(() => jumpTo((idx + 1) % agents.length), 3500);
+      return;
+    }
+    const turn = a.turns[turnIdx];
+    if (turn.from === "user") {
+      turnTimer = setTimeout(() => {
+        append(turn, "你");
+        turnTimer = setTimeout(() => runAgent(idx, turnIdx + 1), 900);
+      }, 400);
+    } else {
+      turnTimer = setTimeout(() => {
+        const t = showTyping();
+        turnTimer = setTimeout(() => {
+          t.remove();
+          append(turn, a.short + " AGENT");
+          turnTimer = setTimeout(() => runAgent(idx, turnIdx + 1), 800);
+        }, 1200);
+      }, 350);
+    }
+  }
+
+  function jumpTo(idx) {
+    clearTimers();
+    currentIdx = idx;
+    clearChat();
+    updateUI();
+    turnTimer = setTimeout(() => runAgent(idx, 0), 200);
+  }
+
+  updateUI();
+  runAgent(0, 0);
+})();
+</script>
 
 </body>
 </html>

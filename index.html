@@ -316,6 +316,208 @@
     .fade-in.visible {
       opacity: 1; transform: translateY(0);
     }
+
+    /* ============================================================
+       Unified Demo · toggle between Personal(LINE)and Enterprise(Agent)
+       ============================================================ */
+    #unified-demo { border-top: 1px solid rgba(255,255,255,0.04); padding: 100px 0; }
+    .demo-tabs {
+      display: inline-flex;
+      gap: 4px;
+      padding: 4px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      margin: 20px 0 32px;
+    }
+    .demo-tab {
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 0.9rem; font-weight: 600;
+      color: #8888a0; cursor: pointer;
+      background: transparent; border: none;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+    .demo-tab .emoji-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+    .demo-tab:hover { color: #e0e0e8; }
+    .demo-tab.active.personal {
+      background: linear-gradient(135deg, rgba(6,199,85,0.2), rgba(6,199,85,0.1));
+      color: #4ade80;
+      box-shadow: 0 0 0 1px rgba(6,199,85,0.4);
+    }
+    .demo-tab.active.enterprise {
+      background: linear-gradient(135deg, rgba(34,211,238,0.2), rgba(139,92,246,0.1));
+      color: #22d3ee;
+      box-shadow: 0 0 0 1px rgba(34,211,238,0.4);
+    }
+
+    .demo-panels { position: relative; }
+    .demo-panel { display: none; }
+    .demo-panel.visible { display: block; }
+    .demo-panel-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .demo-panel-copy h3 {
+      font-size: 1.6rem; font-weight: 800; color: #f0f0f8;
+      margin-bottom: 12px; line-height: 1.2;
+    }
+    .demo-panel-copy p { color: #8888a0; margin-bottom: 20px; font-size: 1rem; }
+    .demo-panel-scenarios {
+      display: flex; flex-direction: column; gap: 10px;
+      margin-bottom: 24px;
+    }
+    .demo-scenario-chip {
+      padding: 10px 14px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 10px;
+      font-size: 0.9rem; color: #b0b0c0;
+      display: flex; align-items: center; gap: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: left; font-family: inherit; width: 100%;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .demo-scenario-chip:hover { background: rgba(255,255,255,0.05); }
+    .demo-scenario-chip.active.personal {
+      border-color: rgba(6,199,85,0.4);
+      background: linear-gradient(90deg, rgba(6,199,85,0.08), transparent);
+      color: #fff;
+    }
+    .demo-scenario-chip.active.enterprise {
+      border-color: rgba(34,211,238,0.4);
+      background: linear-gradient(90deg, rgba(34,211,238,0.08), transparent);
+      color: #fff;
+    }
+    .demo-scenario-chip .sc-num {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px; color: #8888a0;
+      width: 22px;
+    }
+    .demo-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 0.92rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .demo-cta.personal {
+      background: #06c755; color: #fff;
+    }
+    .demo-cta.personal:hover { background: #05b34b; transform: translateY(-1px); }
+    .demo-cta.enterprise {
+      background: linear-gradient(135deg, #0891b2, #22d3ee);
+      color: #fff;
+    }
+    .demo-cta.enterprise:hover { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(34,211,238,0.3); }
+
+    /* LINE phone(個人版)*/
+    .mini-phone {
+      width: 300px; height: 560px; margin: 0 auto;
+      background: #1a1a1e; border-radius: 38px; padding: 8px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06) inset;
+      position: relative;
+    }
+    .mini-phone::before {
+      content: ""; position: absolute; top: 18px; left: 50%; transform: translateX(-50%);
+      width: 88px; height: 22px; background: #0a0a0c; border-radius: 12px; z-index: 3;
+    }
+    .mp-screen {
+      width: 100%; height: 100%;
+      background: #7a8597; border-radius: 30px;
+      overflow: hidden; display: flex; flex-direction: column;
+    }
+    .mp-sb { height: 32px; padding: 0 20px 2px; background: #06c755; color: #1a1a1e; display: flex; align-items: flex-end; justify-content: space-between; font-family: "JetBrains Mono", monospace; font-size: 10px; font-weight: 700; }
+    .mp-hd { height: 48px; background: #06c755; padding: 0 14px; display: flex; align-items: center; gap: 10px; color: #fff; }
+    .mp-hd .mp-av {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: linear-gradient(135deg, #22d3ee, #0891b2);
+      display: grid; place-items: center;
+      color: #fff; font-weight: 800; font-size: 13px;
+      font-family: "Noto Serif TC", serif;
+      border: 2px solid rgba(255,255,255,0.5);
+    }
+    .mp-hd .mp-title { font-size: 14px; font-weight: 700; }
+    .mp-hd .mp-sub { font-size: 10px; opacity: 0.85; }
+    .mp-chat {
+      flex: 1; background: #7a8597; padding: 12px 10px; overflow: hidden;
+      display: flex; flex-direction: column; gap: 5px;
+    }
+    .mp-msg {
+      max-width: 80%; padding: 7px 11px;
+      font-size: 12px; line-height: 1.5;
+      border-radius: 14px; white-space: pre-wrap;
+      animation: entMsgIn 0.28s ease-out;
+    }
+    @keyframes entMsgIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+    .mp-msg.from-ai { align-self: flex-start; background: #fff; color: #1a1a1e; border-top-left-radius: 4px; }
+    .mp-msg.from-user { align-self: flex-end; background: #06c755; color: #fff; border-top-right-radius: 4px; }
+    .mp-typing {
+      align-self: flex-start; background: #fff; padding: 9px 12px;
+      border-radius: 14px; border-top-left-radius: 4px;
+      display: inline-flex; gap: 4px;
+    }
+    .mp-typing span { width: 5px; height: 5px; border-radius: 50%; background: #a8acb2; animation: typingDot 1.3s infinite ease-in-out; }
+    .mp-typing span:nth-child(2) { animation-delay: 0.18s; }
+    .mp-typing span:nth-child(3) { animation-delay: 0.36s; }
+    @keyframes typingDot { 0%,80%,100% { opacity: 0.25; transform: translateY(0); } 40% { opacity: 1; transform: translateY(-3px); } }
+    .mp-ib {
+      height: 40px; background: #f2f3f5; padding: 0 12px;
+      display: flex; align-items: center;
+      font-size: 11px; color: #a0a4ac;
+    }
+
+    /* macOS window(企業版 mini)*/
+    .mini-mac {
+      width: 100%; max-width: 480px;
+      margin: 0 auto;
+      background: #1a1a1e; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.08) inset;
+    }
+    .mini-mac .mm-bar {
+      height: 32px; background: linear-gradient(180deg, #2a2a30, #1f1f25);
+      display: flex; align-items: center; padding: 0 12px; gap: 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .mini-mac .mm-dots { display: flex; gap: 7px; }
+    .mini-mac .mm-dots span { width: 11px; height: 11px; border-radius: 50%; }
+    .mini-mac .mm-dots .r { background: #ff5f57; }
+    .mini-mac .mm-dots .y { background: #ffbd2e; }
+    .mini-mac .mm-dots .g { background: #28c941; }
+    .mini-mac .mm-ttl { flex: 1; text-align: center; font-family: "JetBrains Mono", monospace; font-size: 11px; color: #9999a0; letter-spacing: 0.06em; }
+    .mini-mac .mm-ttl .n { color: #22d3ee; }
+    .mini-mac .mm-body { background: #0e0e10; padding: 14px; min-height: 380px; display: flex; flex-direction: column; gap: 8px; overflow: hidden; }
+    .mm-msg {
+      max-width: 88%; padding: 9px 12px; border-radius: 10px;
+      font-size: 12px; line-height: 1.55; white-space: pre-wrap;
+      animation: entMsgIn 0.28s ease-out;
+    }
+    .mm-msg.from-user { align-self: flex-end; background: linear-gradient(135deg, #0891b2, #0e7490); color: #fff; }
+    .mm-msg.from-agent { align-self: flex-start; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: #e0e0e8; }
+    .mm-msg .sp { font-family: "JetBrains Mono", monospace; font-size: 9px; letter-spacing: 0.12em; opacity: 0.65; margin-bottom: 3px; text-transform: uppercase; }
+    .mm-msg.from-user .sp { color: #a5f3fc; }
+    .mm-msg.from-agent .sp { color: #a78bfa; }
+    .mm-typing {
+      align-self: flex-start; background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 10px 14px; border-radius: 10px;
+      display: inline-flex; gap: 4px;
+    }
+    .mm-typing span { width: 5px; height: 5px; border-radius: 50%; background: #8888a0; animation: typingDot 1.3s infinite ease-in-out; }
+    .mm-typing span:nth-child(2) { animation-delay: 0.18s; }
+    .mm-typing span:nth-child(3) { animation-delay: 0.36s; }
+
+    @media (max-width: 820px) {
+      .demo-panel-layout { grid-template-columns: 1fr; gap: 32px; }
+      .demo-panel-copy { order: 2; }
+      .mini-phone, .mini-mac { order: 1; }
+      #unified-demo .demo-tabs { display: flex; width: 100%; }
+      #unified-demo .demo-tab { flex: 1; }
+    }
   </style>
 <!-- Meta Pixel Code -->
 <script>
@@ -379,6 +581,78 @@ window.addEventListener('DOMContentLoaded', function(){
         免費試用 LINE 助理
       </a>
       <a href="#os" class="btn btn-outline">了解企業方案 →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Unified Demo · 個人 / 企業切換 -->
+<section id="unified-demo">
+  <div class="container">
+    <div class="fade-in">
+      <span class="section-label label-blue">即時互動</span>
+      <h2 class="section-title">兩個版本,兩種工作方式。</h2>
+      <p class="section-desc">個人跟企業的需求不同,我們分別為兩端設計。點切換看各自怎麼動。</p>
+
+      <div class="demo-tabs" role="tablist">
+        <button class="demo-tab personal active" data-mode="personal" role="tab">
+          <span class="emoji-dot" style="background:#06c755"></span>個人版 · LINE
+        </button>
+        <button class="demo-tab enterprise" data-mode="enterprise" role="tab">
+          <span class="emoji-dot" style="background:#22d3ee"></span>企業版 · Agent
+        </button>
+      </div>
+    </div>
+
+    <div class="demo-panels">
+      <!-- Personal panel -->
+      <div class="demo-panel visible" id="panelPersonal">
+        <div class="demo-panel-layout fade-in">
+          <div class="demo-panel-copy">
+            <h3>住在你 LINE 裡的 AI 員工</h3>
+            <p>不用裝 App、不用開新頁面。加好友 5 秒就能問。每天免費 50 次。</p>
+            <div class="demo-panel-scenarios" id="personalScenarios"></div>
+            <a href="ctos-lite.html#demo" class="demo-cta personal">看完整 Demo →</a>
+          </div>
+          <div>
+            <div class="mini-phone">
+              <div class="mp-screen">
+                <div class="mp-sb"><span>9:41</span><span>●●●</span></div>
+                <div class="mp-hd">
+                  <div class="mp-av">擎</div>
+                  <div style="flex:1">
+                    <div class="mp-title">擎添助理</div>
+                    <div class="mp-sub">上線中</div>
+                  </div>
+                </div>
+                <div class="mp-chat" id="personalChat" aria-live="polite"></div>
+                <div class="mp-ib">訊息</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Enterprise panel -->
+      <div class="demo-panel" id="panelEnterprise">
+        <div class="demo-panel-layout fade-in">
+          <div>
+            <div class="mini-mac">
+              <div class="mm-bar">
+                <div class="mm-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+                <div class="mm-ttl">ChingTech OS · <span class="n" id="eAgentLabel">法務 Agent</span></div>
+                <div style="width: 52px;"></div>
+              </div>
+              <div class="mm-body" id="enterpriseChat" aria-live="polite"></div>
+            </div>
+          </div>
+          <div class="demo-panel-copy">
+            <h3>企業 AI 工作平台</h3>
+            <p>Web 桌面 + 知識庫 + 6 個產業 Agent。從 ERP/NAS/CRM 抓真實資料回答,不是通用 chatbot。</p>
+            <div class="demo-panel-scenarios" id="enterpriseScenarios"></div>
+            <a href="ching-tech-os.html#ent-demo" class="demo-cta enterprise">看完整 Demo →</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -668,6 +942,255 @@ window.addEventListener('DOMContentLoaded', function(){
   }, { threshold: 0.1 });
 
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+<!-- Unified Demo · 雙 autoplay + toggle -->
+<script>
+(function() {
+  "use strict";
+
+  // ===== 個人版場景(3 組,偏 SMB / 個人)=====
+  const personalScenarios = [
+    {
+      title: "ERP 查進銷存",
+      turns: [
+        { from: "user", text: "A 客戶本月出貨多少?" },
+        { from: "ai", text: "本月 132 pcs,比上月 +18%。" },
+        { from: "ai", text: "要看明細嗎?" },
+        { from: "user", text: "看" },
+        { from: "ai", text: "2026-04-03  PN-001  30\n2026-04-11  PN-001  42\n2026-04-19  PN-007  60\n合計  132 pcs" },
+      ],
+    },
+    {
+      title: "診所衛教 QA",
+      turns: [
+        { from: "user", text: "A 酸可以跟 B 群一起吃嗎?" },
+        { from: "ai", text: "A 酸飯後服用,跟 B 群不衝突。" },
+        { from: "ai", text: "要避開維他命 A,會加成副作用。" },
+        { from: "user", text: "那曬太陽?" },
+        { from: "ai", text: "皮膚對 UV 敏感,戴帽子、SPF 50+。" },
+      ],
+    },
+    {
+      title: "個人秘書 + 翻譯",
+      turns: [
+        { from: "user", text: "下週三下午 3 點開會,訂會議室" },
+        { from: "ai", text: "3-4 點你已有「產品週會」。" },
+        { from: "ai", text: "改 4-5 點?B 室那時段空著。" },
+        { from: "user", text: "好,翻譯給日客:「本週內會回覆報價,謝謝」" },
+        { from: "ai", text: "今週中にお見積もりをお返事いたします。ありがとうございます。" },
+      ],
+    },
+  ];
+
+  // ===== 企業版場景(3 組 Agent)=====
+  const enterpriseAgents = [
+    {
+      name: "法務 Agent",
+      short: "法務",
+      title: "合約風險比對",
+      turns: [
+        { from: "user", text: "這份 NDA 要簽了,有風險嗎?" },
+        { from: "agent", text: "拿過去 3 份 NDA 對比,有幾處偏離慣例:" },
+        { from: "agent", text: "1. 賠償上限:本份「無上限」,慣例是「年度合約額 × 2」\n2. IP 歸屬:本份歸甲方,上次是雙方共有" },
+        { from: "user", text: "有參考條文嗎?" },
+        { from: "agent", text: "2025-09 版 § 7:「違約賠償以年度契約總價之二倍為上限」。" },
+      ],
+    },
+    {
+      name: "財務 Agent",
+      short: "財務",
+      title: "毛利率異常追蹤",
+      turns: [
+        { from: "user", text: "Q1 毛利率為什麼比去年低 3%?" },
+        { from: "agent", text: "從 ERP 拉對比,主要三項:" },
+        { from: "agent", text: "原料  +5.2%\n運費  +12.3%\n人事  +2.1%" },
+        { from: "user", text: "哪個客戶影響最大?" },
+        { from: "agent", text: "跌幅排序:XX -4.5% · YY -3.8% · ZZ -2.1%。\n建議優先跟 XX 談價格。" },
+      ],
+    },
+    {
+      name: "產線 Agent",
+      short: "產線",
+      title: "異常 + 保養追蹤",
+      turns: [
+        { from: "user", text: "產線 3 今天停機幾次?" },
+        { from: "agent", text: "今日 2 次,共 47 分鐘:" },
+        { from: "agent", text: "08:14  供料異常(8 分鐘)\n14:32  軸承過熱 alarm(39 分鐘)" },
+        { from: "user", text: "軸承過熱這台上次保養?" },
+        { from: "agent", text: "2025-11-08 · 週期 90 天 · 已逾 42 天。\n建議排今週保養。" },
+      ],
+    },
+  ];
+
+  // ===== Mode state =====
+  let currentMode = "personal";
+  let timers = { personal: null, enterprise: null };
+  let indices = { personal: 0, enterprise: 0 };
+
+  // ===== Render scenario chips =====
+  function renderChips(mode) {
+    const container = document.getElementById(
+      mode === "personal" ? "personalScenarios" : "enterpriseScenarios"
+    );
+    const list = mode === "personal" ? personalScenarios : enterpriseAgents;
+    container.innerHTML = "";
+    list.forEach((s, i) => {
+      const btn = document.createElement("button");
+      btn.className = "demo-scenario-chip" + (i === 0 ? " active " + mode : "");
+      btn.innerHTML = `<span class="sc-num">${String(i + 1).padStart(2, "0")}</span><span>${mode === "personal" ? s.title : s.name + " · " + s.title}</span>`;
+      btn.addEventListener("click", () => jumpTo(mode, i));
+      container.appendChild(btn);
+    });
+  }
+
+  function updateChips(mode, idx) {
+    const container = document.getElementById(
+      mode === "personal" ? "personalScenarios" : "enterpriseScenarios"
+    );
+    container.querySelectorAll(".demo-scenario-chip").forEach((c, i) => {
+      c.classList.toggle("active", i === idx);
+      c.classList.toggle(mode, i === idx);
+    });
+  }
+
+  // ===== Personal (LINE) autoplay =====
+  function renderPersonal(idx) {
+    const chat = document.getElementById("personalChat");
+    chat.innerHTML = "";
+    indices.personal = idx;
+    const scenario = personalScenarios[idx];
+    let turnIdx = 0;
+
+    function step() {
+      if (turnIdx >= scenario.turns.length) {
+        timers.personal = setTimeout(() => {
+          renderPersonal((idx + 1) % personalScenarios.length);
+          updateChips("personal", (idx + 1) % personalScenarios.length);
+        }, 3200);
+        return;
+      }
+      const turn = scenario.turns[turnIdx];
+      if (turn.from === "user") {
+        timers.personal = setTimeout(() => {
+          const div = document.createElement("div");
+          div.className = "mp-msg from-user";
+          div.textContent = turn.text;
+          chat.appendChild(div);
+          trim(chat, ".mp-msg, .mp-typing");
+          turnIdx++;
+          timers.personal = setTimeout(step, 900);
+        }, 350);
+      } else {
+        timers.personal = setTimeout(() => {
+          const t = document.createElement("div");
+          t.className = "mp-typing";
+          t.innerHTML = "<span></span><span></span><span></span>";
+          chat.appendChild(t);
+          trim(chat, ".mp-msg, .mp-typing");
+          timers.personal = setTimeout(() => {
+            t.remove();
+            const div = document.createElement("div");
+            div.className = "mp-msg from-ai";
+            div.textContent = turn.text;
+            chat.appendChild(div);
+            trim(chat, ".mp-msg, .mp-typing");
+            turnIdx++;
+            timers.personal = setTimeout(step, 700);
+          }, 1100);
+        }, 300);
+      }
+    }
+    step();
+  }
+
+  // ===== Enterprise (macOS) autoplay =====
+  function renderEnterprise(idx) {
+    const chat = document.getElementById("enterpriseChat");
+    chat.innerHTML = "";
+    indices.enterprise = idx;
+    const agent = enterpriseAgents[idx];
+    document.getElementById("eAgentLabel").textContent = agent.name;
+    let turnIdx = 0;
+
+    function step() {
+      if (turnIdx >= agent.turns.length) {
+        timers.enterprise = setTimeout(() => {
+          renderEnterprise((idx + 1) % enterpriseAgents.length);
+          updateChips("enterprise", (idx + 1) % enterpriseAgents.length);
+        }, 3500);
+        return;
+      }
+      const turn = agent.turns[turnIdx];
+      const speaker = turn.from === "user" ? "你" : agent.short + " AGENT";
+      if (turn.from === "user") {
+        timers.enterprise = setTimeout(() => {
+          const div = document.createElement("div");
+          div.className = "mm-msg from-user";
+          div.innerHTML = `<div class="sp">${speaker}</div>${turn.text.replace(/\n/g, "<br>")}`;
+          chat.appendChild(div);
+          trim(chat, ".mm-msg, .mm-typing");
+          turnIdx++;
+          timers.enterprise = setTimeout(step, 900);
+        }, 350);
+      } else {
+        timers.enterprise = setTimeout(() => {
+          const t = document.createElement("div");
+          t.className = "mm-typing";
+          t.innerHTML = "<span></span><span></span><span></span>";
+          chat.appendChild(t);
+          trim(chat, ".mm-msg, .mm-typing");
+          timers.enterprise = setTimeout(() => {
+            t.remove();
+            const div = document.createElement("div");
+            div.className = "mm-msg from-agent";
+            div.innerHTML = `<div class="sp">${speaker}</div>${turn.text.replace(/\n/g, "<br>")}`;
+            chat.appendChild(div);
+            trim(chat, ".mm-msg, .mm-typing");
+            turnIdx++;
+            timers.enterprise = setTimeout(step, 800);
+          }, 1200);
+        }, 300);
+      }
+    }
+    step();
+  }
+
+  function trim(container, selector) {
+    while (container.scrollHeight > container.clientHeight + 10) {
+      const first = container.querySelector(selector);
+      if (!first) break;
+      first.remove();
+    }
+  }
+
+  function jumpTo(mode, idx) {
+    if (timers[mode]) clearTimeout(timers[mode]);
+    updateChips(mode, idx);
+    if (mode === "personal") renderPersonal(idx);
+    else renderEnterprise(idx);
+  }
+
+  // ===== Tab switching =====
+  function switchMode(mode) {
+    currentMode = mode;
+    document.querySelectorAll(".demo-tab").forEach(t => {
+      t.classList.toggle("active", t.dataset.mode === mode);
+    });
+    document.getElementById("panelPersonal").classList.toggle("visible", mode === "personal");
+    document.getElementById("panelEnterprise").classList.toggle("visible", mode === "enterprise");
+  }
+
+  document.querySelectorAll(".demo-tab").forEach(tab => {
+    tab.addEventListener("click", () => switchMode(tab.dataset.mode));
+  });
+
+  // ===== Init =====
+  renderChips("personal");
+  renderChips("enterprise");
+  renderPersonal(0);
+  renderEnterprise(0);
+})();
 </script>
 
 </body>

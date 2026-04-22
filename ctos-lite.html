@@ -92,45 +92,115 @@
     }
     /* === End Canonical Nav === */
 
-    /* Hero */
+    /* Hero · Integrated with live demo */
     .hero {
-      min-height: 100vh; display: flex; align-items: center; justify-content: center;
-      text-align: center; padding: 120px 24px 80px;
+      min-height: 100vh;
+      padding: 100px 0 40px;
       position: relative;
+      display: flex; align-items: center;
     }
     .hero::before {
       content: '';
-      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      width: 700px; height: 700px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(6, 199, 85, 0.08), transparent 70%);
+      position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%);
+      width: 800px; height: 800px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(6, 199, 85, 0.07), transparent 70%);
       animation: pulse 6s ease-in-out infinite;
+      pointer-events: none;
     }
     @keyframes pulse {
       0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
-      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.08); }
     }
-    .hero-content { position: relative; z-index: 1; }
+    .hero .container { width: 100%; }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 56px;
+      align-items: center;
+      position: relative; z-index: 1;
+    }
+    .hero-copy { max-width: 560px; }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
       background: rgba(6, 199, 85, 0.1); border: 1px solid rgba(6, 199, 85, 0.25);
       color: #4ade80; padding: 6px 16px; border-radius: 20px;
       font-size: 0.82rem; font-weight: 600; letter-spacing: 0.05em;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
     }
     .hero-badge span { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; animation: blink 2s infinite; }
     @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
     .hero h1 {
-      font-size: clamp(2.4rem, 5.5vw, 3.8rem);
+      font-size: clamp(2.2rem, 4.6vw, 3.4rem);
       font-weight: 800; letter-spacing: -0.03em;
       line-height: 1.15; margin-bottom: 20px;
       background: linear-gradient(135deg, #fff 0%, #86efac 50%, #4ade80 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
     .hero p {
-      font-size: clamp(1rem, 2vw, 1.2rem);
-      color: #8888a0; max-width: 540px; margin: 0 auto 40px;
+      font-size: clamp(1rem, 1.6vw, 1.1rem);
+      color: #8888a0; margin-bottom: 32px;
     }
-    .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    .hero-phone-wrap {
+      display: flex; justify-content: center; align-items: center;
+      position: relative;
+    }
+    .hero-phone-wrap::before {
+      content: "";
+      position: absolute; inset: -40px -20px;
+      background: radial-gradient(circle at 50% 45%, rgba(6,199,85,0.10), transparent 70%);
+      filter: blur(30px);
+      z-index: 0;
+    }
+    .hero-phone-wrap .phone { position: relative; z-index: 1; }
+
+    /* Scenario strip · 在 hero grid 下方 */
+    .scenario-strip {
+      margin-top: 36px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      position: relative; z-index: 1;
+    }
+    .scenario-meta {
+      display: flex; align-items: baseline; gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    .scenario-meta .scenario-now {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px; letter-spacing: 0.18em;
+      color: #4ade80; text-transform: uppercase;
+      margin: 0; padding: 4px 10px;
+      background: rgba(6, 199, 85, 0.08);
+      border: 1px solid rgba(6, 199, 85, 0.25);
+      border-radius: 6px;
+    }
+    .scenario-meta .scenario-title-inline {
+      font-size: 1.15rem; font-weight: 700; color: #f0f0f8;
+    }
+    .scenario-strip .scenario-desc {
+      font-size: 0.92rem; color: #8888a0;
+      margin-bottom: 20px;
+      max-width: 800px;
+    }
+    .scenario-strip .scenario-list {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+    }
+
+    @media (max-width: 1000px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 36px; }
+      .hero-phone-wrap { order: -1; }
+      .hero-copy { max-width: none; text-align: center; margin: 0 auto; }
+      .hero-buttons { justify-content: center; }
+      .scenario-strip .scenario-list { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .scenario-strip .scenario-list { grid-template-columns: repeat(2, 1fr); }
+    }
     .btn {
       display: inline-flex; align-items: center; gap: 8px;
       padding: 14px 28px; border-radius: 12px; font-size: 1rem; font-weight: 600;
@@ -151,19 +221,23 @@
       transform: translateY(-2px);
     }
 
-    /* Stats */
+    /* Stats — 緊湊版,嵌在 hero copy 下方 */
     .stats {
-      display: flex; gap: 48px; justify-content: center; flex-wrap: wrap;
-      margin-top: 64px; padding-top: 48px;
+      display: flex; gap: 28px; flex-wrap: wrap;
+      margin-top: 28px; padding-top: 24px;
       border-top: 1px solid rgba(255,255,255,0.06);
     }
-    .stat-item { text-align: center; }
+    .stat-item { text-align: left; }
     .stat-num {
-      font-size: 2rem; font-weight: 800; letter-spacing: -0.03em;
+      font-size: 1.4rem; font-weight: 800; letter-spacing: -0.02em;
       background: linear-gradient(135deg, #4ade80, #22d3ee);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-    .stat-label { font-size: 0.85rem; color: #6666a0; margin-top: 4px; }
+    .stat-label { font-size: 0.78rem; color: #6666a0; margin-top: 2px; }
+    @media (max-width: 1000px) {
+      .stats { justify-content: center; }
+      .stat-item { text-align: center; }
+    }
 
     /* Section */
     section { padding: 100px 0; }
@@ -667,51 +741,40 @@ window.addEventListener('DOMContentLoaded', function(){
   </div>
 </nav>
 
-<!-- Hero -->
+<!-- Hero · 整合 Live Demo -->
 <section class="hero">
-  <div class="hero-content">
-    <div class="hero-badge"><span></span> 現在開放免費試用</div>
-    <h1>AI 員工，<br>住在你的 LINE 裡</h1>
-    <p>上傳公司文件，AI 立刻學會你的業務知識。24 小時回答員工和客戶問題，你只要負責點頭。</p>
-    <div class="hero-buttons">
-      <a href="https://line.me/R/ti/p/@285fjkky" target="_blank" class="btn btn-line">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-        加 LINE 開始試用（免費）
-      </a>
-      <a href="#compare" class="btn btn-outline">看方案比較 →</a>
-    </div>
-    <div class="stats">
-      <div class="stat-item">
-        <div class="stat-num">50 次</div>
-        <div class="stat-label">每日免費 AI 對話</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">0 元</div>
-        <div class="stat-label">試用完全免費</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">5 分鐘</div>
-        <div class="stat-label">加好友即可上手</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">24 小時</div>
-        <div class="stat-label">全天候自動回應</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Live Demo · LINE 聊天 mockup -->
-<section id="demo">
   <div class="container">
-    <div class="fade-in">
-      <span class="section-label label-green">即時互動</span>
-      <h2 class="section-title">看它怎麼回答不同產業的問題</h2>
-      <p class="section-desc">6 個真實場景循環展示,不是樣板答覆,是產業細節。點任一場景即時切換。</p>
-    </div>
+    <div class="hero-grid">
+      <!-- 左:文案 + CTA + Stats -->
+      <div class="hero-copy fade-in">
+        <div class="hero-badge"><span></span> 現在開放免費試用</div>
+        <h1>AI 員工,<br>住在你的 LINE 裡</h1>
+        <p>上傳公司文件,AI 立刻學會你的業務知識。24 小時回答員工和客戶問題,你只要負責點頭。</p>
+        <div class="hero-buttons">
+          <a href="https://line.me/R/ti/p/@285fjkky" target="_blank" class="btn btn-line">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            加 LINE 開始試用(免費)
+          </a>
+          <a href="#compare" class="btn btn-outline">看方案比較 →</a>
+        </div>
+        <div class="stats">
+          <div class="stat-item">
+            <div class="stat-num">50 次</div>
+            <div class="stat-label">每日免費對話</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">5 分鐘</div>
+            <div class="stat-label">加好友上手</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">24 小時</div>
+            <div class="stat-label">全天回應</div>
+          </div>
+        </div>
+      </div>
 
-    <div class="demo-layout fade-in">
-      <div class="demo-phone-wrap">
+      <!-- 右:Phone Live Demo -->
+      <div class="hero-phone-wrap fade-in">
         <div class="phone">
           <div class="phone-screen">
             <div class="line-statusbar">
@@ -736,18 +799,16 @@ window.addEventListener('DOMContentLoaded', function(){
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="demo-side">
-        <div class="scenario-now" id="scenarioNow">場景 1 / 6 · 進行中</div>
-        <div class="scenario-title" id="scenarioTitle">ERP 進銷存</div>
-        <div class="scenario-desc" id="scenarioDesc">老闆隨口問,AI 從公司資料抓明細回答。不用開 ERP、不用找 Excel。</div>
-
-        <div class="scenario-list" id="scenarioList">
-          <!-- 六個場景按鈕由 JS 自動注入 -->
-        </div>
-
-        <div class="demo-hint">實時循環展示 · 點卡片切換</div>
+    <!-- 場景 strip:6 個 tab 卡片,橫排 -->
+    <div class="scenario-strip fade-in">
+      <div class="scenario-meta">
+        <span class="scenario-now" id="scenarioNow">場景 1 / 6</span>
+        <span class="scenario-title-inline" id="scenarioTitle">ERP 進銷存</span>
       </div>
+      <p class="scenario-desc" id="scenarioDesc">老闆隨口問,AI 從公司資料抓明細回答。不用開 ERP、不用找 Excel。</p>
+      <div class="scenario-list" id="scenarioList"></div>
     </div>
   </div>
 </section>
