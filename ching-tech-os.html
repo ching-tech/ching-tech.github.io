@@ -541,6 +541,17 @@
         border-right: none;
         border-bottom: 1px solid rgba(255,255,255,0.05);
         padding: 8px; overflow-x: auto; gap: 4px;
+        /* 細白 scrollbar 配深色底 */
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255,255,255,0.25) transparent;
+      }
+      .mac-sidebar::-webkit-scrollbar { height: 6px; }
+      .mac-sidebar::-webkit-scrollbar-track { background: transparent; }
+      .mac-sidebar::-webkit-scrollbar-thumb {
+        background: rgba(255,255,255,0.2); border-radius: 3px;
+      }
+      .mac-sidebar::-webkit-scrollbar-thumb:hover {
+        background: rgba(255,255,255,0.35);
       }
       .mac-sidebar .sb-section {
         display: inline-flex; align-items: center;
