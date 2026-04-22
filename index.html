@@ -415,53 +415,61 @@
     }
     .demo-cta.enterprise:hover { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(34,211,238,0.3); }
 
-    /* Ambient glow stage · YouTube 電影院模式的靜態版 */
+    /* Ambient glow stage · YouTube 電影院模式的靜態版
+       關鍵:inset 用絕對像素大擴散、不用 isolation,光暈才能真正漫出去 */
     .mini-stage {
       position: relative;
       display: flex; justify-content: center; align-items: center;
-      padding: 40px 24px;
-      isolation: isolate;
+      padding: 80px 60px;
+      /* overflow 不能 hidden,否則 glow 被截 */
     }
-    /* 內層強光暈(集中) */
+    /* 內層強光暈(集中在 phone 周圍) */
     .mini-stage::before {
       content: "";
       position: absolute;
-      inset: -6% -10%;
-      z-index: -2;
+      inset: -40px -80px;
+      z-index: 0;
       background: radial-gradient(
-        ellipse 58% 52% at center,
-        var(--glow-primary, rgba(6, 199, 85, 0.55)) 0%,
-        var(--glow-secondary, rgba(139, 92, 246, 0.25)) 40%,
+        ellipse 55% 55% at center,
+        var(--glow-primary, rgba(6, 199, 85, 0.65)) 0%,
+        var(--glow-secondary, rgba(139, 92, 246, 0.32)) 40%,
         transparent 72%
       );
-      filter: blur(38px);
+      filter: blur(50px);
       pointer-events: none;
     }
-    /* 外層擴散光(更柔和) */
+    /* 外層大擴散(當背景氛圍光) */
     .mini-stage::after {
       content: "";
       position: absolute;
-      inset: -18% -24%;
-      z-index: -3;
+      inset: -180px -220px;
+      z-index: 0;
       background: radial-gradient(
-        ellipse 55% 50% at center,
-        var(--glow-wide, rgba(6, 199, 85, 0.22)) 0%,
-        transparent 70%
+        ellipse 50% 48% at center,
+        var(--glow-wide, rgba(6, 199, 85, 0.40)) 0%,
+        var(--glow-wide-2, rgba(139, 92, 246, 0.18)) 45%,
+        transparent 75%
       );
-      filter: blur(60px);
+      filter: blur(100px);
       pointer-events: none;
     }
+    /* phone/mac 浮在光暈之上 */
+    .mini-stage > .mini-phone,
+    .mini-stage > .mini-mac { position: relative; z-index: 2; }
+
     /* 個人版:LINE 綠主色 + 紫尾韻 */
     .mini-stage.personal {
-      --glow-primary: rgba(6, 199, 85, 0.55);
-      --glow-secondary: rgba(139, 92, 246, 0.22);
-      --glow-wide: rgba(6, 199, 85, 0.28);
+      --glow-primary: rgba(6, 199, 85, 0.68);
+      --glow-secondary: rgba(139, 92, 246, 0.30);
+      --glow-wide: rgba(6, 199, 85, 0.42);
+      --glow-wide-2: rgba(139, 92, 246, 0.22);
     }
     /* 企業版:cyan 主色 + 紫尾韻 */
     .mini-stage.enterprise {
-      --glow-primary: rgba(34, 211, 238, 0.50);
-      --glow-secondary: rgba(139, 92, 246, 0.28);
-      --glow-wide: rgba(34, 211, 238, 0.26);
+      --glow-primary: rgba(34, 211, 238, 0.60);
+      --glow-secondary: rgba(139, 92, 246, 0.35);
+      --glow-wide: rgba(34, 211, 238, 0.38);
+      --glow-wide-2: rgba(139, 92, 246, 0.25);
     }
 
     /* LINE phone(個人版)*/
@@ -663,7 +671,7 @@ window.addEventListener('DOMContentLoaded', function(){
     <div class="demo-panels">
       <!-- Personal panel -->
       <div class="demo-panel visible" id="panelPersonal">
-        <div class="demo-panel-layout fade-in">
+        <div class="demo-panel-layout">
           <div class="demo-panel-copy">
             <h3>住在你 LINE 裡的 AI 員工</h3>
             <p>不用裝 App、不用開新頁面。加好友 5 秒就能問。每天免費 50 次。</p>
@@ -691,7 +699,7 @@ window.addEventListener('DOMContentLoaded', function(){
 
       <!-- Enterprise panel -->
       <div class="demo-panel" id="panelEnterprise">
-        <div class="demo-panel-layout fade-in">
+        <div class="demo-panel-layout">
           <div class="mini-stage enterprise">
             <div class="mini-mac">
               <div class="mm-bar">

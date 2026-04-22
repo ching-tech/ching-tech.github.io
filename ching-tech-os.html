@@ -268,38 +268,39 @@
     .mac-stage {
       position: relative;
       display: flex; justify-content: center; align-items: center;
-      isolation: isolate;
-      padding: 30px 24px;
+      padding: 80px 60px;
     }
     /* 內層強光 */
     .mac-stage::before {
       content: "";
       position: absolute;
-      inset: -6% -8%;
-      z-index: -2;
+      inset: -40px -80px;
+      z-index: 0;
       background: radial-gradient(
-        ellipse 58% 58% at center,
-        rgba(34, 211, 238, 0.55) 0%,
-        rgba(139, 92, 246, 0.30) 40%,
+        ellipse 55% 55% at center,
+        rgba(34, 211, 238, 0.60) 0%,
+        rgba(139, 92, 246, 0.36) 40%,
         transparent 72%
       );
-      filter: blur(44px);
+      filter: blur(50px);
       pointer-events: none;
     }
-    /* 外層擴散 */
+    /* 外層大擴散 */
     .mac-stage::after {
       content: "";
       position: absolute;
-      inset: -20% -22%;
-      z-index: -3;
+      inset: -200px -240px;
+      z-index: 0;
       background: radial-gradient(
-        ellipse 55% 50% at center,
-        rgba(34, 211, 238, 0.28) 0%,
-        transparent 70%
+        ellipse 50% 48% at center,
+        rgba(34, 211, 238, 0.40) 0%,
+        rgba(139, 92, 246, 0.24) 45%,
+        transparent 75%
       );
-      filter: blur(72px);
+      filter: blur(110px);
       pointer-events: none;
     }
+    .mac-stage > .mac-window { position: relative; z-index: 2; }
     .mac-window {
       background: #1a1a1e;
       border-radius: 12px; overflow: hidden;

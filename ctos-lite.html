@@ -146,39 +146,39 @@
     .hero-phone-wrap {
       display: flex; justify-content: center; align-items: center;
       position: relative;
-      isolation: isolate;
-      padding: 30px 24px;
+      padding: 80px 60px;
     }
     /* Ambient glow · 內層強光 */
     .hero-phone-wrap::before {
       content: "";
       position: absolute;
-      inset: -6% -10%;
-      z-index: -2;
+      inset: -40px -80px;
+      z-index: 0;
       background: radial-gradient(
-        ellipse 58% 52% at center,
-        rgba(6, 199, 85, 0.58) 0%,
-        rgba(139, 92, 246, 0.26) 40%,
+        ellipse 55% 55% at center,
+        rgba(6, 199, 85, 0.68) 0%,
+        rgba(139, 92, 246, 0.32) 40%,
         transparent 72%
       );
-      filter: blur(42px);
+      filter: blur(50px);
       pointer-events: none;
     }
-    /* Ambient glow · 外層擴散 */
+    /* Ambient glow · 外層大擴散 */
     .hero-phone-wrap::after {
       content: "";
       position: absolute;
-      inset: -20% -25%;
-      z-index: -3;
+      inset: -200px -240px;
+      z-index: 0;
       background: radial-gradient(
-        ellipse 55% 50% at center,
-        rgba(6, 199, 85, 0.30) 0%,
-        transparent 70%
+        ellipse 50% 48% at center,
+        rgba(6, 199, 85, 0.45) 0%,
+        rgba(139, 92, 246, 0.22) 45%,
+        transparent 75%
       );
-      filter: blur(70px);
+      filter: blur(110px);
       pointer-events: none;
     }
-    .hero-phone-wrap .phone { position: relative; z-index: 1; }
+    .hero-phone-wrap .phone { position: relative; z-index: 2; }
 
     /* Scenario strip · 在 hero grid 下方 */
     .scenario-strip {
@@ -797,8 +797,8 @@ window.addEventListener('DOMContentLoaded', function(){
         </div>
       </div>
 
-      <!-- 右:Phone Live Demo -->
-      <div class="hero-phone-wrap fade-in">
+      <!-- 右:Phone Live Demo (不加 fade-in,避免 transform 開 stacking context 把光暈鎖住) -->
+      <div class="hero-phone-wrap">
         <div class="phone">
           <div class="phone-screen">
             <div class="line-statusbar">
