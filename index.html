@@ -235,13 +235,30 @@
     /* ── Footer ── */
     footer {
       border-top: 1px solid rgba(255,255,255,0.06);
-      padding: 40px 0; text-align: center;
-      color: #555; font-size: 0.85rem;
+      padding: 56px 0 24px; font-size: 0.88rem;
     }
-    footer a { color: #8888a0; }
-    footer a:hover { color: #a5b4fc; }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 32px; padding-bottom: 40px;
+    }
+    .footer-col { display: flex; flex-direction: column; gap: 8px; }
+    .footer-brand { font-weight: 700; font-size: 1rem; color: #e0e0e8; margin-bottom: 4px; }
+    .footer-label {
+      font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em;
+      color: #a5b4fc; margin-bottom: 8px; font-weight: 600;
+    }
+    .footer-col a { color: #8888a0; transition: color 0.2s; }
+    .footer-col a:hover { color: #e0e0e8; }
+    .footer-muted { color: #6e6e78; line-height: 1.7; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.04);
+      padding-top: 24px; color: #555; text-align: center; font-size: 0.8rem;
+    }
 
     /* ── Responsive ── */
+    @media (max-width: 720px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
     @media (max-width: 640px) {
       .nav-links { gap: 16px; }
       .nav-links a { font-size: 0.82rem; }
@@ -250,6 +267,9 @@
       .screenshots { grid-template-columns: 1fr; }
       .contact-info { flex-direction: column; align-items: center; gap: 12px; }
       .hero-buttons { flex-direction: column; align-items: center; }
+    }
+    @media (max-width: 480px) {
+      .footer-grid { grid-template-columns: 1fr; gap: 24px; }
     }
 
     /* ── Fade-in Animation ── */
@@ -300,8 +320,9 @@ window.addEventListener('DOMContentLoaded', function(){
     <div class="nav-logo"><img src="images/CTLogo.svg" alt="擎添工業 Logo">擎添工業 ChingTech</div>
     <div class="nav-links">
       <a href="ctos-lite.html">擎添助理</a>
-      <a href="#os">企業方案</a>
-      <a href="#contact">聯絡我們</a>
+      <a href="ching-tech-os.html">ChingTech OS</a>
+      <a href="pricing.html">方案價格</a>
+      <a href="contact.html">聯絡我們</a>
     </div>
   </div>
 </nav>
@@ -536,7 +557,7 @@ window.addEventListener('DOMContentLoaded', function(){
         </span>
         <span>
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          chieu@ms43.hinet.net
+          yazelin@ching-tech.com
         </span>
         <span>
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -549,22 +570,49 @@ window.addEventListener('DOMContentLoaded', function(){
 
 <!-- Footer -->
 <footer>
-  <div class="container">
-    <div style="display:flex;gap:14px;justify-content:center;margin-bottom:18px">
-      <a href="https://www.facebook.com/1143490635504625" target="_blank" rel="noreferrer" aria-label="Facebook"
-         style="width:40px;height:40px;border-radius:50%;background:rgba(56,130,246,.1);display:grid;place-items:center;color:#3882f6;transition:transform .15s">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
-      </a>
-      <a href="https://line.me/R/ti/p/@285fjkky" target="_blank" rel="noreferrer" aria-label="LINE"
-         style="width:40px;height:40px;border-radius:50%;background:rgba(6,199,85,.12);display:grid;place-items:center;color:#06c755;transition:transform .15s">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
-      </a>
-      <a href="mailto:chieu@ms43.hinet.net" aria-label="Email"
-         style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.05);display:grid;place-items:center;color:#a5b4fc;transition:transform .15s">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-      </a>
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <div class="footer-brand">擎添工業股份有限公司</div>
+      <div class="footer-muted">ChingTech Co., Ltd. · 自 1984 年</div>
+      <div class="footer-muted" style="margin-top: 12px;">統一編號 36274806</div>
+      <div class="footer-muted">新北市五股區成泰路一段 194-8 號 J 棟(248)</div>
+      <div class="footer-muted">電話 (02) 2903-2788 · 傳真 (02) 2903-9518</div>
     </div>
-    <p>&copy; 2026 擎添工業 ChingTech Industrial Co., Ltd.</p>
+    <div class="footer-col">
+      <div class="footer-label">產品</div>
+      <a href="ctos-lite.html">擎添助理(LINE)</a>
+      <a href="ching-tech-os.html">ChingTech OS(企業版)</a>
+      <a href="pricing.html">方案價格</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-label">法律與政策</div>
+      <a href="terms.html">服務條款</a>
+      <a href="privacy.html">隱私權政策</a>
+      <a href="refund.html">退款政策</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-label">聯絡</div>
+      <a href="contact.html">聯絡表單</a>
+      <a href="mailto:yazelin@ching-tech.com">yazelin@ching-tech.com</a>
+      <a href="https://ching-tech.com" target="_blank">ching-tech.com</a>
+    </div>
+  </div>
+  <div class="container" style="display:flex;gap:14px;justify-content:center;padding:16px 24px 20px;border-top:1px solid rgba(255,255,255,0.04);">
+    <a href="https://www.facebook.com/1143490635504625" target="_blank" rel="noreferrer" aria-label="Facebook"
+       style="width:40px;height:40px;border-radius:50%;background:rgba(56,130,246,.1);display:grid;place-items:center;color:#3882f6;transition:transform .15s">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
+    </a>
+    <a href="https://line.me/R/ti/p/@285fjkky" target="_blank" rel="noreferrer" aria-label="LINE"
+       style="width:40px;height:40px;border-radius:50%;background:rgba(6,199,85,.12);display:grid;place-items:center;color:#06c755;transition:transform .15s">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+    </a>
+    <a href="mailto:yazelin@ching-tech.com" aria-label="Email"
+       style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.05);display:grid;place-items:center;color:#a5b4fc;transition:transform .15s">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+    </a>
+  </div>
+  <div class="container footer-bottom">
+    © 2026 ChingTech Co., Ltd. All rights reserved.
   </div>
 </footer>
 

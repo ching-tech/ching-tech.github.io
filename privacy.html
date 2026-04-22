@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>隱私權政策 — 擎添工業 ChingTech</title>
+  <meta name="description" content="擎添工業隱私權政策,說明個資收集範圍、使用目的、第三方處理、資料保存與客戶權利。">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans TC", sans-serif;
+      background: #0a0a0f;
+      color: #e0e0e8;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .glow-bg {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 0;
+      background:
+        radial-gradient(ellipse 600px 400px at 20% 20%, rgba(56, 130, 246, 0.06), transparent),
+        radial-gradient(ellipse 500px 500px at 80% 60%, rgba(139, 92, 246, 0.05), transparent);
+    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(10, 10, 15, 0.8);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    nav .container {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 1.05rem; font-weight: 700; letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #3882f6, #8b5cf6);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .nav-logo img { width: 32px; height: 32px; }
+    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .nav-links a { font-size: 0.9rem; color: #888; transition: color 0.2s; }
+    .nav-links a:hover { color: #e0e0e8; }
+
+    .page-header { padding: 140px 0 24px; }
+    .page-eyebrow {
+      display: inline-block; font-size: 0.78rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.18em;
+      color: #a5b4fc; margin-bottom: 14px;
+    }
+    .page-title {
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 800; letter-spacing: -0.02em;
+      line-height: 1.15; margin-bottom: 16px;
+      color: #f0f0f8;
+    }
+    .updated { font-size: 0.85rem; color: #6e6e78; margin-top: 8px; }
+
+    .legal { padding: 24px 0 80px; }
+    .legal .container { max-width: 820px; }
+    .legal h2 {
+      font-size: 1.3rem; font-weight: 700;
+      margin: 40px 0 12px; color: #e0e0e8;
+      padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .legal h2:first-of-type { border-top: none; padding-top: 0; margin-top: 16px; }
+    .legal h3 {
+      font-size: 1.05rem; font-weight: 600;
+      margin: 24px 0 8px; color: #d0d0d8;
+    }
+    .legal p { color: #9e9eaa; margin: 12px 0; line-height: 1.8; }
+    .legal ul { list-style: none; padding: 0; margin: 12px 0; }
+    .legal ul li {
+      position: relative; padding-left: 22px; color: #9e9eaa;
+      margin: 8px 0; line-height: 1.8;
+    }
+    .legal ul li::before {
+      content: "→"; position: absolute; left: 0; color: #8b5cf6; font-weight: 700;
+    }
+    .legal strong { color: #e0e0e8; font-weight: 600; }
+    .legal a { color: #a5b4fc; border-bottom: 1px solid rgba(165,180,252,0.3); }
+    .legal a:hover { color: #c7d0ff; border-color: #a5b4fc; }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 56px 0 24px; margin-top: 40px;
+      font-size: 0.88rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 32px; padding-bottom: 40px;
+    }
+    .footer-col { display: flex; flex-direction: column; gap: 8px; }
+    .footer-brand { font-weight: 700; font-size: 1rem; color: #e0e0e8; margin-bottom: 4px; }
+    .footer-label {
+      font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em;
+      color: #a5b4fc; margin-bottom: 8px; font-weight: 600;
+    }
+    .footer-col a { color: #8888a0; transition: color 0.2s; }
+    .footer-col a:hover { color: #e0e0e8; }
+    .footer-muted { color: #6e6e78; line-height: 1.7; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.04);
+      padding-top: 24px; color: #555; text-align: center; font-size: 0.8rem;
+    }
+
+    @media (max-width: 720px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; gap: 24px; } }
+  </style>
+</head>
+<body>
+
+<div class="glow-bg"></div>
+
+<nav>
+  <div class="container">
+    <a href="index.html" class="nav-logo"><img src="images/CTLogo.svg" alt="擎添工業 Logo">擎添工業 ChingTech</a>
+    <div class="nav-links">
+      <a href="ctos-lite.html">擎添助理</a>
+      <a href="ching-tech-os.html">ChingTech OS</a>
+      <a href="pricing.html">方案價格</a>
+      <a href="contact.html">聯絡我們</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="container">
+    <span class="page-eyebrow">Privacy Policy</span>
+    <h1 class="page-title">隱私權政策</h1>
+    <p class="updated">最後更新:2026 年 4 月 22 日</p>
+  </div>
+</header>
+
+<main class="legal">
+  <div class="container">
+
+<h2>1. 關於本政策</h2>
+<p>擎添工業股份有限公司(統編 36274806,以下稱「本公司」)重視您的個人資料保護。本政策說明我們在提供 <strong>擎添助理(CTOS-Lite)</strong>、<strong>ChingTech OS</strong> 及相關服務時,如何收集、使用、儲存與揭露您的個人資料。</p>
+<p>當您使用本公司任一產品或服務,即表示您已閱讀並同意本政策。</p>
+
+<h2>2. 我們收集的資料</h2>
+<h3>2.1 您主動提供的資料</h3>
+<ul>
+  <li>聯絡資料:姓名、Email、電話、公司名稱、統一編號</li>
+  <li>付款相關:信用卡資訊由第三方金流業者(綠界 ECPay)處理,本公司不儲存完整卡號</li>
+  <li>服務使用資料:您與 AI 助理的對話內容、上傳的文件與檔案</li>
+  <li>LINE 帳號識別碼(僅 ctos-lite 用戶,用於辨識您的對話)</li>
+</ul>
+
+<h3>2.2 系統自動收集的資料</h3>
+<ul>
+  <li>瀏覽器類型與版本、作業系統</li>
+  <li>IP 位址(僅用於安全與除錯,不作為行銷用途)</li>
+  <li>服務使用時間、功能操作紀錄</li>
+</ul>
+
+<h2>3. 使用目的</h2>
+<ul>
+  <li>提供與改善 AI 助理、訂閱計費、發票開立等核心服務</li>
+  <li>客戶支援與問題排除</li>
+  <li>發送服務更新與帳務通知(不包含未經同意的行銷)</li>
+  <li>依法律要求保留記錄(例如電子發票相關規定)</li>
+</ul>
+
+<h2>4. 第三方處理者</h2>
+<p>為提供服務,本公司會將必要之個資交付下列第三方處理,各方僅能依其職責範圍使用您的資料:</p>
+<ul>
+  <li><strong>綠界科技 ECPay</strong>:信用卡定期定額、發票開立</li>
+  <li><strong>LINE 株式會社</strong>:Messaging API 訊息傳遞(僅 ctos-lite 用戶)</li>
+  <li><strong>雲端基礎設施供應商</strong>:伺服器與資料庫代管</li>
+</ul>
+
+<h2>5. 資料主權 · 留在台灣</h2>
+<p>您在 <strong>ChingTech OS</strong> 中儲存的企業知識庫、文件與對話紀錄,原則上皆儲存於 <strong>中華民國境內</strong> 的資料中心。本公司不會未經同意將企業客戶的核心資料傳輸到境外。</p>
+<p>AI 模型運算若需透過境外服務(例如 Claude API),僅傳送當次對話必要內容,不傳送完整知識庫。</p>
+
+<h2>6. 您的權利</h2>
+<ul>
+  <li>查詢或閱覽您的個人資料</li>
+  <li>請求製給複本</li>
+  <li>請求補充或更正</li>
+  <li>請求停止蒐集、處理或利用</li>
+  <li>請求刪除</li>
+</ul>
+<p>行使上述權利請 Email 至 <a href="mailto:yazelin@ching-tech.com">yazelin@ching-tech.com</a>,我們將於 30 日內回覆。</p>
+
+<h2>7. Cookie 使用</h2>
+<p>本公司網站使用必要性 Cookie 維持登入狀態與偏好設定,不使用第三方追蹤 Cookie 進行跨站行銷。</p>
+
+<h2>8. 資料保存期限</h2>
+<ul>
+  <li>帳號資料:自帳號關閉起 90 日後刪除</li>
+  <li>交易與發票紀錄:依稅法規定保存 5 年</li>
+  <li>系統日誌:最多保留 180 日</li>
+</ul>
+
+<h2>9. 安全措施</h2>
+<p>本公司採用 HTTPS 加密傳輸、資料庫加密靜態儲存、存取權限分級控管等措施保護您的資料。若發生可能影響您的資料外洩事件,本公司將於發現後 72 小時內通知受影響的用戶並報告主管機關。</p>
+
+<h2>10. 政策變更</h2>
+<p>本政策若有重大變更,本公司將於生效日 30 天前以 Email 通知已註冊用戶,並於本頁更新最後修訂日期。</p>
+
+<h2>11. 聯絡我們</h2>
+<p>有任何隱私相關問題或權利行使請求,請聯繫:</p>
+<ul>
+  <li>Email:<a href="mailto:yazelin@ching-tech.com">yazelin@ching-tech.com</a></li>
+  <li>電話:(02) 2903-2788</li>
+  <li>地址:新北市五股區成泰路一段 194-8 號 J 棟(248)</li>
+</ul>
+
+  </div>
+</main>
+
+<footer>
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <div class="footer-brand">擎添工業股份有限公司</div>
+      <div class="footer-muted">ChingTech Co., Ltd. · 自 1984 年</div>
+      <div class="footer-muted" style="margin-top: 12px;">統一編號 36274806</div>
+      <div class="footer-muted">新北市五股區成泰路一段 194-8 號 J 棟(248)</div>
+      <div class="footer-muted">電話 (02) 2903-2788 · 傳真 (02) 2903-9518</div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-label">產品</div>
+      <a href="ctos-lite.html">擎添助理(LINE)</a>
+      <a href="ching-tech-os.html">ChingTech OS(企業版)</a>
+      <a href="pricing.html">方案價格</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-label">法律與政策</div>
+      <a href="terms.html">服務條款</a>
+      <a href="privacy.html">隱私權政策</a>
+      <a href="refund.html">退款政策</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-label">聯絡</div>
+      <a href="contact.html">聯絡表單</a>
+      <a href="mailto:yazelin@ching-tech.com">yazelin@ching-tech.com</a>
+      <a href="https://ching-tech.com" target="_blank">ching-tech.com</a>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    © 2026 ChingTech Co., Ltd. All rights reserved.
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChingTech OS — 企業 AI 工作平台 · 擎添工業</title>
+  <meta name="description" content="ChingTech OS 是擎添工業推出的企業 AI 工作平台。18 模組 + 知識庫 + Agent,資料留在台灣。40 年工程老牌,把工程力 + AI 一起打包。">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans TC", sans-serif;
+      background: #0a0a0f; color: #e0e0e8; line-height: 1.7; overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .glow-bg {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 0;
+      background:
+        radial-gradient(ellipse 600px 400px at 20% 20%, rgba(139, 92, 246, 0.08), transparent),
+        radial-gradient(ellipse 500px 500px at 80% 60%, rgba(56, 130, 246, 0.06), transparent),
+        radial-gradient(ellipse 400px 300px at 50% 90%, rgba(34, 211, 238, 0.05), transparent);
+    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(10, 10, 15, 0.8); backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    nav .container {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 1.05rem; font-weight: 700; letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #3882f6, #8b5cf6);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .nav-logo img { width: 32px; height: 32px; }
+    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .nav-links a { font-size: 0.9rem; color: #888; transition: color 0.2s; }
+    .nav-links a:hover { color: #e0e0e8; }
+
+    .hero-os {
+      min-height: 85vh; display: flex; align-items: center;
+      padding: 140px 0 80px; position: relative;
+    }
+    .hero-os::before {
+      content: ''; position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 820px; height: 820px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.1), transparent 70%);
+      animation: pulse 6s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.08); }
+    }
+    .hero-os-content { position: relative; z-index: 1; }
+    .hero-os-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(139, 92, 246, 0.1);
+      border: 1px solid rgba(139, 92, 246, 0.25);
+      color: #a78bfa; padding: 6px 16px; border-radius: 20px;
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em;
+      margin-bottom: 24px;
+    }
+    .hero-os h1 {
+      font-size: clamp(2.4rem, 5.5vw, 3.8rem);
+      font-weight: 800; letter-spacing: -0.03em;
+      line-height: 1.15; margin-bottom: 20px;
+      background: linear-gradient(135deg, #fff 0%, #c7d0ff 50%, #a78bfa 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      max-width: 820px;
+    }
+    .hero-os p.lead {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: #8888a0; max-width: 640px; margin-bottom: 40px;
+    }
+    .hero-os-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 12px;
+      font-size: 1rem; font-weight: 600;
+      transition: all 0.25s; border: none; cursor: pointer;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #3882f6, #6366f1);
+      color: #fff;
+      box-shadow: 0 4px 24px rgba(56, 130, 246, 0.3);
+    }
+    .btn-primary:hover {
+      box-shadow: 0 8px 32px rgba(56, 130, 246, 0.5);
+      transform: translateY(-2px);
+    }
+    .btn-outline {
+      background: transparent; color: #a5b4fc;
+      border: 1px solid rgba(165, 180, 252, 0.3);
+    }
+    .btn-outline:hover {
+      background: rgba(165, 180, 252, 0.08);
+      border-color: rgba(165, 180, 252, 0.5);
+    }
+
+    section.content { padding: 80px 0; border-top: 1px solid rgba(255,255,255,0.04); }
+    .section-eyebrow {
+      display: inline-block; font-size: 0.78rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.18em;
+      color: #a78bfa; margin-bottom: 14px;
+    }
+    .section-h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+      font-weight: 800; letter-spacing: -0.02em;
+      color: #f0f0f8; margin-bottom: 14px;
+    }
+    .section-lead {
+      color: #8888a0; max-width: 720px;
+      margin-bottom: 24px; font-size: 1.02rem; line-height: 1.8;
+    }
+
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px; margin-top: 24px;
+    }
+    .module-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 14px; padding: 24px;
+      transition: all 0.25s;
+    }
+    .module-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(255,255,255,0.12);
+    }
+    .module-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 14px;
+    }
+    .module-icon svg { width: 22px; height: 22px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .mi-cyan { background: linear-gradient(135deg, #0891b2, #0e7490); }
+    .mi-purple { background: linear-gradient(135deg, #a78bfa, #7c3aed); }
+    .mi-blue { background: linear-gradient(135deg, #3882f6, #1d4ed8); }
+    .mi-green { background: linear-gradient(135deg, #06c755, #16a34a); }
+    .mi-amber { background: linear-gradient(135deg, #f7a81b, #d97706); }
+    .mi-pink { background: linear-gradient(135deg, #ec4899, #be185d); }
+    .module-card h3 {
+      font-size: 1rem; font-weight: 700; color: #e0e0e8;
+      margin-bottom: 6px;
+    }
+    .module-card p {
+      font-size: 0.88rem; color: #8888a0; line-height: 1.6;
+    }
+
+    .sovereignty {
+      background: linear-gradient(135deg, rgba(34, 211, 238, 0.04), rgba(139, 92, 246, 0.04));
+      border: 1px solid rgba(34, 211, 238, 0.15);
+      border-radius: 20px; padding: 48px; margin-top: 48px;
+    }
+    .sovereignty h3 {
+      font-size: 1.5rem; font-weight: 700; color: #e0e0e8;
+      margin-bottom: 14px;
+    }
+    .sovereignty p {
+      color: #a0a0b0; line-height: 1.8; max-width: 760px;
+    }
+    .sovereignty strong { color: #22d3ee; }
+
+    .cta-block {
+      margin-top: 48px; text-align: center;
+      padding: 56px 32px; border-radius: 20px;
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(56, 130, 246, 0.08));
+      border: 1px solid rgba(139, 92, 246, 0.15);
+    }
+    .cta-block h3 {
+      font-size: 1.6rem; font-weight: 700; color: #f0f0f8;
+      margin-bottom: 12px;
+    }
+    .cta-block p { color: #8888a0; margin-bottom: 28px; }
+    .cta-block .btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 56px 0 24px; margin-top: 40px; font-size: 0.88rem;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 32px; padding-bottom: 40px;
+    }
+    .footer-col { display: flex; flex-direction: column; gap: 8px; }
+    .footer-brand { font-weight: 700; font-size: 1rem; color: #e0e0e8; margin-bottom: 4px; }
+    .footer-label {
+      font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em;
+      color: #a5b4fc; margin-bottom: 8px; font-weight: 600;
+    }
+    .footer-col a { color: #8888a0; transition: color 0.2s; }
+    .footer-col a:hover { color: #e0e0e8; }
+    .footer-muted { color: #6e6e78; line-height: 1.7; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.04);
+      padding-top: 24px; color: #555; text-align: center; font-size: 0.8rem;
+    }
+
+    @media (max-width: 720px) {
+      .hero-os { padding: 110px 0 60px; min-height: 70vh; }
+      .modules-grid { grid-template-columns: 1fr; }
+      .sovereignty { padding: 28px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; gap: 24px; } }
+  </style>
+</head>
+<body>
+
+<div class="glow-bg"></div>
+
+<nav>
+  <div class="container">
+    <a href="index.html" class="nav-logo"><img src="images/CTLogo.svg" alt="擎添工業 Logo">擎添工業 ChingTech</a>
+    <div class="nav-links">
+      <a href="ctos-lite.html">擎添助理</a>
+      <a href="ching-tech-os.html">ChingTech OS</a>
+      <a href="pricing.html">方案價格</a>
+      <a href="contact.html">聯絡我們</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero-os">
+  <div class="container hero-os-content">
+    <div class="hero-os-badge">
+      <span>企業 AI 工作平台 · 自 2025</span>
+    </div>
+    <h1>把人從重複作業裡解放,<br>讓工程力 + AI 一起工作。</h1>
+    <p class="lead">ChingTech OS 是擎添工業的企業作業系統 — 18 模組 + 知識庫 + Agent + LINE/Telegram,把公司的 SOP、報價、合約、客戶資料都串起來,AI 記得,員工不用再重複回答。</p>
+    <div class="hero-os-buttons">
+      <a href="pricing.html#ching-tech-os" class="btn btn-primary">查看方案價格 →</a>
+      <a href="contact.html" class="btn btn-outline">預約 demo</a>
+    </div>
+  </div>
+</section>
+
+<section class="content">
+  <div class="container">
+    <span class="section-eyebrow">Core Modules</span>
+    <h2 class="section-h2">18 模組,依你的業務配置。</h2>
+    <p class="section-lead">不是通用 chatbot。每個模組都針對實際工作場景設計,可開可關,按公司需求組合。</p>
+
+    <div class="modules-grid">
+      <div class="module-card">
+        <div class="module-icon mi-cyan">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3>AI 助手</h3>
+        <p>多 Agent、Prompt 編輯、對話日誌、自訂 Skills。</p>
+      </div>
+
+      <div class="module-card">
+        <div class="module-icon mi-purple">
+          <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        </div>
+        <h3>企業知識庫</h3>
+        <p>Markdown 管理、全文檢索、版本歷史、RAG 向量搜尋。</p>
+      </div>
+
+      <div class="module-card">
+        <div class="module-icon mi-blue">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <h3>Web 桌面</h3>
+        <p>類 macOS 桌面,多視窗、多工、亮暗主題切換。</p>
+      </div>
+
+      <div class="module-card">
+        <div class="module-icon mi-green">
+          <svg viewBox="0 0 24 24"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg>
+        </div>
+        <h3>專案管理</h3>
+        <p>成員、會議、附件、里程碑、發包期程、廠商主檔。</p>
+      </div>
+
+      <div class="module-card">
+        <div class="module-icon mi-amber">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+        </div>
+        <h3>物料庫存</h3>
+        <p>料號、進銷存、盤點、廠商、採購單據整合管理。</p>
+      </div>
+
+      <div class="module-card">
+        <div class="module-icon mi-pink">
+          <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <h3>數據分析</h3>
+        <p>儀表板、圖表、報表排程,連動知識庫與業務資料。</p>
+      </div>
+
+      <div class="module-card">
+        <div class="module-icon mi-cyan">
+          <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13L2 4"/></svg>
+        </div>
+        <h3>LINE / Telegram 整合</h3>
+        <p>Bot 入口,客戶端/員工端對話接入 ChingTech OS 知識庫。</p>
+      </div>
+
+      <div class="module-card">
+        <div class="module-icon mi-purple">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3>排程與提醒</h3>
+        <p>定時任務、跨模組觸發、Email/LINE 通知。</p>
+      </div>
+
+      <div class="module-card">
+        <div class="module-icon mi-blue">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <h3>檔案 / NAS</h3>
+        <p>SMB/CIFS 掛載,AI 可讀寫公司 NAS 檔案。</p>
+      </div>
+    </div>
+
+    <div class="sovereignty">
+      <h3>資料留在台灣。</h3>
+      <p>企業核心資料 — 知識庫、客戶檔案、對話紀錄 — 儲存於 <strong>中華民國境內</strong> 的資料中心。AI 推理所需的境外 API 呼叫,僅傳送當次對話必要內容,不外流完整知識庫。這不是行銷話術,是跟國外 SaaS 本質的差別。</p>
+    </div>
+  </div>
+</section>
+
+<section class="content">
+  <div class="container">
+    <span class="section-eyebrow">Why ChingTech</span>
+    <h2 class="section-h2">40 年工程底子,4 個月做出 ChingTech OS。</h2>
+    <p class="section-lead">1984 年從新北五股起家,40 年做 PLC、機械手臂整合、AGV 無人搬運(重載 2 噸)、KUKA / FANUC / YASKAWA 系統整合。服務過的產業橫跨半導體封測、PCB、面板、玻璃、CNC、光學、醫療、捷運巡檢。</p>
+    <p class="section-lead">不是 AI 新創在做 AI,是 40 年的工程公司把工程力 + AI 一起打包給你。我們踩過的坑,已經內建在 ChingTech OS 裡。</p>
+
+    <div class="cta-block">
+      <h3>準備好看看怎麼裝進你的公司了嗎?</h3>
+      <p>預約 30 分鐘 demo,一起看你的實際使用情境。</p>
+      <div class="btns">
+        <a href="contact.html" class="btn btn-primary">預約 demo</a>
+        <a href="pricing.html#ching-tech-os" class="btn btn-outline">查看方案價格</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <div class="footer-brand">擎添工業股份有限公司</div>
+      <div class="footer-muted">ChingTech Co., Ltd. · 自 1984 年</div>
+      <div class="footer-muted" style="margin-top: 12px;">統一編號 36274806</div>
+      <div class="footer-muted">新北市五股區成泰路一段 194-8 號 J 棟(248)</div>
+      <div class="footer-muted">電話 (02) 2903-2788 · 傳真 (02) 2903-9518</div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-label">產品</div>
+      <a href="ctos-lite.html">擎添助理(LINE)</a>
+      <a href="ching-tech-os.html">ChingTech OS(企業版)</a>
+      <a href="pricing.html">方案價格</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-label">法律與政策</div>
+      <a href="terms.html">服務條款</a>
+      <a href="privacy.html">隱私權政策</a>
+      <a href="refund.html">退款政策</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-label">聯絡</div>
+      <a href="contact.html">聯絡表單</a>
+      <a href="mailto:yazelin@ching-tech.com">yazelin@ching-tech.com</a>
+      <a href="https://ching-tech.com" target="_blank">ching-tech.com</a>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    © 2026 ChingTech Co., Ltd. All rights reserved.
+  </div>
+</footer>
+
+</body>
+</html>
