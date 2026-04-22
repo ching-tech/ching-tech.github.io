@@ -83,6 +83,14 @@
       .nav-links a { font-size: 0.8rem; }
       .nav-cta { padding: 6px 12px; font-size: 0.78rem; }
     }
+    /* 小螢幕 nav:隱藏文字連結只留 CTA */
+    @media (max-width: 560px) {
+      .nav-logo { font-size: 0.85rem; }
+      .nav-logo img { width: 26px; height: 26px; }
+      .nav-links { gap: 8px; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .nav-cta { padding: 6px 14px; font-size: 0.8rem; }
+    }
     /* === End Canonical Nav === */
 
     .hero-os {
@@ -512,7 +520,8 @@
     @media (max-width: 1000px) {
       .ent-demo-layout { grid-template-columns: 1fr; }
     }
-    @media (max-width: 720px) {
+    /* mac-window RWD · sidebar 提前到 900px 橫放,避免 chat 區被擠扁 */
+    @media (max-width: 900px) {
       .mac-body { flex-direction: column; }
       .mac-sidebar {
         width: 100%; flex-direction: row;
@@ -520,8 +529,24 @@
         border-bottom: 1px solid rgba(255,255,255,0.05);
         padding: 8px; overflow-x: auto; gap: 4px;
       }
-      .mac-sidebar .sb-section { display: none; }
+      .mac-sidebar .sb-section {
+        display: inline-flex; align-items: center;
+        padding: 8px 6px 8px 10px; margin: 0;
+        flex-shrink: 0;
+      }
       .mac-sidebar .sb-item { white-space: nowrap; flex-shrink: 0; }
+      .mac-sidebar .sb-item.current { border-left: none; padding-left: 10px; }
+      .chat-thread { min-height: 280px; }
+      .ent-msg { max-width: 90%; font-size: 12px; padding: 9px 12px; }
+    }
+    @media (max-width: 560px) {
+      .mac-bar { padding: 0 10px; }
+      .mac-title { font-size: 10px; }
+      .mac-title div[style] { display: none; }  /* 隱藏右側占位空 div */
+      .chat-thread { padding: 12px 12px; min-height: 240px; }
+      .ent-msg { max-width: 92%; font-size: 11.5px; }
+      .mac-input { padding: 8px 10px; }
+      .mac-input .cmd-hint { display: none; }
     }
   </style>
 </head>

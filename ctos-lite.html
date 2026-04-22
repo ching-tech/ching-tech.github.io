@@ -90,6 +90,14 @@
       .nav-links a { font-size: 0.8rem; }
       .nav-cta { padding: 6px 12px; font-size: 0.78rem; }
     }
+    /* 小螢幕 nav:隱藏文字連結只留 CTA */
+    @media (max-width: 560px) {
+      .nav-logo { font-size: 0.85rem; }
+      .nav-logo img { width: 26px; height: 26px; }
+      .nav-links { gap: 8px; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .nav-cta { padding: 6px 14px; font-size: 0.8rem; }
+    }
     /* === End Canonical Nav === */
 
     /* Hero · Integrated with live demo */
