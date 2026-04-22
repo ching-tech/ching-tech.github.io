@@ -147,22 +147,36 @@
       display: flex; justify-content: center; align-items: center;
       position: relative;
       isolation: isolate;
+      padding: 30px 24px;
     }
-    /* Ambient glow · 電影院模式的靜態版 */
+    /* Ambient glow · 內層強光 */
     .hero-phone-wrap::before {
       content: "";
       position: absolute;
-      inset: -8% -12%;
-      z-index: -1;
+      inset: -6% -10%;
+      z-index: -2;
       background: radial-gradient(
-        ellipse 62% 55% at center,
-        rgba(6, 199, 85, 0.24) 0%,
-        rgba(139, 92, 246, 0.10) 38%,
+        ellipse 58% 52% at center,
+        rgba(6, 199, 85, 0.58) 0%,
+        rgba(139, 92, 246, 0.26) 40%,
         transparent 72%
       );
-      filter: blur(46px);
+      filter: blur(42px);
       pointer-events: none;
-      opacity: 0.9;
+    }
+    /* Ambient glow · 外層擴散 */
+    .hero-phone-wrap::after {
+      content: "";
+      position: absolute;
+      inset: -20% -25%;
+      z-index: -3;
+      background: radial-gradient(
+        ellipse 55% 50% at center,
+        rgba(6, 199, 85, 0.30) 0%,
+        transparent 70%
+      );
+      filter: blur(70px);
+      pointer-events: none;
     }
     .hero-phone-wrap .phone { position: relative; z-index: 1; }
 
@@ -484,9 +498,9 @@
       border-radius: 42px;
       padding: 10px;
       box-shadow:
-        0 30px 80px rgba(0,0,0,0.55),
-        0 0 0 1px rgba(255,255,255,0.06) inset,
-        0 0 40px rgba(6, 199, 85, 0.08);
+        0 50px 100px rgba(0,0,0,0.75),
+        0 16px 40px rgba(0,0,0,0.55),
+        0 0 0 1px rgba(255,255,255,0.08) inset;
       position: relative;
     }
     .phone::before {

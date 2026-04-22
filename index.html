@@ -419,40 +419,59 @@
     .mini-stage {
       position: relative;
       display: flex; justify-content: center; align-items: center;
-      padding: 30px 20px;
+      padding: 40px 24px;
       isolation: isolate;
     }
+    /* 內層強光暈(集中) */
     .mini-stage::before {
       content: "";
       position: absolute;
-      inset: -10% -15%;
-      z-index: -1;
+      inset: -6% -10%;
+      z-index: -2;
       background: radial-gradient(
-        ellipse 62% 55% at center,
-        var(--glow-primary, rgba(6, 199, 85, 0.22)) 0%,
-        var(--glow-secondary, rgba(34, 211, 238, 0.12)) 35%,
+        ellipse 58% 52% at center,
+        var(--glow-primary, rgba(6, 199, 85, 0.55)) 0%,
+        var(--glow-secondary, rgba(139, 92, 246, 0.25)) 40%,
         transparent 72%
       );
-      filter: blur(42px);
+      filter: blur(38px);
       pointer-events: none;
-      opacity: 0.85;
     }
-    /* 個人版:LINE 綠主色 + 藍紫尾韻 */
+    /* 外層擴散光(更柔和) */
+    .mini-stage::after {
+      content: "";
+      position: absolute;
+      inset: -18% -24%;
+      z-index: -3;
+      background: radial-gradient(
+        ellipse 55% 50% at center,
+        var(--glow-wide, rgba(6, 199, 85, 0.22)) 0%,
+        transparent 70%
+      );
+      filter: blur(60px);
+      pointer-events: none;
+    }
+    /* 個人版:LINE 綠主色 + 紫尾韻 */
     .mini-stage.personal {
-      --glow-primary: rgba(6, 199, 85, 0.24);
-      --glow-secondary: rgba(139, 92, 246, 0.10);
+      --glow-primary: rgba(6, 199, 85, 0.55);
+      --glow-secondary: rgba(139, 92, 246, 0.22);
+      --glow-wide: rgba(6, 199, 85, 0.28);
     }
     /* 企業版:cyan 主色 + 紫尾韻 */
     .mini-stage.enterprise {
-      --glow-primary: rgba(34, 211, 238, 0.22);
-      --glow-secondary: rgba(139, 92, 246, 0.15);
+      --glow-primary: rgba(34, 211, 238, 0.50);
+      --glow-secondary: rgba(139, 92, 246, 0.28);
+      --glow-wide: rgba(34, 211, 238, 0.26);
     }
 
     /* LINE phone(個人版)*/
     .mini-phone {
       width: 300px; height: 560px; margin: 0 auto;
       background: #1a1a1e; border-radius: 38px; padding: 8px;
-      box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06) inset;
+      box-shadow:
+        0 40px 80px rgba(0,0,0,0.72),
+        0 12px 32px rgba(0,0,0,0.5),
+        0 0 0 1px rgba(255,255,255,0.08) inset;
       position: relative;
     }
     .mini-phone::before {
@@ -509,7 +528,11 @@
       width: 100%; max-width: 480px;
       margin: 0 auto;
       background: #1a1a1e; border-radius: 12px; overflow: hidden;
-      box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.08) inset;
+      box-shadow:
+        0 40px 80px rgba(0,0,0,0.72),
+        0 12px 32px rgba(0,0,0,0.5),
+        0 0 0 1px rgba(255,255,255,0.1) inset;
+      position: relative;
     }
     .mini-mac .mm-bar {
       height: 32px; background: linear-gradient(180deg, #2a2a30, #1f1f25);

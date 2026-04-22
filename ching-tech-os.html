@@ -269,26 +269,44 @@
       position: relative;
       display: flex; justify-content: center; align-items: center;
       isolation: isolate;
+      padding: 30px 24px;
     }
+    /* 內層強光 */
     .mac-stage::before {
       content: "";
       position: absolute;
-      inset: -8% -10%;
-      z-index: -1;
+      inset: -6% -8%;
+      z-index: -2;
       background: radial-gradient(
-        ellipse 60% 60% at center,
-        rgba(34, 211, 238, 0.22) 0%,
-        rgba(139, 92, 246, 0.15) 38%,
+        ellipse 58% 58% at center,
+        rgba(34, 211, 238, 0.55) 0%,
+        rgba(139, 92, 246, 0.30) 40%,
         transparent 72%
       );
-      filter: blur(48px);
+      filter: blur(44px);
       pointer-events: none;
-      opacity: 0.88;
+    }
+    /* 外層擴散 */
+    .mac-stage::after {
+      content: "";
+      position: absolute;
+      inset: -20% -22%;
+      z-index: -3;
+      background: radial-gradient(
+        ellipse 55% 50% at center,
+        rgba(34, 211, 238, 0.28) 0%,
+        transparent 70%
+      );
+      filter: blur(72px);
+      pointer-events: none;
     }
     .mac-window {
       background: #1a1a1e;
       border-radius: 12px; overflow: hidden;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.08) inset;
+      box-shadow:
+        0 50px 100px rgba(0,0,0,0.75),
+        0 16px 40px rgba(0,0,0,0.55),
+        0 0 0 1px rgba(255,255,255,0.1) inset;
       width: 100%;
       position: relative; z-index: 1;
     }
