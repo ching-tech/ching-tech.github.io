@@ -96,6 +96,7 @@
     .hero-os {
       min-height: 100vh;
       padding: 110px 0 60px; position: relative;
+      overflow-x: clip;
     }
     .hero-os::before {
       content: ''; position: absolute; top: 40%; left: 50%;
@@ -267,12 +268,13 @@
        ============================================================ */
     .ent-demo-layout {
       display: grid;
-      grid-template-columns: 1fr 1.3fr;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
       gap: 48px; align-items: center;
       margin-top: 8px;
     }
+    .ent-demo-layout > * { min-width: 0; }
     @media (max-width: 1000px) {
-      .ent-demo-layout { grid-template-columns: 1fr; gap: 36px; }
+      .ent-demo-layout { grid-template-columns: minmax(0, 1fr); gap: 36px; }
       .hero-os-copy { max-width: none; text-align: center; margin: 0 auto; }
       .hero-os-buttons { justify-content: center; }
     }
@@ -310,7 +312,16 @@
         0 16px 40px rgba(0,0,0,0.55),
         0 0 0 1px rgba(255,255,255,0.1) inset;
       width: 100%;
+      max-width: 100%;
+      min-width: 0;
       position: relative; z-index: 1;
+    }
+    .mac-bar, .mac-body, .mac-chat { min-width: 0; }
+    .mac-title {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
     .mac-bar {
       height: 36px;
@@ -372,6 +383,8 @@
       padding: 10px 14px; border-radius: 12px;
       font-size: 13px; line-height: 1.6;
       white-space: pre-wrap;
+      word-break: break-word;
+      overflow-wrap: anywhere;
       animation: entMsgIn 0.28s ease-out;
     }
     @keyframes entMsgIn {

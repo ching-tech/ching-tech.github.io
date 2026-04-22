@@ -108,6 +108,7 @@
       min-height: 100vh;
       padding: 110px 0 60px;
       position: relative;
+      overflow-x: clip;
     }
     .hero::before {
       content: '';
@@ -437,7 +438,11 @@
     }
 
     /* Ambient glow · 掛在 demo-panel-layout 這層,光暈落在 mockup 所在那一側 */
-    .demo-panel-layout { position: relative; }
+    .demo-panel-layout {
+      position: relative;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+    .demo-panel-layout > * { min-width: 0; }
     .demo-panel-layout::before {
       content: "";
       position: absolute;
@@ -576,7 +581,7 @@
     .mm-typing span:nth-child(3) { animation-delay: 0.36s; }
 
     @media (max-width: 820px) {
-      .demo-panel-layout { grid-template-columns: 1fr; gap: 32px; }
+      .demo-panel-layout { grid-template-columns: minmax(0, 1fr); gap: 32px; }
       .demo-panel-copy { order: 2; }
       .mini-phone, .mini-mac { order: 1; }
       #unified-demo .demo-tabs { display: flex; width: 100%; }
