@@ -559,7 +559,84 @@
     .mini-mac .mm-dots .g { background: #28c941; }
     .mini-mac .mm-ttl { flex: 1; text-align: center; font-family: "JetBrains Mono", monospace; font-size: 11px; color: #9999a0; letter-spacing: 0.06em; }
     .mini-mac .mm-ttl .n { color: #22d3ee; }
-    .mini-mac .mm-body { background: #0e0e10; padding: 14px; min-height: 380px; display: flex; flex-direction: column; gap: 8px; overflow: hidden; }
+    .mini-mac .mm-body {
+      background: #0e0e10;
+      display: flex;
+      min-height: 340px;
+      min-width: 0;
+      overflow: hidden;
+    }
+    /* Mini sidebar(比 ching-tech-os 窄) */
+    .mini-mac .mm-sidebar {
+      width: 120px;
+      flex-shrink: 0;
+      background: #14141a;
+      border-right: 1px solid rgba(255,255,255,0.05);
+      padding: 10px 6px;
+      display: flex; flex-direction: column; gap: 2px;
+    }
+    .mini-mac .mm-sb-section {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 9px; letter-spacing: 0.18em;
+      color: #5a5a68; text-transform: uppercase;
+      padding: 8px 8px 4px; margin-top: 4px;
+    }
+    .mini-mac .mm-sb-section:first-child { margin-top: 0; }
+    .mini-mac .mm-sb-item {
+      padding: 6px 8px; border-radius: 5px;
+      font-size: 11px; color: #8888a0;
+      display: flex; align-items: center; gap: 7px;
+      transition: all 0.2s; cursor: pointer;
+      user-select: none;
+    }
+    .mini-mac .mm-sb-item:hover { background: rgba(255,255,255,0.04); color: #c0c0d0; }
+    .mini-mac .mm-sb-item.current {
+      background: linear-gradient(90deg, rgba(34,211,238,0.1), transparent);
+      color: #22d3ee;
+      border-left: 2px solid #22d3ee;
+      padding-left: 6px;
+    }
+    .mini-mac .mm-sb-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; opacity: 0.6; flex-shrink: 0; }
+    .mini-mac .mm-chat {
+      flex: 1;
+      min-width: 0;
+      padding: 12px;
+      display: flex; flex-direction: column; gap: 7px;
+      overflow: hidden;
+    }
+    /* Mini input bar */
+    .mini-mac .mm-input {
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 8px 12px;
+      background: rgba(255,255,255,0.02);
+    }
+    .mini-mac .mm-input-fake {
+      display: block;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px; color: #666676;
+      padding: 6px 10px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 6px;
+      letter-spacing: 0.04em;
+    }
+    /* < 600 窄螢幕:sidebar 切橫排 */
+    @media (max-width: 600px) {
+      .mini-mac .mm-body { flex-direction: column; }
+      .mini-mac .mm-sidebar {
+        width: 100%; flex-direction: row;
+        border-right: none; border-bottom: 1px solid rgba(255,255,255,0.05);
+        padding: 6px; overflow-x: auto; gap: 3px;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(0,0,0,0.5) rgba(0,0,0,0.2);
+      }
+      .mini-mac .mm-sidebar::-webkit-scrollbar { height: 5px; }
+      .mini-mac .mm-sidebar::-webkit-scrollbar-track { background: rgba(0,0,0,0.25); }
+      .mini-mac .mm-sidebar::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.5); border-radius: 3px; }
+      .mini-mac .mm-sb-section { display: inline-flex; align-items: center; padding: 6px 4px 6px 8px; flex-shrink: 0; margin: 0; }
+      .mini-mac .mm-sb-item { white-space: nowrap; flex-shrink: 0; }
+      .mini-mac .mm-sb-item.current { border-left: none; padding-left: 8px; }
+    }
     .mm-msg {
       max-width: 88%; padding: 9px 12px; border-radius: 10px;
       font-size: 12px; line-height: 1.55; white-space: pre-wrap;
@@ -706,9 +783,23 @@ window.addEventListener('DOMContentLoaded', function(){
               <div class="mm-bar">
                 <div class="mm-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div>
                 <div class="mm-ttl">ChingTech OS · <span class="n" id="eAgentLabel">法務 Agent</span></div>
-                <div style="width: 52px;"></div>
               </div>
-              <div class="mm-body" id="enterpriseChat" aria-live="polite"></div>
+              <div class="mm-body">
+                <div class="mm-sidebar">
+                  <div class="mm-sb-section">Agents</div>
+                  <div class="mm-sb-item current" data-mini-agent="0"><span class="mm-sb-dot"></span>法務</div>
+                  <div class="mm-sb-item" data-mini-agent="1"><span class="mm-sb-dot"></span>財務</div>
+                  <div class="mm-sb-item" data-mini-agent="2"><span class="mm-sb-dot"></span>產線</div>
+                  <div class="mm-sb-section">Sources</div>
+                  <div class="mm-sb-item"><span class="mm-sb-dot"></span>ERP</div>
+                  <div class="mm-sb-item"><span class="mm-sb-dot"></span>NAS</div>
+                  <div class="mm-sb-item"><span class="mm-sb-dot"></span>CRM</div>
+                </div>
+                <div class="mm-chat" id="enterpriseChat" aria-live="polite"></div>
+              </div>
+              <div class="mm-input">
+                <span class="mm-input-fake">$ ask —</span>
+              </div>
             </div>
           </div>
           <div class="demo-panel-copy">
@@ -1177,6 +1268,10 @@ window.addEventListener('DOMContentLoaded', function(){
     indices.enterprise = idx;
     const agent = enterpriseAgents[idx];
     document.getElementById("eAgentLabel").textContent = agent.name;
+    // sync mini-mac sidebar current state
+    document.querySelectorAll(".mini-mac .mm-sb-item[data-mini-agent]").forEach(el => {
+      el.classList.toggle("current", Number(el.dataset.miniAgent) === idx);
+    });
     let turnIdx = 0;
 
     function step() {
@@ -1249,6 +1344,14 @@ window.addEventListener('DOMContentLoaded', function(){
 
   document.querySelectorAll(".demo-tab").forEach(tab => {
     tab.addEventListener("click", () => switchMode(tab.dataset.mode));
+  });
+
+  // 讓 mini-mac sidebar 的 Agent 項目可點(同步主 chat 切換)
+  document.querySelectorAll(".mini-mac .mm-sb-item[data-mini-agent]").forEach(el => {
+    el.addEventListener("click", () => {
+      const idx = Number(el.dataset.miniAgent);
+      jumpTo("enterprise", idx);
+    });
   });
 
   // ===== Init =====
