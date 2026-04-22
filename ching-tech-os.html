@@ -86,42 +86,42 @@
     /* === End Canonical Nav === */
 
     .hero-os {
-      min-height: 85vh; display: flex; align-items: center;
-      padding: 140px 0 80px; position: relative;
+      min-height: 100vh;
+      padding: 110px 0 60px; position: relative;
     }
     .hero-os::before {
-      content: ''; position: absolute; top: 50%; left: 50%;
+      content: ''; position: absolute; top: 40%; left: 50%;
       transform: translate(-50%, -50%);
       width: 820px; height: 820px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(139, 92, 246, 0.1), transparent 70%);
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.08), transparent 70%);
       animation: pulse 6s ease-in-out infinite;
+      pointer-events: none;
     }
     @keyframes pulse {
       0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
       50% { opacity: 1; transform: translate(-50%, -50%) scale(1.08); }
     }
-    .hero-os-content { position: relative; z-index: 1; }
+    .hero-os-copy { max-width: 540px; position: relative; z-index: 2; }
     .hero-os-badge {
       display: inline-flex; align-items: center; gap: 8px;
       background: rgba(139, 92, 246, 0.1);
       border: 1px solid rgba(139, 92, 246, 0.25);
       color: #a78bfa; padding: 6px 16px; border-radius: 20px;
       font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
     .hero-os h1 {
-      font-size: clamp(2.4rem, 5.5vw, 3.8rem);
-      font-weight: 800; letter-spacing: -0.03em;
-      line-height: 1.15; margin-bottom: 20px;
+      font-size: clamp(1.8rem, 3.6vw, 2.6rem);
+      font-weight: 800; letter-spacing: -0.02em;
+      line-height: 1.18; margin-bottom: 16px;
       background: linear-gradient(135deg, #fff 0%, #c7d0ff 50%, #a78bfa 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      max-width: 820px;
     }
     .hero-os p.lead {
-      font-size: clamp(1rem, 2vw, 1.2rem);
-      color: #8888a0; max-width: 640px; margin-bottom: 40px;
+      font-size: clamp(0.95rem, 1.4vw, 1.05rem);
+      color: #9999b0; margin-bottom: 28px;
     }
-    .hero-os-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+    .hero-os-buttons { display: flex; gap: 14px; flex-wrap: wrap; }
     .btn {
       display: inline-flex; align-items: center; gap: 8px;
       padding: 14px 28px; border-radius: 12px;
@@ -255,14 +255,18 @@
     @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; gap: 24px; } }
 
     /* ============================================================
-       Enterprise Demo · macOS window mockup
+       Enterprise Demo · macOS window integrated into hero
        ============================================================ */
-    #ent-demo { border-top: 1px solid rgba(255,255,255,0.05); padding: 80px 0; }
     .ent-demo-layout {
       display: grid;
-      grid-template-columns: 1fr 260px;
-      gap: 40px; align-items: start;
-      margin-top: 48px;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 48px; align-items: center;
+      margin-top: 8px;
+    }
+    @media (max-width: 1000px) {
+      .ent-demo-layout { grid-template-columns: 1fr; gap: 36px; }
+      .hero-os-copy { max-width: none; text-align: center; margin: 0 auto; }
+      .hero-os-buttons { justify-content: center; }
     }
     /* mac-stage 簡化為居中容器(glow 移到 ent-demo-layout 層) */
     .mac-stage {
@@ -421,23 +425,43 @@
       font-family: "JetBrains Mono", monospace;
       font-size: 10px; color: #5a5a68; letter-spacing: 0.1em;
     }
-    .ent-agents { padding-top: 8px; }
+    /* Agent strip · hero 下方橫排 */
+    .ent-agent-strip { margin-top: 32px; }
+    .ent-strip-meta {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 14px; margin-bottom: 14px; flex-wrap: wrap;
+    }
     .ent-agents-label {
       font-family: "JetBrains Mono", monospace;
       font-size: 11px; letter-spacing: 0.18em;
       color: #a78bfa; text-transform: uppercase;
-      margin-bottom: 14px;
+    }
+    .ent-agent-row {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+    }
+    .ent-disclaimer {
+      margin-top: 16px;
+      font-size: 0.78rem; color: #6e6e78;
+      font-family: 'JetBrains Mono', monospace; letter-spacing: 0.04em;
+    }
+    @media (max-width: 1000px) {
+      .ent-agent-row { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .ent-agent-row { grid-template-columns: repeat(2, 1fr); }
     }
     .ent-agent-btn {
       display: flex; flex-direction: column; width: 100%;
-      padding: 12px 14px; margin-bottom: 8px;
+      padding: 10px 12px;
       background: rgba(255,255,255,0.03);
       border: 1px solid rgba(255,255,255,0.06);
       border-radius: 10px;
       color: #c0c0d0; cursor: pointer;
       transition: all 0.2s;
       text-align: left;
-      font-family: inherit; font-size: 0.88rem;
+      font-family: inherit; font-size: 0.82rem;
     }
     .ent-agent-btn:hover {
       background: rgba(255,255,255,0.05);
@@ -463,10 +487,15 @@
     }
     .ent-agent-btn .ab-name { font-weight: 600; }
     .ent-agent-btn .ab-desc {
-      font-size: 0.76rem; color: #7777a0;
-      margin-top: 6px; line-height: 1.5;
+      font-size: 0.7rem; color: #7777a0;
+      margin-top: 4px; line-height: 1.45;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+      overflow: hidden;
     }
     .ent-agent-btn.active .ab-desc { color: #a0a0c0; }
+    @media (max-width: 560px) {
+      .ent-agent-btn .ab-desc { display: none; }
+    }
     .ent-live-tag {
       display: inline-flex; align-items: center; gap: 6px;
       font-size: 0.78rem; color: #4ade80;
@@ -517,66 +546,63 @@
   </div>
 </nav>
 
-<section class="hero-os">
-  <div class="container hero-os-content">
-    <div class="hero-os-badge">
-      <span>企業 AI 工作平台 · 自 2025</span>
-    </div>
-    <h1>把人從重複作業裡解放,<br>讓工程力 + AI 一起工作。</h1>
-    <p class="lead">ChingTech OS 是擎添工業的企業作業系統 — 18 模組 + 知識庫 + Agent + LINE/Telegram,把公司的 SOP、報價、合約、客戶資料都串起來,AI 記得,員工不用再重複回答。</p>
-    <div class="hero-os-buttons">
-      <a href="pricing.html#ching-tech-os" class="btn btn-primary">查看方案價格 →</a>
-      <a href="contact.html" class="btn btn-outline">預約 demo</a>
-    </div>
-  </div>
-</section>
-
-<!-- Enterprise Scenarios · macOS window scripted demo -->
-<section id="ent-demo">
+<!-- Hero = 企業版場景示範整合 · 首屏直接展示 -->
+<section class="hero-os" id="ent-demo">
   <div class="container">
-    <span class="section-eyebrow">Scenarios</span>
-    <h2 class="section-h2">6 個 Agent 分工,跟真的員工一樣。</h2>
-    <p class="section-lead">法務、財務、產線、業務、客服、知識庫 — 各司其職,從公司實際資料回答。不是樣板答覆,是你公司的內部知識 × AI。</p>
-    <p style="margin-top:-24px;margin-bottom:40px;font-size:0.8rem;color:#6e6e78;font-family:'JetBrains Mono',monospace;letter-spacing:0.04em;">※ 對話為示範內容,實際 AI 回應依貴公司匯入之知識庫、ERP、合約庫、CRM 資料而定。</p>
-
     <div class="ent-demo-layout">
-      <div class="mac-stage">
-      <div class="mac-window">
-        <div class="mac-bar">
-          <div class="mac-dots"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div>
-          <div class="mac-title">ChingTech OS · <span class="agent-name" id="entAgentLabel">法務 Agent</span></div>
-          <div style="width: 52px;"></div>
+      <div class="hero-os-copy">
+        <div class="hero-os-badge">
+          <span>企業 AI 工作平台 · 自 2025</span>
         </div>
-        <div class="mac-body">
-          <div class="mac-sidebar">
-            <div class="sb-section">Agents</div>
-            <div class="sb-item current" id="sbLegal"><span class="sb-dot"></span> 法務</div>
-            <div class="sb-item" id="sbFinance"><span class="sb-dot"></span> 財務</div>
-            <div class="sb-item" id="sbLine"><span class="sb-dot"></span> 產線</div>
-            <div class="sb-item" id="sbSales"><span class="sb-dot"></span> 業務</div>
-            <div class="sb-item" id="sbCS"><span class="sb-dot"></span> 客服</div>
-            <div class="sb-item" id="sbKB"><span class="sb-dot"></span> 知識庫</div>
-            <div class="sb-section">Sources</div>
-            <div class="sb-item"><span class="sb-dot"></span> ERP</div>
-            <div class="sb-item"><span class="sb-dot"></span> NAS</div>
-            <div class="sb-item"><span class="sb-dot"></span> CRM</div>
+        <h1>把人從重複作業裡解放,<br>讓工程力 + AI 一起工作。</h1>
+        <p class="lead">6 個產業 Agent 各司其職,從公司實際知識庫、ERP、CRM 資料回答。不是通用 chatbot,是你公司的內部知識 × AI。</p>
+        <div class="hero-os-buttons">
+          <a href="pricing.html#ching-tech-os" class="btn btn-primary">查看方案價格 →</a>
+          <a href="contact.html" class="btn btn-outline">預約 demo</a>
+        </div>
+      </div>
+
+      <div class="mac-stage">
+        <div class="mac-window">
+          <div class="mac-bar">
+            <div class="mac-dots"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div>
+            <div class="mac-title">ChingTech OS · <span class="agent-name" id="entAgentLabel">法務 Agent</span></div>
+            <div style="width: 52px;"></div>
           </div>
-          <div class="mac-chat">
-            <div class="chat-thread" id="entChat" aria-live="polite"></div>
-            <div class="mac-input">
-              <div class="input-fake">$ ask —</div>
-              <div class="cmd-hint">⌘ + K</div>
+          <div class="mac-body">
+            <div class="mac-sidebar">
+              <div class="sb-section">Agents</div>
+              <div class="sb-item current" id="sbLegal"><span class="sb-dot"></span> 法務</div>
+              <div class="sb-item" id="sbFinance"><span class="sb-dot"></span> 財務</div>
+              <div class="sb-item" id="sbLine"><span class="sb-dot"></span> 產線</div>
+              <div class="sb-item" id="sbSales"><span class="sb-dot"></span> 業務</div>
+              <div class="sb-item" id="sbCS"><span class="sb-dot"></span> 客服</div>
+              <div class="sb-item" id="sbKB"><span class="sb-dot"></span> 知識庫</div>
+              <div class="sb-section">Sources</div>
+              <div class="sb-item"><span class="sb-dot"></span> ERP</div>
+              <div class="sb-item"><span class="sb-dot"></span> NAS</div>
+              <div class="sb-item"><span class="sb-dot"></span> CRM</div>
+            </div>
+            <div class="mac-chat">
+              <div class="chat-thread" id="entChat" aria-live="polite"></div>
+              <div class="mac-input">
+                <div class="input-fake">$ ask —</div>
+                <div class="cmd-hint">⌘ + K</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      </div><!-- /.mac-stage -->
+    </div>
 
-      <div class="ent-agents">
-        <div class="ent-agents-label">選擇 Agent</div>
-        <div id="entAgentList"></div>
-        <div class="ent-live-tag"><span class="d"></span> 循環展示 · 點卡片切換</div>
+    <!-- Agent strip · hero 下方橫排 -->
+    <div class="ent-agent-strip">
+      <div class="ent-strip-meta">
+        <span class="ent-agents-label">選擇 Agent</span>
+        <span class="ent-live-tag"><span class="d"></span> 循環展示 · 點卡片切換</span>
       </div>
+      <div id="entAgentList" class="ent-agent-row"></div>
+      <p class="ent-disclaimer">※ 對話為示範內容,實際 AI 回應依貴公司匯入之知識庫、ERP、合約庫、CRM 資料而定。</p>
     </div>
   </div>
 </section>

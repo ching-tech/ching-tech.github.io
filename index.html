@@ -95,36 +95,41 @@
     }
     /* === End Canonical Nav === */
 
-    /* ── Hero ── */
+    /* ── Hero = unified-demo 整合首屏 ── */
     .hero {
-      min-height: 100vh; display: flex; align-items: center; justify-content: center;
-      text-align: center; padding: 120px 24px 80px;
+      min-height: 100vh;
+      padding: 110px 0 60px;
       position: relative;
     }
     .hero::before {
       content: '';
-      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      position: absolute; top: 30%; left: 50%; transform: translate(-50%, -50%);
       width: 800px; height: 800px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(56, 130, 246, 0.12), transparent 70%);
+      background: radial-gradient(circle, rgba(56, 130, 246, 0.10), transparent 70%);
       animation: pulse 6s ease-in-out infinite;
+      pointer-events: none;
     }
     @keyframes pulse {
       0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
-      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.08); }
     }
-    .hero-content { position: relative; z-index: 1; }
-    .hero h1 {
-      font-size: clamp(2.2rem, 5vw, 3.6rem);
-      font-weight: 800; letter-spacing: -0.03em;
-      line-height: 1.2; margin-bottom: 20px;
+    .hero-top-intro { text-align: center; margin-bottom: 24px; position: relative; z-index: 2; }
+    .hero-h1 {
+      font-size: clamp(1.8rem, 3.8vw, 2.8rem);
+      font-weight: 800; letter-spacing: -0.02em;
+      line-height: 1.18; margin-bottom: 12px;
       background: linear-gradient(135deg, #fff 0%, #a5b4fc 50%, #818cf8 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-    .hero p {
-      font-size: clamp(1rem, 2vw, 1.25rem);
-      color: #8888a0; max-width: 560px; margin: 0 auto 40px;
+    .hero-lead {
+      font-size: clamp(0.95rem, 1.4vw, 1.05rem);
+      color: #9999b0; max-width: 640px; margin: 0 auto 6px;
     }
-    .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .hero-disclaimer {
+      margin-top: 4px; margin-bottom: 22px;
+      font-size: 0.76rem; color: #6e6e78;
+      font-family: 'JetBrains Mono', monospace; letter-spacing: 0.04em;
+    }
     .btn {
       display: inline-flex; align-items: center; gap: 8px;
       padding: 14px 28px; border-radius: 12px; font-size: 1rem; font-weight: 600;
@@ -320,7 +325,7 @@
     /* ============================================================
        Unified Demo · toggle between Personal(LINE)and Enterprise(Agent)
        ============================================================ */
-    #unified-demo { border-top: 1px solid rgba(255,255,255,0.04); padding: 100px 0; }
+    #unified-demo { padding-top: 0; }  /* padding 改由 .hero 控制 */
     .demo-tabs {
       display: inline-flex;
       gap: 4px;
@@ -328,7 +333,7 @@
       background: rgba(255,255,255,0.03);
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 12px;
-      margin: 20px 0 32px;
+      margin: 0;
     }
     .demo-tab {
       padding: 10px 18px;
@@ -633,28 +638,13 @@ window.addEventListener('DOMContentLoaded', function(){
 </nav>
 
 <!-- Hero -->
-<section class="hero">
-  <div class="hero-content">
-    <h1>AI 驅動的<br>智慧工作平台</h1>
-    <p>從個人 LINE AI 助理到企業級整合平台，擎添工業為你打造最智慧的數位工作體驗。</p>
-    <div class="hero-buttons">
-      <a href="https://line.me/R/ti/p/@285fjkky" target="_blank" class="btn btn-primary">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        免費試用 LINE 助理
-      </a>
-      <a href="#os" class="btn btn-outline">了解企業方案 →</a>
-    </div>
-  </div>
-</section>
-
-<!-- Unified Demo · 個人 / 企業切換 -->
-<section id="unified-demo">
+<!-- Hero = Unified Demo · 首屏直接展示 -->
+<section class="hero" id="unified-demo">
   <div class="container">
-    <div class="fade-in">
-      <span class="section-label label-blue">情境示範</span>
-      <h2 class="section-title">兩個版本,兩種工作方式。</h2>
-      <p class="section-desc">個人跟企業的需求不同,我們分別為兩端設計。點切換看各自怎麼動。</p>
-      <p style="margin-top:-32px;margin-bottom:20px;font-size:0.8rem;color:#6e6e78;font-family:'JetBrains Mono',monospace;letter-spacing:0.04em;">※ 對話為示範內容,實際 AI 回應依貴方匯入之資料而定。</p>
+    <div class="fade-in hero-top-intro">
+      <h1 class="hero-h1">AI 驅動的智慧工作平台</h1>
+      <p class="hero-lead">從個人 LINE AI 助理到企業級整合平台 — 擎添工業為你打造最智慧的數位工作體驗。</p>
+      <p class="hero-disclaimer">※ 對話為示範內容,實際 AI 回應依貴方匯入之資料而定。</p>
 
       <div class="demo-tabs" role="tablist">
         <button class="demo-tab personal active" data-mode="personal" role="tab">
