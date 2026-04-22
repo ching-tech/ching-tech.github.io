@@ -415,6 +415,39 @@
     }
     .demo-cta.enterprise:hover { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(34,211,238,0.3); }
 
+    /* Ambient glow stage · YouTube 電影院模式的靜態版 */
+    .mini-stage {
+      position: relative;
+      display: flex; justify-content: center; align-items: center;
+      padding: 30px 20px;
+      isolation: isolate;
+    }
+    .mini-stage::before {
+      content: "";
+      position: absolute;
+      inset: -10% -15%;
+      z-index: -1;
+      background: radial-gradient(
+        ellipse 62% 55% at center,
+        var(--glow-primary, rgba(6, 199, 85, 0.22)) 0%,
+        var(--glow-secondary, rgba(34, 211, 238, 0.12)) 35%,
+        transparent 72%
+      );
+      filter: blur(42px);
+      pointer-events: none;
+      opacity: 0.85;
+    }
+    /* 個人版:LINE 綠主色 + 藍紫尾韻 */
+    .mini-stage.personal {
+      --glow-primary: rgba(6, 199, 85, 0.24);
+      --glow-secondary: rgba(139, 92, 246, 0.10);
+    }
+    /* 企業版:cyan 主色 + 紫尾韻 */
+    .mini-stage.enterprise {
+      --glow-primary: rgba(34, 211, 238, 0.22);
+      --glow-secondary: rgba(139, 92, 246, 0.15);
+    }
+
     /* LINE phone(個人版)*/
     .mini-phone {
       width: 300px; height: 560px; margin: 0 auto;
@@ -614,7 +647,7 @@ window.addEventListener('DOMContentLoaded', function(){
             <div class="demo-panel-scenarios" id="personalScenarios"></div>
             <a href="ctos-lite.html#demo" class="demo-cta personal">看完整 Demo →</a>
           </div>
-          <div>
+          <div class="mini-stage personal">
             <div class="mini-phone">
               <div class="mp-screen">
                 <div class="mp-sb"><span>9:41</span><span>●●●</span></div>
@@ -636,7 +669,7 @@ window.addEventListener('DOMContentLoaded', function(){
       <!-- Enterprise panel -->
       <div class="demo-panel" id="panelEnterprise">
         <div class="demo-panel-layout fade-in">
-          <div>
+          <div class="mini-stage enterprise">
             <div class="mini-mac">
               <div class="mm-bar">
                 <div class="mm-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div>

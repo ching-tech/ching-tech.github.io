@@ -264,11 +264,33 @@
       gap: 40px; align-items: start;
       margin-top: 48px;
     }
+    /* Ambient glow wrapper · 電影院模式 */
+    .mac-stage {
+      position: relative;
+      display: flex; justify-content: center; align-items: center;
+      isolation: isolate;
+    }
+    .mac-stage::before {
+      content: "";
+      position: absolute;
+      inset: -8% -10%;
+      z-index: -1;
+      background: radial-gradient(
+        ellipse 60% 60% at center,
+        rgba(34, 211, 238, 0.22) 0%,
+        rgba(139, 92, 246, 0.15) 38%,
+        transparent 72%
+      );
+      filter: blur(48px);
+      pointer-events: none;
+      opacity: 0.88;
+    }
     .mac-window {
       background: #1a1a1e;
       border-radius: 12px; overflow: hidden;
       box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.08) inset;
       width: 100%;
+      position: relative; z-index: 1;
     }
     .mac-bar {
       height: 36px;
@@ -510,6 +532,7 @@
     <p style="margin-top:-24px;margin-bottom:40px;font-size:0.8rem;color:#6e6e78;font-family:'JetBrains Mono',monospace;letter-spacing:0.04em;">※ 對話為示範內容,實際 AI 回應依貴公司匯入之知識庫、ERP、合約庫、CRM 資料而定。</p>
 
     <div class="ent-demo-layout">
+      <div class="mac-stage">
       <div class="mac-window">
         <div class="mac-bar">
           <div class="mac-dots"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div>
@@ -539,6 +562,7 @@
           </div>
         </div>
       </div>
+      </div><!-- /.mac-stage -->
 
       <div class="ent-agents">
         <div class="ent-agents-label">選擇 Agent</div>
