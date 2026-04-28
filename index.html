@@ -268,6 +268,183 @@
       .speaker-card { padding: 22px; }
     }
 
+    /* ── FOMO Section ── */
+    .fomo-section {
+      padding: 80px 0; text-align: center;
+      background:
+        radial-gradient(900px 500px at 50% 30%, rgba(244,63,94,0.08), transparent 70%),
+        linear-gradient(180deg, transparent, rgba(220,38,38,0.03) 60%, transparent);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .fomo-eyebrow {
+      display: inline-block; font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #fb7185;
+      padding: 6px 14px; border-radius: 999px;
+      background: rgba(251,113,133,0.10); border: 1px solid rgba(251,113,133,0.30);
+      margin-bottom: 18px;
+    }
+    .fomo-title {
+      font-size: clamp(1.8rem, 3.6vw, 2.8rem);
+      font-weight: 800; letter-spacing: -0.02em; line-height: 1.15;
+      margin-bottom: 14px; color: #fff;
+    }
+    .fomo-title .accent {
+      background: linear-gradient(135deg, #fde68a, #f59e0b, #f43f5e);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .fomo-sub { color: #b4b4c8; max-width: 56ch; margin: 0 auto 44px; font-size: 1.02rem; line-height: 1.75; }
+    .fomo-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+      max-width: 1040px; margin: 0 auto;
+    }
+    .fomo-stat {
+      padding: 32px 24px; border-radius: 18px;
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+      transition: transform 0.25s, border-color 0.25s;
+    }
+    .fomo-stat:hover { transform: translateY(-4px); border-color: rgba(244,63,94,0.4); }
+    .fomo-stat .v {
+      font-size: clamp(3rem, 6vw, 5rem); font-weight: 900; line-height: 0.95;
+      background: linear-gradient(135deg, #fde68a, #f59e0b, #f43f5e);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      letter-spacing: -0.02em; font-family: 'Noto Serif TC', serif;
+    }
+    .fomo-stat .v small { font-size: 0.42em; -webkit-text-fill-color: #fff; color: #fff; font-weight: 700; }
+    .fomo-stat .l { color: #e4e4e7; font-weight: 600; margin-top: 10px; font-size: 1rem; }
+    .fomo-stat .src {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+      color: #71717a; letter-spacing: 0.14em; text-transform: uppercase; margin-top: 6px;
+    }
+    .fomo-bottom { margin-top: 40px; font-size: 1.1rem; color: #fff; font-weight: 600; }
+    .fomo-bottom b { color: #f43f5e; font-family: 'Noto Serif TC', serif; font-weight: 900; }
+
+    /* ── AI Layoffs ── */
+    .layoff-section {
+      padding: 80px 0; text-align: center;
+      background:
+        radial-gradient(900px 500px at 50% 30%, rgba(220,38,38,0.10), transparent 70%),
+        var(--bg, #0e0e10);
+    }
+    .layoff-eyebrow {
+      display: inline-block; font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.16em; color: #f87171;
+      padding: 6px 14px; border-radius: 999px;
+      background: rgba(220,38,38,0.10); border: 1px solid rgba(220,38,38,0.35);
+      margin-bottom: 18px;
+    }
+    .layoff-title {
+      font-size: clamp(1.8rem, 3.6vw, 2.8rem);
+      font-weight: 800; letter-spacing: -0.02em; line-height: 1.15;
+      margin-bottom: 14px; color: #fff;
+    }
+    .layoff-title .accent {
+      background: linear-gradient(135deg, #f87171, #dc2626);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .layoff-sub { color: #b4b4c8; max-width: 60ch; margin: 0 auto 44px; font-size: 1.02rem; line-height: 1.8; }
+    .layoff-sub b { color: #f87171; font-weight: 800; }
+    .layoff-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
+      max-width: 1080px; margin: 0 auto;
+    }
+    .layoff-card {
+      padding: 28px 20px; border-radius: 18px;
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+      transition: transform 0.25s, border-color 0.25s;
+      display: flex; flex-direction: column; gap: 8px; align-items: center; text-align: center;
+    }
+    .layoff-card:hover { transform: translateY(-4px); border-color: rgba(220,38,38,0.4); }
+    .layoff-card.highlight {
+      background: linear-gradient(160deg, rgba(220,38,38,0.10), rgba(0,0,0,0.30));
+      border-color: rgba(220,38,38,0.40);
+    }
+    .layoff-card .company {
+      font-family: 'JetBrains Mono', monospace; font-weight: 700;
+      font-size: 0.78rem; letter-spacing: 0.12em; color: #f87171;
+      text-transform: uppercase;
+    }
+    .layoff-card .number {
+      font-family: 'Noto Serif TC', serif; font-weight: 900;
+      font-size: clamp(2.2rem, 4.5vw, 3.4rem); line-height: 1;
+      background: linear-gradient(135deg, #fde68a, #ef4444);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      letter-spacing: -0.02em; margin: 4px 0;
+    }
+    .layoff-card .number .unit {
+      font-size: 0.34em; font-weight: 700; -webkit-text-fill-color: #fff; color: #fff;
+      margin-left: 4px;
+    }
+    .layoff-card p { font-size: 0.85rem; color: #cdcdd6; line-height: 1.55; margin-top: 4px; }
+    .layoff-bottom {
+      margin-top: 44px; font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+      color: #fff; font-weight: 600; line-height: 1.7;
+    }
+    .layoff-bottom b { color: #f43f5e; font-family: 'Noto Serif TC', serif; font-weight: 900; }
+    .layoff-source {
+      margin-top: 18px; font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem; color: #71717a; letter-spacing: 0.12em;
+    }
+
+    /* ── 擎添實況 ── */
+    .actual-section { padding: 80px 0; text-align: center; }
+    .actual-eyebrow {
+      display: inline-block; font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #22d3ee;
+      padding: 6px 14px; border-radius: 999px;
+      background: rgba(34,211,238,0.08); border: 1px solid rgba(34,211,238,0.30);
+      margin-bottom: 18px;
+    }
+    .actual-title {
+      font-size: clamp(1.8rem, 3.6vw, 2.8rem);
+      font-weight: 800; letter-spacing: -0.02em; line-height: 1.15;
+      margin-bottom: 14px; color: #fff;
+    }
+    .actual-title .accent {
+      background: linear-gradient(135deg, #67e8f9, #22d3ee, #06b6d4);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .actual-sub { color: #b4b4c8; max-width: 56ch; margin: 0 auto 44px; font-size: 1.02rem; line-height: 1.75; }
+    .actual-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+      max-width: 1080px; margin: 0 auto; text-align: left;
+    }
+    .actual-card {
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px; padding: 22px;
+      display: flex; flex-direction: column; gap: 14px;
+      transition: transform 0.25s, border-color 0.25s;
+    }
+    .actual-card:hover { transform: translateY(-3px); border-color: rgba(34,211,238,0.4); }
+    .actual-card .role {
+      align-self: flex-start; font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem; letter-spacing: 0.16em; font-weight: 700;
+      color: #22d3ee; padding: 5px 11px;
+      border: 1px solid rgba(34,211,238,0.30); border-radius: 6px;
+      background: rgba(34,211,238,0.08);
+    }
+    .actual-card h3 { font-size: 1.12rem; color: #fff; font-weight: 800; letter-spacing: -0.01em; }
+    .actual-chat {
+      background: rgba(0,0,0,0.30); border-radius: 12px; padding: 14px;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .actual-msg { padding: 9px 12px; border-radius: 12px; max-width: 92%; font-size: 0.86rem; line-height: 1.5; }
+    .actual-msg.user { align-self: flex-end; background: rgba(34,211,238,0.14); border: 1px solid rgba(34,211,238,0.28); color: #fff; }
+    .actual-msg.bot { align-self: flex-start; background: rgba(247,168,27,0.10); border: 1px solid rgba(247,168,27,0.25); color: #e7e8ed; }
+    .actual-card .saved {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;
+      color: #22d3ee; font-weight: 700; padding-top: 10px;
+      border-top: 1px dashed rgba(34,211,238,0.30);
+    }
+    @media (max-width: 768px) {
+      .fomo-section, .actual-section, .layoff-section { padding: 56px 0; }
+      .fomo-stats, .actual-grid { grid-template-columns: 1fr; }
+      .layoff-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 520px) {
+      .layoff-grid { grid-template-columns: 1fr; }
+    }
+
     .section-label {
       display: inline-block; font-size: 0.8rem; font-weight: 600;
       text-transform: uppercase; letter-spacing: 0.12em;
@@ -942,6 +1119,109 @@ window.addEventListener('DOMContentLoaded', function(){
         <span class="speaker-meta">Company · Since 1984</span>
         <h3>擎添科技 · 自動化 × AI 雙引擎</h3>
         <p>1984 年創立,深耕工業自動化 40 年。專精 PLC、CCD 機器視覺、SLAM AGV,客戶涵蓋半導體、光學、化工、核能等產業,合作夥伴包括欣興電子、日月光等。近年以「自動化 × AI」雙引擎,協助台灣製造業邁向智慧化 ↓</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI FOMO -->
+<section class="fomo-section" id="fomo">
+  <div class="container">
+    <span class="fomo-eyebrow">為什麼是現在</span>
+    <h2 class="fomo-title">不是要不要做 ── <span class="accent">是要多快做。</span></h2>
+    <p class="fomo-sub">當你還在猶豫,全球大企業已經把 AI 跑進日常營運。<br/>每慢一年,複利差距就拉大一倍。</p>
+
+    <div class="fomo-stats fade-in">
+      <div class="fomo-stat">
+        <div class="v">78<small>%</small></div>
+        <div class="l">全球大企業已導入 GenAI</div>
+        <div class="src">McKinsey · 2025</div>
+      </div>
+      <div class="fomo-stat">
+        <div class="v">40<small>%</small></div>
+        <div class="l">員工生產力平均提升</div>
+        <div class="src">Stanford HAI · 2025</div>
+      </div>
+      <div class="fomo-stat">
+        <div class="v">18<small>月</small></div>
+        <div class="l">早期採用者平均回本期</div>
+        <div class="src">BCG · 2025</div>
+      </div>
+    </div>
+
+    <p class="fomo-bottom">這不是趨勢預測 —— <b>是過去式。</b></p>
+  </div>
+</section>
+
+<!-- AI 已經砍掉的工作 -->
+<section class="layoff-section" id="layoff">
+  <div class="container">
+    <span class="layoff-eyebrow">⚠ 真實數據 · 不是嚇你</span>
+    <h2 class="layoff-title">AI 已經<span class="accent">砍掉</span>多少工作?</h2>
+    <p class="layoff-sub">2025 全年, 美國至少 <b>54,000+</b> 個職位被 AI 直接取代。<br/>1.17 百萬個科技業裁員, 自 2020 疫情以來最高。<br/><b>這不是「未來」, 是已經發生的事。</b></p>
+
+    <div class="layoff-grid fade-in">
+      <div class="layoff-card">
+        <div class="company">IBM</div>
+        <div class="number">8,000<span class="unit">人</span></div>
+        <p>HR 部門被內部 AI 機器人 AskHR 取代</p>
+      </div>
+      <div class="layoff-card">
+        <div class="company">Microsoft</div>
+        <div class="number">15,000<span class="unit">人 +</span></div>
+        <p>CEO 公開: AI 已寫 30% 新程式碼</p>
+      </div>
+      <div class="layoff-card">
+        <div class="company">Klarna</div>
+        <div class="number">700<span class="unit">人 (FTE)</span></div>
+        <p>1 個 AI 助理 = 700 個全職客服的工作量</p>
+      </div>
+      <div class="layoff-card highlight">
+        <div class="company">8 家全球大廠</div>
+        <div class="number">10,000<span class="unit">人 / 家</span></div>
+        <p>Accenture · Amazon · Citigroup · Dell<br/>Intel · Microsoft · TCS · UPS</p>
+      </div>
+    </div>
+
+    <p class="layoff-bottom">問題不是「會不會被 AI 取代」 ——<br/><b>而是你會用 AI, 還是被 AI 取代?</b></p>
+    <div class="layoff-source">SOURCES · CNBC · MCKINSEY · NATIONAL CIO REVIEW · 2025</div>
+  </div>
+</section>
+
+<!-- 擎添實況 -->
+<section class="actual-section" id="actual">
+  <div class="container">
+    <span class="actual-eyebrow">不是 demo · 是 production</span>
+    <h2 class="actual-title">擎添工業, 自家<span class="accent">天天在用</span>。</h2>
+    <p class="actual-sub">這些對話,都是過去 30 天擎添內部真的發生過的場景。</p>
+
+    <div class="actual-grid fade-in">
+      <div class="actual-card">
+        <span class="role">業務</span>
+        <h3>查報價 · 抓客戶歷史</h3>
+        <div class="actual-chat">
+          <div class="actual-msg user">「上次給日月光的 AGV 報價單」</div>
+          <div class="actual-msg bot">📄 找到 3 份 · 最新 2025-03,單價含 BOM,已整理成 PDF。</div>
+        </div>
+        <div class="saved">⏱ 30 分鐘 → 30 秒</div>
+      </div>
+      <div class="actual-card">
+        <span class="role">工程</span>
+        <h3>產線交班 · 故障追蹤</h3>
+        <div class="actual-chat">
+          <div class="actual-msg user">「昨天 AGV-7 在 3 廠是怎麼了?」</div>
+          <div class="actual-msg bot">🔧 22:17 異常停止,SLAM 撞點觸發。已重啟,日誌歸檔到專案 #2503。</div>
+        </div>
+        <div class="saved">⏱ 交接資料 2 天 → 半天</div>
+      </div>
+      <div class="actual-card">
+        <span class="role">老闆</span>
+        <h3>追進度 · 看現金</h3>
+        <div class="actual-chat">
+          <div class="actual-msg user">「這禮拜 AGV 出貨進度 + 應收?」</div>
+          <div class="actual-msg bot">📊 出貨 6 / 7 台 (92%),應收待入帳 $X,XXX,XXX,逾期 1 件。</div>
+        </div>
+        <div class="saved">⏱ 週報 半天 → 5 分鐘</div>
       </div>
     </div>
   </div>
