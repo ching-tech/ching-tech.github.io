@@ -260,6 +260,42 @@
   }
   .common-line b{color:var(--cyan-2)}
 
+  /* ============ s-apps · 各產業應用 ============ */
+  .s-apps .apps-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:56px;
+  }
+  .s-apps .app-card{
+    border-radius:24px;padding:48px 28px;text-align:center;
+    background:rgba(34,211,238,.06);
+    border:2px solid rgba(34,211,238,.28);
+    color:var(--paper);
+    transition:transform .25s, border-color .25s, background .25s;
+    display:flex;flex-direction:column;align-items:center;gap:22px;
+  }
+  .s-apps .app-card:hover{
+    transform:translateY(-6px);
+    border-color:var(--cyan-2);
+    background:rgba(34,211,238,.12);
+  }
+  .s-apps .app-ico{
+    width:128px;height:128px;
+    display:flex;align-items:center;justify-content:center;
+    border-radius:28px;
+    background:linear-gradient(135deg,rgba(34,211,238,.22),rgba(8,145,178,.10));
+    border:1px solid rgba(34,211,238,.4);
+    color:var(--cyan-2);
+    flex-shrink:0;
+  }
+  .s-apps .app-ico svg{width:68px;height:68px;stroke-width:1.6}
+  .s-apps .app-card h3{
+    font-size:clamp(34px,3.2vw,48px);font-weight:900;
+    color:#fff;letter-spacing:-.01em;line-height:1.1;
+  }
+  .s-apps .app-card p{
+    font-size:clamp(18px,1.5vw,22px);line-height:1.6;
+    color:#eaeaef;font-weight:500;
+  }
+
   /* ============ s5 the shift ============ */
   .s-shift{
     display:grid !important;grid-template-columns:1.1fr .9fr;align-items:center;gap:64px;
@@ -550,7 +586,7 @@
 
   /* responsive */
   @media (max-width: 980px){
-    .three-up,.pro-grid,.stat-grid,.why-grid,.steps-row,.deadline{grid-template-columns:1fr 1fr}
+    .three-up,.pro-grid,.apps-grid,.stat-grid,.why-grid,.steps-row,.deadline{grid-template-columns:1fr 1fr}
     .mod-grid{grid-template-columns:1fr 1fr}
     .mod.feature{grid-column:span 2}
     .s-shift,.offer-card,.s-close,.s-deep,.desktop-row,.s-about{grid-template-columns:1fr !important}
@@ -560,7 +596,7 @@
     .intro-display{font-size:64px}
   }
   @media (max-width: 640px){
-    .three-up,.pro-grid,.stat-grid,.why-grid,.steps-row,.deadline,.mod-grid{grid-template-columns:1fr}
+    .three-up,.pro-grid,.apps-grid,.stat-grid,.why-grid,.steps-row,.deadline,.mod-grid{grid-template-columns:1fr}
     .stat .big{font-size:80px}
     .shift-now{font-size:120px}
   }
@@ -845,6 +881,54 @@ window.addEventListener('DOMContentLoaded', function(){
     <p class="common-line">
       不是換工具，是 <b>把原本要人扛的事，交給對的系統。</b>
     </p>
+  </section>
+
+  <!-- ============== 04b 各產業應用 ============== -->
+  <section class="slide s-apps" data-title="各產業應用">
+    <span class="eyebrow">各產業應用 · 三個立刻見效的場景</span>
+    <h2 class="h2">同一套 AI，<br/>在不同行業<span class="glow-cyan">立刻能用</span>。</h2>
+
+    <div class="apps-grid">
+      <div class="app-card">
+        <div class="app-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="2" width="16" height="20" rx="2"/>
+            <rect x="7" y="5" width="10" height="4" rx="1"/>
+            <line x1="8" y1="13" x2="8" y2="13.01"/>
+            <line x1="12" y1="13" x2="12" y2="13.01"/>
+            <line x1="16" y1="13" x2="16" y2="13.01"/>
+            <line x1="8" y1="17" x2="8" y2="17.01"/>
+            <line x1="12" y1="17" x2="12" y2="17.01"/>
+            <line x1="16" y1="17" x2="16" y2="17.01"/>
+          </svg>
+        </div>
+        <h3>會計應用</h3>
+        <p>申報排程、客戶進度、法規更新 ——<br/>LINE 一句話就查清楚。</p>
+      </div>
+      <div class="app-card">
+        <div class="app-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+            <line x1="12" y1="22.08" x2="12" y2="12"/>
+          </svg>
+        </div>
+        <h3>庫存應用</h3>
+        <p>哪料快到、安全水位、補貨追單 ——<br/>不用開 ERP，問就有。</p>
+      </div>
+      <div class="app-card">
+        <div class="app-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 18v-7a9 9 0 0 1 18 0v7"/>
+            <path d="M21 19a2 2 0 0 1-2 2h-2v-6h4z"/>
+            <path d="M3 19a2 2 0 0 0 2 2h2v-6H3z"/>
+            <path d="M12 21h3"/>
+          </svg>
+        </div>
+        <h3>客戶服務應用</h3>
+        <p>常見問答自動回、客戶歷史一秒查 ——<br/>業務 / 客服不再重複勞動。</p>
+      </div>
+    </div>
   </section>
 
   <!-- ============== 05 the shift ============== -->
