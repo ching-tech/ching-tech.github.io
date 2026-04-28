@@ -299,9 +299,10 @@
       max-width: 1040px; margin: 0 auto;
     }
     .fomo-stat {
-      padding: 32px 24px; border-radius: 18px;
+      padding: 32px 24px 20px; border-radius: 18px;
       background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
       transition: transform 0.25s, border-color 0.25s;
+      display: flex; flex-direction: column; min-height: 220px;
     }
     .fomo-stat:hover { transform: translateY(-4px); border-color: rgba(244,63,94,0.4); }
     .fomo-stat .v {
@@ -313,8 +314,10 @@
     .fomo-stat .v small { font-size: 0.42em; -webkit-text-fill-color: #fff; color: #fff; font-weight: 700; }
     .fomo-stat .l { color: #e4e4e7; font-weight: 600; margin-top: 10px; font-size: 1rem; }
     .fomo-stat .src {
-      font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
-      color: #71717a; letter-spacing: 0.14em; text-transform: uppercase; margin-top: 6px;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.66rem;
+      color: #71717a; letter-spacing: 0.18em; text-transform: uppercase;
+      margin-top: auto; padding-top: 14px;
+      border-top: 1px dashed rgba(255,255,255,0.10);
     }
     .fomo-bottom { margin-top: 40px; font-size: 1.1rem; color: #fff; font-weight: 600; }
     .fomo-bottom b { color: #f43f5e; font-family: 'Noto Serif TC', serif; font-weight: 900; }
@@ -376,6 +379,12 @@
       margin-left: 4px;
     }
     .layoff-card p { font-size: 0.85rem; color: #cdcdd6; line-height: 1.55; margin-top: 4px; }
+    .layoff-card .src {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.66rem;
+      color: #71717a; letter-spacing: 0.18em; text-transform: uppercase;
+      margin-top: auto; padding-top: 12px; width: 100%;
+      border-top: 1px dashed rgba(255,255,255,0.10);
+    }
     .layoff-bottom {
       margin-top: 44px; font-size: clamp(1.05rem, 1.6vw, 1.3rem);
       color: #fff; font-weight: 600; line-height: 1.7;
@@ -1165,26 +1174,29 @@ window.addEventListener('DOMContentLoaded', function(){
         <div class="company">IBM</div>
         <div class="number">8,000<span class="unit">人</span></div>
         <p>HR 部門被內部 AI 機器人 AskHR 取代</p>
+        <div class="src">CNBC · 2025</div>
       </div>
       <div class="layoff-card">
         <div class="company">Microsoft</div>
         <div class="number">15,000<span class="unit">人 +</span></div>
         <p>CEO 公開: AI 已寫 30% 新程式碼</p>
+        <div class="src">CNBC · 2025</div>
       </div>
       <div class="layoff-card">
         <div class="company">Klarna</div>
         <div class="number">700<span class="unit">人 (FTE)</span></div>
         <p>1 個 AI 助理 = 700 個全職客服的工作量</p>
+        <div class="src">Klarna 公告 · 2024</div>
       </div>
       <div class="layoff-card highlight">
         <div class="company">8 家全球大廠</div>
         <div class="number">10,000<span class="unit">人 / 家</span></div>
         <p>Accenture · Amazon · Citigroup · Dell<br/>Intel · Microsoft · TCS · UPS</p>
+        <div class="src">National CIO Review · 2025</div>
       </div>
     </div>
 
     <p class="layoff-bottom">問題不是「會不會被 AI 取代」 ——<br/><b>而是你會用 AI, 還是被 AI 取代?</b></p>
-    <div class="layoff-source">SOURCES · CNBC · MCKINSEY · NATIONAL CIO REVIEW · 2025</div>
   </div>
 </section>
 

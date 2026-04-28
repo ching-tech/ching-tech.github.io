@@ -698,8 +698,9 @@
   }
   .s-fomo .fomo-stat{
     background:rgba(240,240,240,.04);border:1px solid var(--line);
-    border-radius:18px;padding:32px 22px;
+    border-radius:18px;padding:32px 22px 20px;
     transition:transform .25s,border-color .25s;
+    display:flex;flex-direction:column;min-height:240px;
   }
   .s-fomo .fomo-stat:hover{transform:translateY(-4px);border-color:rgba(234,88,12,.5)}
   .s-fomo .fomo-stat .v{
@@ -714,8 +715,9 @@
   }
   .s-fomo .fomo-stat .l{font-size:clamp(15px,1.2vw,17px);color:var(--paper);margin-top:10px;line-height:1.5;font-weight:600}
   .s-fomo .fomo-stat .src{
-    font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--muted);
-    letter-spacing:.16em;margin-top:8px;text-transform:uppercase;
+    font-family:"JetBrains Mono",monospace;font-size:10px;color:var(--muted);
+    letter-spacing:.18em;margin-top:auto;padding-top:14px;text-transform:uppercase;
+    border-top:1px dashed rgba(160,160,160,.18);
   }
   .s-fomo .fomo-bottom{
     margin-top:42px;font-size:clamp(18px,1.6vw,24px);color:var(--paper);font-weight:600;
