@@ -217,6 +217,40 @@
     .plan-price .contact {
       font-size: 1.5rem; font-weight: 700; color: #a5b4fc;
     }
+    .plan-promo-tag {
+      display: inline-block; align-self: flex-start;
+      font-size: 0.7rem; font-weight: 800; letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #f43f5e, #ef4444);
+      color: #fff; padding: 4px 10px; border-radius: 6px;
+      margin-bottom: 12px;
+    }
+    .plan-card .price-old {
+      font-size: 1.05rem; color: #71717a;
+      text-decoration: line-through; margin-right: 6px;
+      font-weight: 600;
+    }
+    .plan-total {
+      font-size: 0.86rem; color: #a5b4fc; font-weight: 600;
+      margin: -10px 0 10px;
+    }
+    .plan-save {
+      display: inline-flex; align-self: flex-start; align-items: center; gap: 4px;
+      font-size: 0.78rem; font-weight: 700;
+      color: #fbbf24;
+      background: rgba(251, 191, 36, 0.10);
+      border: 1px solid rgba(251, 191, 36, 0.30);
+      padding: 4px 10px; border-radius: 999px;
+      margin-bottom: 14px;
+    }
+    .plan-card.fire { border-color: rgba(251, 113, 133, 0.45); position: relative; }
+    .plan-card.fire::before {
+      content: "🔥 最省"; position: absolute; top: -11px; right: 16px;
+      background: linear-gradient(135deg, #f59e0b, #f43f5e);
+      color: #fff; font-size: 0.72rem; font-weight: 800;
+      padding: 5px 11px; border-radius: 999px;
+      letter-spacing: 0.10em;
+    }
     .plan-note { font-size: 0.82rem; color: #6e6e78; margin-bottom: 20px; }
     .plan-features { list-style: none; padding: 0; margin: 0 0 28px; flex: 1; }
     .plan-features li {
@@ -374,14 +408,68 @@
         <a href="https://line.me/R/ti/p/@285fjkky" target="_blank" class="btn-plan line">加 LINE 立即試用 →</a>
       </div>
 
-      <div class="plan-card featured">
-        <div class="plan-name">完整版</div>
-        <div class="plan-tag">Full</div>
+      <div class="plan-card">
+        <div class="plan-promo-tag">限時優惠</div>
+        <div class="plan-name">訂閱一季</div>
+        <div class="plan-tag">Quarterly · 3 個月</div>
         <div class="plan-price">
-          <span class="amount">NT$ XXXX</span>
+          <span class="price-old">$1,049</span>
+          <span class="amount">$699</span>
           <span class="unit">/ 月</span>
         </div>
-        <div class="plan-note">自動續訂,隨時可取消</div>
+        <div class="plan-total">總額 NT$ 2,097 · 季繳一次</div>
+        <div class="plan-save">💰 省 $1,048</div>
+        <div class="plan-note">3 個月扣款一次 · 自動續訂</div>
+        <ul class="plan-features">
+          <li><strong>無限次</strong> AI 對話</li>
+          <li>試用版全部功能</li>
+          <li>ERP / 庫存整合</li>
+          <li>Google Drive 同步</li>
+          <li>LINE + Telegram 多平台</li>
+          <li>自訂 AI 代理工作流</li>
+          <li>AI 員工角色設計</li>
+          <li>管理後台</li>
+        </ul>
+        <a href="#" class="btn-plan disabled">即將開放</a>
+      </div>
+
+      <div class="plan-card featured">
+        <div class="plan-promo-tag">限時優惠</div>
+        <div class="plan-name">訂閱半年</div>
+        <div class="plan-tag">Half-year · 6 個月 · ↑ 更省</div>
+        <div class="plan-price">
+          <span class="price-old">$899</span>
+          <span class="amount">$599</span>
+          <span class="unit">/ 月</span>
+        </div>
+        <div class="plan-total">總額 NT$ 3,594 · 半年繳一次</div>
+        <div class="plan-save">💰 省 $1,797</div>
+        <div class="plan-note">6 個月扣款一次 · 自動續訂</div>
+        <ul class="plan-features">
+          <li><strong>無限次</strong> AI 對話</li>
+          <li>試用版全部功能</li>
+          <li>ERP / 庫存整合</li>
+          <li>Google Drive 同步</li>
+          <li>LINE + Telegram 多平台</li>
+          <li>自訂 AI 代理工作流</li>
+          <li>AI 員工角色設計</li>
+          <li>管理後台</li>
+        </ul>
+        <a href="#" class="btn-plan primary disabled">即將開放</a>
+      </div>
+
+      <div class="plan-card fire">
+        <div class="plan-promo-tag">限時優惠</div>
+        <div class="plan-name">訂閱一年</div>
+        <div class="plan-tag">Annual · 12 個月 · ↑↑ 最省</div>
+        <div class="plan-price">
+          <span class="price-old">$749</span>
+          <span class="amount">$499</span>
+          <span class="unit">/ 月</span>
+        </div>
+        <div class="plan-total">總額 NT$ 5,988 · 年繳一次</div>
+        <div class="plan-save">💰 省 $2,994</div>
+        <div class="plan-note">12 個月扣款一次 · 自動續訂</div>
         <ul class="plan-features">
           <li><strong>無限次</strong> AI 對話</li>
           <li>試用版全部功能</li>
