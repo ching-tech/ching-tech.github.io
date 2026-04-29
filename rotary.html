@@ -265,11 +265,23 @@
   .three-up .item{
     border:1px solid var(--line);border-radius:12px;padding:28px;
     background:rgba(240,240,240,.025);
-    display:flex;flex-direction:column;gap:14px;min-height:260px;
+    display:flex;flex-direction:column;gap:12px;min-height:280px;
   }
   .three-up .num{font-family:"JetBrains Mono",monospace;font-weight:700;font-size:12px;letter-spacing:.22em;color:var(--orange-2)}
-  .three-up h3{font-size:26px}
+  .three-up h3{font-size:30px;line-height:1.15;letter-spacing:-.01em;font-weight:900;margin-top:2px}
   .three-up p{color:#bdbec3;font-size:15px;line-height:1.65}
+  .three-up .pain{
+    color:#888a92;font-size:14px;line-height:1.65;
+  }
+  .three-up .solution{
+    color:#fff;font-size:17px;line-height:1.55;font-weight:600;
+    margin-top:auto;padding-top:14px;
+    border-top:1px dashed rgba(34,211,238,.30);
+    position:relative;
+  }
+  .three-up .solution::before{
+    content:"→";color:var(--cyan-2);font-weight:900;margin-right:8px;
+  }
 
   /* ============ s4 three professions ============ */
   .pro-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
@@ -1185,17 +1197,20 @@ window.addEventListener('DOMContentLoaded', function(){
       <div class="item">
         <span class="num">敵人 01</span>
         <h3>找資料的時間</h3>
-        <p>員工一天切換十幾個系統，沒人說得清「這份檔案在哪」。<br/><br/>在任何地方，都能方便取得檔案。</p>
+        <p class="pain">員工一天切換十幾個系統，沒人說得清「這份檔案在哪」。</p>
+        <p class="solution">在任何地方，都能方便取得檔案。</p>
       </div>
       <div class="item">
         <span class="num">敵人 02</span>
         <h3>知識傳承</h3>
-        <p>老師傅、老幹部一走，公司就少一塊。<br/><br/>智慧財要留在公司裡，不是腦子裡。</p>
+        <p class="pain">老師傅、老幹部一走，公司就少一塊。</p>
+        <p class="solution">智慧財要留在公司裡，不是腦子裡。</p>
       </div>
       <div class="item">
         <span class="num">敵人 03</span>
         <h3>沒有專屬企業 AI</h3>
-        <p>ChatGPT 不知道你的客戶、合約、庫存。<br/><br/>需要唯一接得到自家資料的 AI 解決方案。</p>
+        <p class="pain">ChatGPT 不知道你的客戶、合約、庫存。</p>
+        <p class="solution">唯一接得到自家資料的 AI 解決方案。</p>
       </div>
     </div>
   </section>
