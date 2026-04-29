@@ -177,6 +177,7 @@
     border:1px solid var(--line);border-radius:14px;padding:20px 22px;
     background:linear-gradient(135deg,rgba(8,145,178,.10),rgba(240,240,240,.02));
     display:flex;gap:16px;align-items:flex-start;
+    position:relative;
   }
   .pillar-card .ico{
     width:42px;height:42px;border-radius:10px;display:grid;place-items:center;
@@ -184,6 +185,20 @@
   }
   .pillar-card h3{font-size:18px;font-weight:700;margin-bottom:4px}
   .pillar-card p{font-size:13px;color:#bdbec3;line-height:1.5}
+  .pillar-card.new{
+    border-color:rgba(234,88,12,.35);
+    background:linear-gradient(135deg,rgba(234,88,12,.10),rgba(247,168,27,.04));
+  }
+  .pillar-card.new .ico{
+    background:rgba(234,88,12,.18);color:var(--orange-2);
+  }
+  .pillar-card.new::after{
+    content:"NEW · 2025";position:absolute;top:-8px;right:14px;
+    font-family:"JetBrains Mono",monospace;font-size:10px;font-weight:800;
+    letter-spacing:.18em;color:#0e0e10;
+    background:linear-gradient(135deg,#fbbf24,#f97316);
+    padding:3px 9px;border-radius:999px;
+  }
   .customer-strip{
     margin-top:18px;padding:18px 22px;border-radius:12px;
     background:rgba(240,240,240,.03);border:1px solid var(--line);
@@ -998,6 +1013,20 @@ window.addEventListener('DOMContentLoaded', function(){
         </div>
       </div>
 
+      <div class="pillar-card new">
+        <div class="ico">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2l1.5 4.5L18 8l-4.5 1.5L12 14l-1.5-4.5L6 8l4.5-1.5z"/>
+            <path d="M5 16l1 3 3 1-3 1-1 3-1-3-3-1 3-1z"/>
+            <path d="M19 14l.8 2.4L22 17l-2.2.6L19 20l-.8-2.4L16 17l2.2-.6z"/>
+          </svg>
+        </div>
+        <div>
+          <h3>AI 自動化 · ChingTech OS</h3>
+          <p>做工程 40 年累積的工程力,現在把 AI 也帶進來 ── 讓它接得到公司的資料,7×24 答客戶、查報價、追進度。</p>
+        </div>
+      </div>
+
       <div class="customer-strip">
         <span class="label">服務跨產業客戶 · 國內外知名企業</span>
         <div class="group">
@@ -1072,8 +1101,8 @@ window.addEventListener('DOMContentLoaded', function(){
   <section class="slide s-hook" data-title="開場提問">
     <span class="eyebrow">開場 · 一個小提問</span>
     <h1 class="display display-serif">
-      老闆或主管的痛點，<br/>
-      在<span class="glow-orange">管小事</span><span class="underline-orange">太多</span>。
+      做老闆、做主管，<br/>
+      時間都被<span class="glow-orange">小事</span><span class="underline-orange">吃掉</span>。
     </h1>
     <p class="lead">
       根據台灣中小企業主調查，老闆每週平均花 <b style="color:var(--paper)">28 小時</b> 在「不該由你做的事」上 ——<br/>
