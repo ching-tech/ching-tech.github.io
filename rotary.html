@@ -755,6 +755,55 @@
   }
   .s-fomo .fomo-bottom b{color:var(--error);font-family:"Noto Serif TC",serif;font-weight:900}
 
+  /* ============ Lite vs Full comparison table ============ */
+  .cmp-table{
+    margin-top:40px;border:1px solid var(--line);border-radius:14px;
+    overflow:hidden;background:rgba(240,240,240,.025);
+  }
+  .cmp-grid{
+    display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:1px;background:var(--line);
+  }
+  .cmp-head{
+    background:var(--bg-2);padding:16px 22px;font-weight:700;font-size:15px;
+  }
+  .cmp-head-feat{
+    font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.18em;
+    color:var(--muted);text-transform:uppercase;
+  }
+  .cmp-head-lite{text-align:center;color:var(--cyan-2)}
+  .cmp-head-pro{text-align:center;color:var(--orange-2)}
+  .cmp-feat{
+    background:var(--bg);padding:14px 22px;font-size:14px;color:#cfd0d4;
+    display:flex;align-items:center;
+  }
+  .cmp-cell{
+    background:var(--bg);padding:12px 22px;text-align:center;
+    display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;
+  }
+  .cmp-strike{
+    color:#666;font-size:14px;font-weight:600;
+    font-family:"JetBrains Mono",monospace;
+  }
+  .cmp-arrow{color:#fbbf24;font-weight:800;font-size:16px}
+  .cmp-pill{
+    background:linear-gradient(135deg,#fbbf24,#f97316);
+    color:#0e0e10;font-weight:900;
+    padding:4px 12px;border-radius:8px;
+    font-size:18px;letter-spacing:-.01em;
+    box-shadow:0 4px 14px rgba(251,191,36,.20);
+  }
+  .cmp-mod{
+    font-family:"JetBrains Mono",monospace;
+    font-size:11px;color:#71717a;letter-spacing:.10em;
+  }
+  .cmp-big-pro{
+    color:#fff;font-size:24px;font-weight:900;letter-spacing:-.02em;
+  }
+  .cmp-yes{color:var(--cyan-2);font-size:22px;font-weight:900}
+  .cmp-yes-pro{color:var(--orange-2);font-size:22px;font-weight:900}
+  .cmp-no{color:var(--dim);font-size:18px;font-weight:600}
+  .cmp-only{color:#cfd0d4;font-size:16px;font-weight:700}
+
   /* ============ s-vsgap · 沒 AI vs 用 AI 對比 ============ */
   .s-vsgap{
     background:
@@ -1695,39 +1744,44 @@ window.addEventListener('DOMContentLoaded', function(){
     <span class="eyebrow">Lite 跟完整版差在哪？</span>
     <h2 class="h2">先用 <span class="glow-cyan">Lite</span>，<br/>用得上癮再聊<span class="glow-orange">完整版</span>。</h2>
 
-    <div style="margin-top:40px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:rgba(240,240,240,.025)">
-      <div style="display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:1px;background:var(--line)">
-        <div style="background:var(--bg-2);padding:16px 22px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase">功能</div>
-        <div style="background:var(--bg-2);padding:16px 22px;text-align:center;font-weight:700;color:var(--cyan-2);font-size:15px">CTOS-Lite · 免費</div>
-        <div style="background:var(--bg-2);padding:16px 22px;text-align:center;font-weight:700;color:var(--orange-2);font-size:15px">完整版 · 企業</div>
+    <div class="cmp-table">
+      <div class="cmp-grid">
+        <div class="cmp-head cmp-head-feat">功能</div>
+        <div class="cmp-head cmp-head-lite">CTOS-Lite · 免費</div>
+        <div class="cmp-head cmp-head-pro">完整版 · 企業</div>
 
-        <div style="background:var(--bg);padding:14px 22px;font-size:14px">AI 對話（Claude 模型）</div>
-        <div style="background:var(--bg);padding:14px 22px;text-align:center;font-size:13px;color:#cfd0d4;display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap"><s style="color:#666">50</s><span style="color:#fbbf24">→</span><span style="background:linear-gradient(135deg,#fbbf24,#f97316);color:#0e0e10;font-weight:800;padding:1px 8px;border-radius:5px;font-size:13px">100 次</span><span style="color:#71717a;font-size:11px">14 天</span></div>
-        <div style="background:var(--bg);padding:14px 22px;text-align:center;font-size:14px;color:var(--paper)"><b>無限制</b></div>
+        <div class="cmp-feat">AI 對話（Claude 模型）</div>
+        <div class="cmp-cell">
+          <s class="cmp-strike">50</s>
+          <span class="cmp-arrow">→</span>
+          <span class="cmp-pill">100 次</span>
+          <span class="cmp-mod">14 天</span>
+        </div>
+        <div class="cmp-cell"><span class="cmp-big-pro">無限制</span></div>
 
-        <div style="background:var(--bg);padding:14px 22px;font-size:14px">個人知識庫 + RAG</div>
-        <div style="background:var(--bg);padding:14px 22px;text-align:center;font-size:14px;color:var(--cyan-2)">✓</div>
-        <div style="background:var(--bg);padding:14px 22px;text-align:center;font-size:14px;color:var(--orange-2)">✓ Admin 管理</div>
+        <div class="cmp-feat">個人知識庫 + RAG</div>
+        <div class="cmp-cell"><span class="cmp-yes">✓</span></div>
+        <div class="cmp-cell"><span class="cmp-yes-pro">✓</span> <span class="cmp-mod">Admin 管理</span></div>
 
-        <div style="background:var(--bg);padding:14px 22px;font-size:14px">語音 / 圖片 / 媒體下載</div>
-        <div style="background:var(--bg);padding:14px 22px;text-align:center;font-size:14px;color:var(--cyan-2)">✓</div>
-        <div style="background:var(--bg);padding:14px 22px;text-align:center;font-size:14px;color:var(--orange-2)">✓</div>
+        <div class="cmp-feat">語音 / 圖片 / 媒體下載</div>
+        <div class="cmp-cell"><span class="cmp-yes">✓</span></div>
+        <div class="cmp-cell"><span class="cmp-yes-pro">✓</span></div>
 
-        <div style="background:var(--bg);padding:14px 22px;font-size:14px">ERP / 庫存 / 排程管理</div>
-        <div style="background:var(--bg);padding:14px 22px;text-align:center;font-size:14px;color:var(--dim)">—</div>
-        <div style="background:var(--bg);padding:14px 22px;text-align:center;font-size:14px;color:var(--orange-2)"><b>✓</b></div>
+        <div class="cmp-feat">ERP / 庫存 / 排程管理</div>
+        <div class="cmp-cell"><span class="cmp-no">—</span></div>
+        <div class="cmp-cell"><span class="cmp-yes-pro">✓</span></div>
 
-        <div style="background:var(--bg);padding:14px 22px;font-size:14px">多平台（LINE + Telegram + Web）</div>
-        <div style="background:var(--bg);padding:14px 22px;text-align:center;font-size:14px;color:var(--dim)">僅 LINE</div>
-        <div style="background:var(--bg);padding:14px 22px;text-align:center;font-size:14px;color:var(--orange-2)"><b>✓ 全平台</b></div>
+        <div class="cmp-feat">多平台（LINE + Telegram + Web）</div>
+        <div class="cmp-cell"><span class="cmp-mod">僅</span> <span class="cmp-only">LINE</span></div>
+        <div class="cmp-cell"><span class="cmp-yes-pro">✓</span> <span class="cmp-big-pro" style="font-size:18px">全平台</span></div>
 
-        <div style="background:var(--bg);padding:14px 22px;font-size:14px">客製 Agent 工作流程</div>
-        <div style="background:var(--bg);padding:14px 22px;text-align:center;font-size:14px;color:var(--dim)">—</div>
-        <div style="background:var(--bg);padding:14px 22px;text-align:center;font-size:14px;color:var(--orange-2)"><b>✓</b></div>
+        <div class="cmp-feat">客製 Agent 工作流程</div>
+        <div class="cmp-cell"><span class="cmp-no">—</span></div>
+        <div class="cmp-cell"><span class="cmp-yes-pro">✓</span></div>
 
-        <div style="background:var(--bg);padding:14px 22px;font-size:14px">FDE 工程師導入協助</div>
-        <div style="background:var(--bg);padding:14px 22px;text-align:center;font-size:14px;color:var(--dim)">—</div>
-        <div style="background:var(--bg);padding:14px 22px;text-align:center;font-size:14px;color:var(--orange-2)"><b>✓</b></div>
+        <div class="cmp-feat">FDE 工程師導入協助</div>
+        <div class="cmp-cell"><span class="cmp-no">—</span></div>
+        <div class="cmp-cell"><span class="cmp-yes-pro">✓</span></div>
       </div>
     </div>
 
