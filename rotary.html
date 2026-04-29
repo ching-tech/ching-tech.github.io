@@ -139,6 +139,66 @@
   .meta-block .k{font-size:11px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;font-family:"JetBrains Mono",monospace}
   .meta-block .v{font-size:17px;font-weight:700}
 
+  /* ============ cover-split (option C: 主題 + 講者 雙欄) ============ */
+  .cover-split{
+    margin-top:auto;
+    display:grid;grid-template-columns:1.3fr 1fr;gap:48px;align-items:center;
+  }
+  .cover-split .topic-side{
+    display:flex;flex-direction:column;gap:18px;
+  }
+  .cover-split .topic-side h1{
+    font-family:"Noto Serif TC",serif;font-weight:900;
+    font-size:clamp(54px,7vw,108px);line-height:.98;letter-spacing:-.03em;
+    margin:6px 0 0;
+  }
+  .cover-split .topic-side .tagline{
+    font-family:"Noto Serif TC",serif;font-size:clamp(15px,1.4vw,20px);
+    color:#cfd0d4;font-weight:600;line-height:1.6;font-style:italic;
+    max-width:34ch;margin-top:8px;
+  }
+  .cover-split .speaker-side{
+    border-left:1px solid rgba(247,168,27,.30);
+    padding-left:36px;
+    display:flex;flex-direction:column;gap:18px;
+  }
+  .cover-split .speaker-side .speaker-eyebrow{
+    font-family:"JetBrains Mono",monospace;font-size:11px;
+    letter-spacing:.22em;color:var(--gold);font-weight:800;text-transform:uppercase;
+  }
+  .cover-split .monogram{
+    width:120px;height:120px;border-radius:50%;
+    background:linear-gradient(135deg,rgba(247,168,27,.20),rgba(234,88,12,.10));
+    border:2px solid rgba(247,168,27,.40);
+    display:grid;place-items:center;
+    font-family:"Noto Serif TC",serif;font-weight:900;font-size:54px;
+    color:#fde68a;letter-spacing:-.04em;
+    box-shadow:0 12px 40px rgba(247,168,27,.10);
+  }
+  .cover-split .speaker-name{
+    font-family:"Noto Serif TC",serif;font-weight:900;
+    font-size:clamp(34px,3.4vw,46px);letter-spacing:-.02em;color:#fff;line-height:1;
+  }
+  .cover-split .speaker-title{
+    font-family:"JetBrains Mono",monospace;font-size:13px;
+    letter-spacing:.18em;color:var(--gold);font-weight:700;text-transform:uppercase;
+  }
+  .cover-split .speaker-bio{
+    display:flex;flex-direction:column;gap:8px;margin-top:6px;
+    border-top:1px dashed rgba(247,168,27,.25);padding-top:16px;
+  }
+  .cover-split .speaker-bio .bio-row{
+    display:flex;align-items:center;gap:10px;
+    font-size:14px;color:#cfd0d4;font-weight:500;line-height:1.5;
+  }
+  .cover-split .speaker-bio .bio-row .ic{
+    width:24px;text-align:center;flex-shrink:0;color:var(--gold);
+  }
+  @media (max-width: 980px){
+    .cover-split{grid-template-columns:1fr;gap:32px}
+    .cover-split .speaker-side{border-left:none;padding-left:0;border-top:1px solid rgba(247,168,27,.30);padding-top:24px}
+  }
+
   /* terminal-like decoration */
   .terminal-line{
     position:absolute;font-family:"JetBrains Mono",monospace;font-size:13px;color:rgba(34,211,238,.3);
@@ -1003,34 +1063,24 @@ window.addEventListener('DOMContentLoaded', function(){
       </div>
     </div>
 
-    <div class="terminal-line" style="top:30%;left:6%">$ ctos --boot</div>
-    <div class="terminal-line" style="top:34%;left:6%">> loading enterprise modules...</div>
-    <div class="terminal-line" style="top:38%;left:6%">> AI agents online ✓</div>
-
-    <div class="cover-content">
-      <span class="eyebrow">扶輪社主題演講 · 40 分鐘</span>
-      <div style="display:inline-flex;align-items:center;gap:12px;margin:14px 0 22px;padding:10px 18px;border-radius:8px;border:1px solid rgba(247,168,27,.35);background:linear-gradient(135deg,rgba(247,168,27,.10),rgba(234,88,12,.05));font-family:'Noto Serif TC',serif;font-weight:700;font-size:clamp(18px,2vw,28px);letter-spacing:.02em;color:#fde68a">
-        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:800;letter-spacing:.22em;color:var(--gold);text-transform:uppercase;border-right:1px solid rgba(247,168,27,.4);padding-right:12px">TOPIC</span>
-        AI 時代企業升級加速器
+    <div class="cover-split">
+      <div class="topic-side">
+        <span class="eyebrow">扶輪社主題演講 · 2026.04.17 · 40 分鐘</span>
+        <h1>AI 時代<br/><span class="underline-orange">企業升級加速器</span>。</h1>
+        <p class="tagline">「檔案、LINE、ERP 各跑各的 ── 公司缺一套作業系統。」</p>
       </div>
-      <h1 class="display display-serif">
-        檔案、LINE、ERP，<br/>
-        <span class="stroke">各跑各的</span>。<br/>
-        公司缺一套<span class="underline-orange">作業系統</span>。
-      </h1>
 
-      <div class="cover-sub">
-        <div class="meta-block">
-          <div class="k">PRODUCT</div>
-          <div class="v">CTOS · 企業的第二作業系統</div>
+      <div class="speaker-side">
+        <span class="speaker-eyebrow">SPEAKER · 講者</span>
+        <div class="monogram">何</div>
+        <div>
+          <div class="speaker-name">何盈杰</div>
+          <div class="speaker-title">擎添科技 · 總經理</div>
         </div>
-        <div class="meta-block">
-          <div class="k">SPEAKER</div>
-          <div class="v">擎添科技 · 解決方案團隊</div>
-        </div>
-        <div class="meta-block">
-          <div class="k">FOR</div>
-          <div class="v">扶輪社社友 · 零售 / 律師 / 會計師 / 製造業老闆</div>
+        <div class="speaker-bio">
+          <div class="bio-row"><span class="ic">🎓</span><span>建中 · 交大工業工程</span></div>
+          <div class="bio-row"><span class="ic">🏭</span><span>40 年機電老廠 · 自動化 × AI 雙引擎</span></div>
+          <div class="bio-row"><span class="ic">⚡</span><span>把 AI 接進你的產線</span></div>
         </div>
       </div>
     </div>
