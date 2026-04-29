@@ -289,74 +289,101 @@
     }
     .full-header .full-sub { color: #8888a0; font-size: 0.92rem; }
 
-    .billing-tiles {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
-    }
-    @media (max-width: 640px) { .billing-tiles { grid-template-columns: 1fr; } }
-    .billing-tile {
+    /* ── Recommended hero + small alternatives ── */
+    .recommended-hero {
       position: relative;
+      background: linear-gradient(160deg, rgba(251,113,133,0.10) 0%, rgba(245,158,11,0.06) 60%, rgba(0,0,0,0.30) 100%);
+      border: 2px solid rgba(251,113,133,0.45);
+      border-radius: 16px; padding: 28px;
+      display: flex; flex-direction: column; gap: 14px;
+      box-shadow: 0 20px 60px rgba(251,113,133,0.10);
+    }
+    .recommended-hero::before {
+      content: "🔥 推薦 · 最省"; position: absolute; top: -14px; left: 24px;
+      background: linear-gradient(135deg, #f59e0b, #f43f5e);
+      color: #fff; font-size: 0.72rem; font-weight: 800;
+      padding: 5px 14px; border-radius: 999px;
+      letter-spacing: 0.10em; box-shadow: 0 4px 14px rgba(244,63,94,0.40);
+    }
+    .recommended-hero .rec-len {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+      letter-spacing: 0.18em; color: #fbbf24; text-transform: uppercase;
+      font-weight: 700;
+    }
+    .recommended-hero .rec-name {
+      font-size: 1.6rem; font-weight: 900; color: #fff; letter-spacing: -0.02em;
+      margin-top: -4px;
+    }
+    .recommended-hero .rec-price {
+      display: flex; align-items: baseline; gap: 10px; margin-top: 4px;
+    }
+    .recommended-hero .rec-price .old {
+      font-size: 1.1rem; color: #71717a; text-decoration: line-through; font-weight: 600;
+    }
+    .recommended-hero .rec-price .now {
+      font-size: 3rem; font-weight: 900; letter-spacing: -0.03em;
+      background: linear-gradient(135deg, #fde68a, #f97316, #f43f5e);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .recommended-hero .rec-price .unit { color: #cfcfd6; font-size: 1rem; font-weight: 600; }
+    .recommended-hero .rec-meta {
+      display: flex; flex-wrap: wrap; gap: 10px; margin-top: 2px;
+    }
+    .recommended-hero .meta-pill {
+      font-size: 0.82rem; padding: 5px 12px; border-radius: 999px;
+      background: rgba(255,255,255,0.05); color: #e0e0e8; font-weight: 600;
+      border: 1px solid rgba(255,255,255,0.10);
+    }
+    .recommended-hero .meta-pill.save {
+      color: #fbbf24; background: rgba(251,191,36,0.10); border-color: rgba(251,191,36,0.30);
+    }
+    .recommended-hero .rec-cta {
+      margin-top: 8px;
+      padding: 14px 20px; border-radius: 12px;
+      font-size: 1rem; font-weight: 800;
+      background: linear-gradient(135deg, #f59e0b, #f43f5e);
+      color: #fff; border: none; text-align: center;
+      cursor: pointer; box-shadow: 0 8px 28px rgba(244,63,94,0.30);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .recommended-hero .rec-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(244,63,94,0.50); }
+
+    .alt-options {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
+      padding: 14px 18px;
       background: rgba(255,255,255,0.02);
-      border: 1.5px solid rgba(255,255,255,0.10);
-      border-radius: 12px; padding: 20px 16px;
-      display: flex; flex-direction: column; gap: 8px;
-      transition: all 0.25s; cursor: pointer;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
     }
-    .billing-tile:hover { transform: translateY(-3px); border-color: rgba(165,180,252,0.4); }
-    .billing-tile.featured {
-      border-color: rgba(165,180,252,0.4);
-      background: linear-gradient(135deg, rgba(139,92,246,0.08), rgba(56,130,246,0.06));
-    }
-    .billing-tile.fire {
-      border-color: rgba(251,113,133,0.5);
-      background: linear-gradient(135deg, rgba(251,113,133,0.06), rgba(245,158,11,0.05));
-    }
-    .billing-tile.fire::before {
-      content: "🔥 最省"; position: absolute; top: -10px; right: 12px;
-      background: linear-gradient(135deg, #f59e0b, #f43f5e);
-      color: #fff; font-size: 0.66rem; font-weight: 800;
-      padding: 4px 10px; border-radius: 999px;
-      letter-spacing: 0.10em;
-    }
-    .billing-tile .length {
-      font-size: 0.95rem; font-weight: 800; color: #fff; letter-spacing: -0.01em;
-    }
-    .billing-tile .length-tag {
+    @media (max-width: 640px) { .alt-options { grid-template-columns: 1fr; } }
+    .alt-options .alt-label {
+      grid-column: 1 / -1;
       font-family: 'JetBrains Mono', monospace; font-size: 0.66rem;
-      letter-spacing: 0.16em; color: #8888a0; text-transform: uppercase;
+      letter-spacing: 0.18em; color: #8888a0; text-transform: uppercase; font-weight: 700;
     }
-    .billing-tile .price-line {
-      display: flex; align-items: baseline; gap: 6px; margin-top: 6px;
+    .alt-tile {
+      display: flex; flex-direction: column; gap: 4px;
+      padding: 10px 12px; border-radius: 8px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      cursor: pointer; transition: all 0.2s;
     }
-    .billing-tile .price-old {
-      font-size: 0.85rem; color: #71717a; text-decoration: line-through;
-      font-weight: 600;
+    .alt-tile:hover { border-color: rgba(165,180,252,0.30); transform: translateY(-1px); }
+    .alt-tile .alt-len {
+      display: flex; align-items: baseline; gap: 8px;
+      font-size: 0.9rem; font-weight: 700; color: #e0e0e8;
     }
-    .billing-tile .price-now {
-      font-size: 1.7rem; font-weight: 900; color: #f0f0f8; letter-spacing: -0.02em;
+    .alt-tile .alt-len small {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.65rem;
+      letter-spacing: 0.12em; color: #71717a; font-weight: 500;
     }
-    .billing-tile .unit { font-size: 0.78rem; color: #8888a0; }
-    .billing-tile .total-line {
-      font-size: 0.78rem; color: #a5b4fc; font-weight: 600;
+    .alt-tile .alt-price {
+      display: flex; align-items: baseline; gap: 6px;
     }
-    .billing-tile .save-tag {
-      align-self: flex-start;
-      font-size: 0.7rem; font-weight: 700; color: #fbbf24;
-      background: rgba(251,191,36,0.10);
-      border: 1px solid rgba(251,191,36,0.30);
-      padding: 3px 8px; border-radius: 999px;
-    }
-    .billing-tile .pick-btn {
-      margin-top: 6px;
-      padding: 9px 14px; border-radius: 8px;
-      font-size: 0.85rem; font-weight: 700;
-      background: rgba(165,180,252,0.10); color: #a5b4fc;
-      border: 1px solid rgba(165,180,252,0.25);
-      text-align: center; cursor: pointer; transition: all 0.2s;
-    }
-    .billing-tile.fire .pick-btn {
-      background: linear-gradient(135deg, #f59e0b, #f43f5e);
-      color: #fff; border-color: transparent;
-    }
+    .alt-tile .alt-price s { color: #71717a; font-size: 0.78rem; font-weight: 500; }
+    .alt-tile .alt-price b { color: #f0f0f8; font-size: 1.1rem; font-weight: 800; letter-spacing: -0.01em; }
+    .alt-tile .alt-price .u { color: #8888a0; font-size: 0.75rem; }
+    .alt-tile .alt-detail { font-size: 0.72rem; color: #8888a0; }
 
     .shared-features {
       border-top: 1px dashed rgba(255,255,255,0.10);
@@ -554,47 +581,46 @@
       <div class="full-wrapper">
         <div class="full-header">
           <div class="full-name">完整版 · 解除每日上限</div>
-          <div class="full-sub">與試用版功能完全一樣,差別只在 <b style="color:#fbbf24">無限次 AI 對話</b> + 訂閱不到期。三個長度挑最適合你的。</div>
+          <div class="full-sub">差別只在 <b style="color:#fbbf24">無限次 AI 對話</b> + 訂閱不到期。三個長度功能完全一樣,訂越久越省。</div>
         </div>
 
-        <div class="billing-tiles">
-          <div class="billing-tile">
-            <div class="length-tag">Quarterly · 3 個月</div>
-            <div class="length">訂閱一季</div>
-            <div class="price-line">
-              <span class="price-old">$1,049</span>
-              <span class="price-now">$699</span>
-              <span class="unit">/ 月</span>
-            </div>
-            <div class="total-line">總額 NT$ 2,097</div>
-            <div class="save-tag">💰 省 $1,048</div>
-            <div class="pick-btn">即將開放</div>
+        <!-- Recommended hero -->
+        <div class="recommended-hero">
+          <div class="rec-len">Annual · 12 個月</div>
+          <div class="rec-name">訂閱一年</div>
+          <div class="rec-price">
+            <span class="old">$749</span>
+            <span class="now">$499</span>
+            <span class="unit">/ 月</span>
           </div>
-
-          <div class="billing-tile featured">
-            <div class="length-tag">Half-year · 6 個月 · ↑ 更省</div>
-            <div class="length">訂閱半年</div>
-            <div class="price-line">
-              <span class="price-old">$899</span>
-              <span class="price-now">$599</span>
-              <span class="unit">/ 月</span>
-            </div>
-            <div class="total-line">總額 NT$ 3,594</div>
-            <div class="save-tag">💰 省 $1,797</div>
-            <div class="pick-btn">即將開放</div>
+          <div class="rec-meta">
+            <span class="meta-pill">總額 NT$ 5,988 · 年繳一次</span>
+            <span class="meta-pill save">💰 比原價省 $2,994</span>
+            <span class="meta-pill">≈ 一天 16 元</span>
           </div>
+          <div class="rec-cta">立即訂閱 · 一年方案 (即將開放)</div>
+        </div>
 
-          <div class="billing-tile fire">
-            <div class="length-tag">Annual · 12 個月 · ↑↑ 最省</div>
-            <div class="length">訂閱一年</div>
-            <div class="price-line">
-              <span class="price-old">$749</span>
-              <span class="price-now">$499</span>
-              <span class="unit">/ 月</span>
+        <!-- Smaller alternatives -->
+        <div class="alt-options">
+          <div class="alt-label">─── 也可以選短一點 ───</div>
+          <div class="alt-tile">
+            <div class="alt-len">訂閱一季 <small>3 個月</small></div>
+            <div class="alt-price">
+              <s>$1,049</s>
+              <b>$699</b>
+              <span class="u">/ 月</span>
             </div>
-            <div class="total-line">總額 NT$ 5,988</div>
-            <div class="save-tag">💰 省 $2,994</div>
-            <div class="pick-btn">即將開放</div>
+            <div class="alt-detail">總 $2,097 · 省 $1,048</div>
+          </div>
+          <div class="alt-tile">
+            <div class="alt-len">訂閱半年 <small>6 個月 · ↑ 更省</small></div>
+            <div class="alt-price">
+              <s>$899</s>
+              <b>$599</b>
+              <span class="u">/ 月</span>
+            </div>
+            <div class="alt-detail">總 $3,594 · 省 $1,797</div>
           </div>
         </div>
 
