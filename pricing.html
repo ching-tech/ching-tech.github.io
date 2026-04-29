@@ -257,6 +257,26 @@
     }
     @media (max-width: 900px) { .lite-layout { grid-template-columns: 1fr; } }
 
+    /* 試用卡內部排版 - 2 欄 features 對齊右側節奏 */
+    .lite-layout .plan-card .plan-features {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 8px 18px;
+      margin-bottom: 22px;
+    }
+    .lite-layout .plan-card .plan-features li {
+      margin: 0; font-size: 0.9rem;
+    }
+    .lite-layout .plan-card .plan-features li:first-child {
+      grid-column: 1 / -1; padding-left: 0;
+      padding: 10px 14px; border-radius: 10px;
+      background: rgba(251, 191, 36, 0.06);
+      border: 1px solid rgba(251, 191, 36, 0.20);
+      margin-bottom: 4px;
+    }
+    .lite-layout .plan-card .plan-features li:first-child::before { content: none; }
+    @media (max-width: 640px) {
+      .lite-layout .plan-card .plan-features { grid-template-columns: 1fr; }
+    }
+
     .full-wrapper {
       background: rgba(255,255,255,0.03);
       border: 1px solid rgba(255,255,255,0.08);
@@ -340,15 +360,15 @@
 
     .shared-features {
       border-top: 1px dashed rgba(255,255,255,0.10);
-      padding-top: 18px;
+      padding-top: 16px; margin-top: auto;
     }
     .shared-features h4 {
-      font-size: 0.78rem; font-weight: 800; letter-spacing: 0.12em;
-      color: #a5b4fc; text-transform: uppercase; margin-bottom: 12px;
+      font-size: 0.72rem; font-weight: 800; letter-spacing: 0.14em;
+      color: #a5b4fc; text-transform: uppercase; margin-bottom: 10px;
     }
     .shared-features ul {
       list-style: none; padding: 0; margin: 0;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 8px 18px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 6px 18px;
     }
     @media (max-width: 640px) { .shared-features ul { grid-template-columns: 1fr; } }
     .shared-features li {
