@@ -283,11 +283,27 @@
     background:rgba(8,145,178,.18);color:var(--cyan-2);
     padding:6px 12px;border-radius:6px;align-self:flex-start;font-weight:700;
   }
-  .pro h3{font-size:24px}
+  .pro h3{font-size:16px;color:#cfd0d4;font-weight:600;line-height:1.3}
+  .pro h3 .big-stat{
+    display:block;font-size:clamp(36px,4.6vw,56px);font-weight:900;line-height:1;
+    background:linear-gradient(135deg,#fde68a,#f97316,#f43f5e);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    margin-top:6px;letter-spacing:-.02em;
+  }
   .pro p{font-size:14px;line-height:1.6;color:#bdbec3}
-  .pro ul{list-style:none;display:flex;flex-direction:column;gap:8px;margin-top:auto}
-  .pro li{font-size:13px;display:flex;gap:8px;align-items:baseline;color:#cfd0d4}
+  .pro ul{list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:auto}
+  .pro li{font-size:13px;display:flex;gap:8px;align-items:baseline;color:#cfd0d4;flex-wrap:wrap}
   .pro li::before{content:"—";color:var(--orange-2);flex-shrink:0}
+  .pro li .from{
+    color:#71717a;text-decoration:line-through;font-weight:600;font-family:"JetBrains Mono",monospace;
+  }
+  .pro li .arrow{color:#fbbf24;font-weight:800;margin:0 2px}
+  .pro li .to{
+    color:var(--cyan-2);font-weight:800;
+    background:rgba(34,211,238,.10);
+    padding:1px 8px;border-radius:5px;
+    font-family:"JetBrains Mono",monospace;
+  }
 
   .common-line{
     margin-top:32px;text-align:center;font-size:clamp(17px,1.4vw,22px);color:#cfd0d4;
@@ -360,7 +376,7 @@
     color:var(--cyan-2);margin-bottom:24px;
   }
   .intro-display{font-family:"Noto Serif TC",serif;font-size:clamp(64px,10vw,160px);font-weight:900;line-height:1;letter-spacing:-.03em}
-  .intro-display em{font-style:normal;background:var(--cyan);color:#fff;padding:0 .12em;border-radius:8px}
+  .intro-display em{font-style:normal;background:var(--cyan);color:#fff;padding:.04em .22em;border-radius:8px;display:inline-block;margin-right:.06em}
   .intro-display .second{display:block}
   .intro-after{margin-top:36px;display:grid;grid-template-columns:repeat(2,1fr);gap:48px;max-width:1200px}
   .intro-after p{font-size:17px;line-height:1.75;color:#cfd0d4}
@@ -932,9 +948,8 @@ window.addEventListener('DOMContentLoaded', function(){
     <div class="cover-content">
       <span class="eyebrow">扶輪社主題演講 · 40 分鐘</span>
       <h1 class="display display-serif">
-        你的公司缺的，<br/>
-        不是更多<span class="stroke">軟體</span>，<br/>
-        是一套<span class="underline-orange">作業系統</span>。
+        檔案 / LINE / ERP <span class="stroke">各跑各的</span>，<br/>
+        公司缺一套<span class="underline-orange">作業系統</span>。
       </h1>
 
       <div class="cover-sub">
@@ -958,7 +973,7 @@ window.addEventListener('DOMContentLoaded', function(){
   <section class="slide s-about" data-title="關於擎添科技">
     <div class="about-left">
       <span class="eyebrow">在開始之前 · 先讓您認識我們</span>
-      <h2 class="h2">擎添科技，<br/><span class="glow-cyan">40 年</span>的<br/>機電老廠。</h2>
+      <h2 class="h2">在工廠裡解決真實問題，<br/><span class="glow-cyan">40 年</span>。</h2>
       <p class="lead" style="margin-top:20px">
         1984 年成立於新北五股，<br/>
         從 PLC、機械手臂、AGV 一路做到智慧工廠 —— <br/>
@@ -1067,7 +1082,7 @@ window.addEventListener('DOMContentLoaded', function(){
   <!-- ============== 03 為什麼老廠在做 AI ============== -->
   <section class="slide s-bridge" data-title="為什麼機電老廠在做 AI">
     <span class="eyebrow" style="margin:0 auto">承先啟後 · 為什麼是我們做 CTOS</span>
-    <h2 class="h2" style="margin-top:8px">不是 AI 新創，<br/>是<span class="glow-cyan">用 40 年工程力</span>，<br/>把 AI 真的<span class="glow-orange">放進你的事業</span>裡。</h2>
+    <h2 class="h2" style="margin-top:8px">做了 <span class="glow-cyan">40 年工程</span>的人，<br/>現在<span class="glow-orange">把 AI 接進你的產線</span>。</h2>
 
     <div class="bridge-arrow">
       <div class="bridge-pill">
@@ -1139,37 +1154,37 @@ window.addEventListener('DOMContentLoaded', function(){
   <!-- ============== 04 three measurable outcomes ============== -->
   <section class="slide" data-title="三個看得到的改變">
     <span class="eyebrow">把這三件事修好之後 ——</span>
-    <h2 class="h2">會看到三個<br/><span class="glow-cyan">看得到的改變</span>。</h2>
+    <h2 class="h2">三個你<br/><span class="glow-cyan">立刻有感</span>的改變。</h2>
 
     <div class="pro-grid">
       <div class="pro">
         <span class="badge">節省多少時間</span>
-        <h3>每週多出 10 小時</h3>
+        <h3>每週多出 <span class="big-stat">10 小時</span></h3>
         <p>找資料、回 LINE、整理進度 —— 交給 AI 員工 7×24 待命。</p>
         <ul>
-          <li>找檔從 30 分鐘 → 30 秒</li>
-          <li>重複問答從手回 → 自動答</li>
-          <li>進度報告從手寫 → 自動生</li>
+          <li>找檔 <span class="from">30 分鐘</span> <span class="arrow">→</span> <span class="to">30 秒</span></li>
+          <li>重複問答 <span class="from">手回</span> <span class="arrow">→</span> <span class="to">自動答</span></li>
+          <li>進度報告 <span class="from">手寫</span> <span class="arrow">→</span> <span class="to">自動生</span></li>
         </ul>
       </div>
       <div class="pro">
         <span class="badge">減少多少成本</span>
-        <h3>重複作業人力 ↓ 30%+</h3>
+        <h3>重複作業人力 <span class="big-stat">↓ 30%+</span></h3>
         <p>客服、查單、催料、報表 —— 該是系統做的，就不用人扛。</p>
         <ul>
           <li>客服 / 助理人力外包成本下降</li>
-          <li>新人上手期 3 個月 → 1 個月</li>
+          <li>新人上手 <span class="from">3 個月</span> <span class="arrow">→</span> <span class="to">1 個月</span></li>
           <li>加班費、出錯成本同步降</li>
         </ul>
       </div>
       <div class="pro">
         <span class="badge">工作效能提升多少</span>
-        <h3>1 個人 ≈ 3 個人</h3>
+        <h3>1 個人 <span class="big-stat">≈ 3 個人</span></h3>
         <p>同樣人力，承接更多客戶；老闆從救火，回到下決策。</p>
         <ul>
-          <li>同樣團隊，接更多單</li>
-          <li>決策有資料，不靠直覺</li>
-          <li>知識留在公司，不留在腦子</li>
+          <li>同樣團隊，<span class="to">接更多單</span></li>
+          <li>決策有資料，<span class="to">不靠直覺</span></li>
+          <li>知識留在公司，<span class="to">不留在腦子</span></li>
         </ul>
       </div>
     </div>
@@ -1230,8 +1245,8 @@ window.addEventListener('DOMContentLoaded', function(){
   <!-- ============== 04c AI FOMO ============== -->
   <section class="slide s-fomo" data-title="AI FOMO · 你已經晚了 18 個月">
     <span class="eyebrow">第一幕半 · 你已經晚了 18 個月</span>
-    <h2 class="h2">不是要不要做 ——<br/><span class="glow-orange">是要多快做。</span></h2>
-    <p class="fomo-sub">當你還在猶豫,全球大企業已經把 AI 跑進日常營運。<br/>每慢一年,複利差距就拉大一倍 —— 這才是真正的紅燈。</p>
+    <h2 class="h2">你還在猶豫,<br/>對手已經<span class="glow-orange">跑了 18 個月</span>。</h2>
+    <p class="fomo-sub">全球大企業已經把 AI 跑進日常營運。<br/>每慢一年,複利差距就拉大一倍 —— 這才是真正的紅燈。</p>
 
     <div class="fomo-stats">
       <div class="fomo-stat">
@@ -1252,6 +1267,9 @@ window.addEventListener('DOMContentLoaded', function(){
     </div>
 
     <p class="fomo-bottom">這不是趨勢預測 —— <b>是過去式。</b></p>
+    <p style="margin-top:24px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.10em;text-align:center;line-height:1.6">
+      資料來源 · McKinsey《The State of AI 2025》 · Stanford HAI《AI Index Report 2025》 · BCG《Build for the Future 2025》
+    </p>
   </section>
 
   <!-- ============== 04d 你 vs 對手 · Features vs Benefits ============== -->
@@ -1320,6 +1338,9 @@ window.addEventListener('DOMContentLoaded', function(){
           <div class="l">不下班的助理</div>
         </div>
       </div>
+      <p style="margin-top:24px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.10em;line-height:1.6">
+        資料來源 · OpenAI / Anthropic 公開 API 訂價 (2023→2025) · C-Eval / TMMLU+ 中文評測排行 · Claude Opus / Sonnet 服務 SLA
+      </p>
     </div>
   </section>
 
@@ -1340,7 +1361,7 @@ window.addEventListener('DOMContentLoaded', function(){
       <p>
         擎添科技從 2025 年底開始，全公司每天在用。<br/>
         從工程師寫 PLC 到老闆追進度，<b>所有人都在同一個 OS 上工作。</b><br/>
-        現在我們把它，開放給你。
+        現在，把它推薦給你。
       </p>
     </div>
   </section>
@@ -1458,7 +1479,7 @@ window.addEventListener('DOMContentLoaded', function(){
   <section class="slide s-deep" data-title="模組 · AI Agent">
     <div class="deep-side">
       <span class="eyebrow">模組 02 · AI Agent 多代理</span>
-      <h2 class="h2">不是<br/>「<span class="glow-cyan">會聊天</span>」，<br/>是「會做事」。</h2>
+      <h2 class="h2">AI 不只<br/>「<span class="glow-cyan">會聊天</span>」，<br/>還要「<span class="glow-orange">會做事</span>」。</h2>
       <ul>
         <li><span class="check">✓</span><span><b>多 Agent 架構：</b>11 種 Agent 各司其職 —— 衛教助理、群組助手、簡報設計師、程式碼助手⋯</span></li>
         <li><span class="check">✓</span><span><b>HIS 系統真實整合：</b>杰膚美診所內部助理已串看診進度、門診統計、藥品消耗、預約紀錄。</span></li>
@@ -1540,7 +1561,7 @@ window.addEventListener('DOMContentLoaded', function(){
   <!-- ============== 13b 擎添實況 · 自家在用 ============== -->
   <section class="slide s-actual" data-title="擎添自家在用">
     <span class="eyebrow">不是 demo · 是 production</span>
-    <h2 class="h2">擎添科技，<br/>每天都在用<span class="glow-cyan">擎添助理</span>。</h2>
+    <h2 class="h2">擎添內部，<br/>每天都在用<span class="glow-cyan">自家的 AI</span>。</h2>
 
     <div class="actual-grid">
       <div class="actual-card">
