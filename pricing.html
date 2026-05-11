@@ -408,6 +408,41 @@
     }
     .shared-features strong { color: #e0e0e8; }
 
+    .payment-flow {
+      border-top: 1px dashed rgba(255,255,255,0.10);
+      padding-top: 18px; margin-top: 18px;
+    }
+    .payment-flow h4 {
+      font-size: 0.72rem; font-weight: 800; letter-spacing: 0.14em;
+      color: #fbbf24; text-transform: uppercase; margin-bottom: 12px;
+    }
+    .payment-flow ol {
+      list-style: none; padding: 0; margin: 0 0 12px 0;
+      counter-reset: pay;
+    }
+    .payment-flow li {
+      counter-increment: pay; position: relative;
+      padding: 8px 0 8px 38px; color: #c0c0d0;
+      font-size: 0.92rem; line-height: 1.6;
+    }
+    .payment-flow li::before {
+      content: counter(pay); position: absolute; left: 0; top: 6px;
+      width: 26px; height: 26px; display: grid; place-items: center;
+      background: linear-gradient(135deg, #fbbf24, #f97316);
+      color: #1a1a1f; font-weight: 800; font-size: 0.85rem;
+      border-radius: 50%;
+    }
+    .payment-flow li strong { color: #fbbf24; }
+    .payment-flow code {
+      background: rgba(251,191,36,0.12);
+      color: #fbbf24; padding: 1px 8px; border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.85em;
+      font-weight: 700;
+    }
+    .payment-note {
+      font-size: 0.78rem; color: #8888a0; margin-top: 4px;
+    }
+
     .plan-card.fire { border-color: rgba(251, 113, 133, 0.45); position: relative; }
     .plan-card.fire::before {
       content: "最省"; position: absolute; top: -11px; right: 16px;
@@ -630,6 +665,16 @@
             <li><strong>無限次</strong> AI 對話 (解除每日 100 次上限)</li>
             <li>試用版全部功能</li>
           </ul>
+        </div>
+
+        <div class="payment-flow">
+          <h4>💳 怎麼訂閱</h4>
+          <ol>
+            <li><strong>匯款</strong>到擎添工業帳戶(請來電 02-2903-2788 取得帳號)</li>
+            <li>到 LINE 對 <strong>@285fjkky</strong> 打 <code>/匯款</code>,bot 用 5 個問題引導你回報(戶名 / 帳號末 5 碼 / 金額 / 日期 / 電話)</li>
+            <li>我們對到帳後 <strong>1 個工作日內</strong>幫你開通</li>
+          </ol>
+          <p class="payment-note">不自動續訂 · 不需信用卡 · 對帳卡關打 (02) 2903-2788</p>
         </div>
       </div>
     </div>
