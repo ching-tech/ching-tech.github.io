@@ -3,18 +3,15 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<meta name="facebook-domain-verification" content="x3vy6l4cdf3oa1w5lh0qo2e9oh0rr9" />
 <title>CTOS-Lite · 加 LINE 即用的 AI 員工 · 擎添工業</title>
-<meta name="description" content="你的公司，需要一個 24 小時不下班的 AI 員工。加 LINE 5 秒上工，14 天免費試用，每日 100 次對話、知識庫、語音、圖片。擎添工業 40 年工業老牌出品。" />
+<meta name="description" content="你的公司，需要一個 24 小時不下班的 AI 員工。加 LINE 5 秒上工，免費，每日 50 次對話、知識庫、語音、圖片。擎添工業 40 年工業老牌出品。" />
 
 <!-- Open Graph / FB share -->
 <meta property="og:type" content="website" />
 <meta property="og:title" content="加 LINE 即用的 AI 員工 · 免費" />
 <meta property="og:description" content="不用註冊、不用裝 App、不用信用卡。把公司的合約、SOP、產品手冊丟給 AI，它立刻學會。擎添工業 40 年工業老牌出品。" />
 <meta property="og:url" content="https://ching-tech.github.io/promo.html" />
-<meta property="og:image" content="https://ching-tech.github.io/img/fb-cover.png" />
-<meta property="og:image:width" content="1640" />
-<meta property="og:image:height" content="630" />
+<meta property="og:image" content="https://ching-tech.github.io/img/desktop.png" />
 <meta property="og:locale" content="zh_TW" />
 <meta name="twitter:card" content="summary_large_image" />
 
@@ -280,6 +277,35 @@
     color:#dcdde2;border:1px solid var(--line);
   }
 
+  /* ======= ROADMAP / NEXT ======= */
+  .roadmap{background:linear-gradient(180deg,transparent,rgba(8,145,178,.04) 60%,transparent)}
+  .roadmap-head{display:flex;align-items:end;justify-content:space-between;gap:32px;flex-wrap:wrap;margin-bottom:48px}
+  .roadmap-head p{max-width:520px;color:#cfd0d4;font-size:15px;line-height:1.65}
+  .roadmap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .roadmap-card{
+    border:1px solid var(--line);border-radius:16px;padding:28px 26px;
+    background:rgba(240,240,240,.03);position:relative;overflow:hidden;
+    transition:border-color .25s ease,transform .25s ease;
+  }
+  .roadmap-card:hover{border-color:rgba(34,211,238,.35);transform:translateY(-2px)}
+  .roadmap-card .rc-tag{
+    font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.28em;
+    color:var(--cyan-2);text-transform:uppercase;margin-bottom:14px;display:block;
+  }
+  .roadmap-card h3{font-size:22px;font-weight:900;letter-spacing:-.01em;margin-bottom:6px;font-family:"Noto Serif TC",serif}
+  .roadmap-card .rc-sub{font-size:13px;color:var(--muted);font-family:"JetBrains Mono",monospace;letter-spacing:.04em;margin-bottom:16px}
+  .roadmap-card p{font-size:14.5px;line-height:1.65;color:#cfd0d4}
+  .roadmap-card p b{color:var(--paper);font-weight:700}
+  .roadmap-foot{
+    margin-top:36px;padding:20px 24px;border-left:2px solid var(--cyan);
+    background:rgba(8,145,178,.05);border-radius:0 12px 12px 0;
+    font-size:14.5px;line-height:1.7;color:#cfd0d4;
+  }
+  .roadmap-foot b{color:var(--paper)}
+  @media (max-width:980px){
+    .roadmap-grid{grid-template-columns:1fr}
+  }
+
   /* ======= CTA FINAL ======= */
   .cta-final{
     background:
@@ -361,34 +387,6 @@
     body{padding-bottom:96px}
   }
 </style>
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1660414978495312');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1660414978495312&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-
-<!-- LINE click conversion tracking -->
-<script>
-window.addEventListener('DOMContentLoaded', function(){
-  document.querySelectorAll('a[href*="line.me"]').forEach(function(a){
-    a.addEventListener('click', function(){
-      if(window.fbq){ fbq('track', 'Lead', {content_name: 'CTOS-Lite LINE Trial', content_category: 'promo'}); }
-    });
-  });
-});
-</script>
 </head>
 <body>
 
@@ -415,7 +413,7 @@ window.addEventListener('DOMContentLoaded', function(){
       多一個<em>AI 員工</em>。
     </h1>
     <p class="lead">
-      加 LINE 5 秒上工。<span style="display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap;vertical-align:middle"><span style="font-size:0.72em;font-weight:800;letter-spacing:0.10em;color:#fff;background:linear-gradient(135deg,#f59e0b,#ef4444);padding:2px 9px;border-radius:5px">限時加碼</span><span style="color:#999">14 天試用</span><s style="color:#71717a">每日 50</s><span style="color:var(--orange-2);font-weight:700">→</span><span style="background:linear-gradient(135deg,#fbbf24,#f97316);color:#fff;font-weight:800;padding:2px 10px;border-radius:6px">每日 100 次</span></span>對話、會記筆記、會看圖、會聽語音 ——<br/>
+      加 LINE 5 秒上工。每天免費 50 次對話、會記筆記、會看圖、會聽語音 ——<br/>
       把公司的合約 / SOP / 報價邏輯丟給它，<b style="color:var(--paper)">立刻學會你的業務</b>。
     </p>
     <div class="hero-cta">
@@ -611,7 +609,7 @@ window.addEventListener('DOMContentLoaded', function(){
         <div class="h lite">CTOS-Lite · 免費</div>
         <div class="h full">完整版 · 企業</div>
 
-        <div>AI 對話（Claude）</div><div class="v"><s style="color:#666">50</s> 100 次 / 14 天</div><div class="pro">無限制</div>
+        <div>AI 對話（Claude）</div><div class="v">每日 50 次</div><div class="pro">無限制</div>
         <div>個人知識庫 + RAG</div><div class="yes">✓</div><div class="pro">✓ Admin 管理</div>
         <div>語音 / 圖片 / 媒體下載</div><div class="yes">✓</div><div class="pro">✓</div>
         <div>群組支援</div><div class="yes">✓</div><div class="pro">✓</div>
@@ -624,7 +622,7 @@ window.addEventListener('DOMContentLoaded', function(){
     </div>
 
     <p style="margin-top:28px;text-align:center;color:var(--muted);font-size:14px">
-      14 天免費試用,期間每日 100 次 AI 對話、無功能鎖,到期升級訂閱解除上限。<br/>
+      免費版永久免費、無時間限制、無功能鎖。<br/>
       <a href="https://ching-tech.github.io/ctos-lite.html" style="color:var(--cyan-2)">看 CTOS-Lite 完整介紹 →</a>
     </p>
   </div>
@@ -688,6 +686,47 @@ window.addEventListener('DOMContentLoaded', function(){
   </div>
 </section>
 
+<!-- ============== ROADMAP / NEXT ============== -->
+<section class="roadmap">
+  <div class="container">
+    <div class="roadmap-head reveal">
+      <div>
+        <span class="eyebrow">下一步 · 正在開發中</span>
+        <h2 class="h2">CTOS 不只是工具，<br/>是一整套<span class="glow-cyan">會長大的 AI 員工系統</span>。</h2>
+      </div>
+      <p>我們同步在打磨三條技術線 —— 讓未來的企業 AI 能<b style="color:var(--paper)">記得脈絡、自己學、自己長</b>，而且資料 100% 留在客戶手上。</p>
+    </div>
+
+    <div class="roadmap-grid">
+      <div class="roadmap-card reveal">
+        <span class="rc-tag">R&D · Memory</span>
+        <h3>Annuli</h3>
+        <div class="rc-sub">歲月之環 · 反思引擎</div>
+        <p>像樹的年輪一樣，AI 每天累積記憶、每週反思、每月演化人格。資料 append-only、本機保存、<b>使用者永遠是 SOUL 的最終寫入者</b>。</p>
+      </div>
+
+      <div class="roadmap-card reveal">
+        <span class="rc-tag">R&D · Autonomy</span>
+        <h3>Annuli · Jinn</h3>
+        <div class="rc-sub">自主經營引擎</div>
+        <p>AI 自己探索話題、做深度研究、學 KOL 風格、產出貼文草稿，並把粉專互動回灌進知識庫。<b>已實際在跑 CT JINN 粉專的內容線</b>。</p>
+      </div>
+
+      <div class="roadmap-card reveal">
+        <span class="rc-tag">R&D · Embodiment</span>
+        <h3>Mori</h3>
+        <div class="rc-sub">桌面 AI 化身 · Tauri + Rust</div>
+        <p>常駐桌面的 AI 同事，一個熱鍵語音指揮、跨 Linux / Windows / macOS。雲端 / 本機 LLM 可切，<b>離線也能跑</b>。器官分離架構（耳朵 · 眼睛 · 手）。</p>
+      </div>
+    </div>
+
+    <div class="roadmap-foot reveal">
+      這三條線往 CTOS 接上後，企業裡的 AI 不再只是「一次性回答」，而是會 <b>記得你公司的脈絡、自己學、自己長</b>。<br/>
+      資料主權仍在台灣、仍在客戶自己手上 —— 這是我們跟所有雲端 AI 平台的根本差異。
+    </div>
+  </div>
+</section>
+
 <!-- ============== FINAL CTA ============== -->
 <section class="cta-final" id="try">
   <div class="container">
@@ -709,7 +748,7 @@ window.addEventListener('DOMContentLoaded', function(){
       <div class="cta-side">
         <h3>第一週用看看，<br/>不用就刪。</h3>
         <p class="lead">
-          <span style="display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap;vertical-align:middle"><span style="font-size:0.72em;font-weight:800;color:#fff;background:linear-gradient(135deg,#f59e0b,#ef4444);padding:2px 9px;border-radius:5px">限時</span><span style="color:#999">14 天試用</span><s style="color:#666">每日 50</s><span style="color:var(--orange-2);font-weight:700">→</span><span style="background:linear-gradient(135deg,#fbbf24,#f97316);color:#fff;font-weight:800;padding:2px 10px;border-radius:6px">每日 100 次</span></span>免費對話、不留信用卡、不會自動扣款 —— <br/>
+          每日 50 次免費對話、不留信用卡、不會自動扣款 —— <br/>
           擎添工業送給每位老闆的禮物，覺得有用再聊企業版。
         </p>
         <div class="actions">
@@ -725,10 +764,10 @@ window.addEventListener('DOMContentLoaded', function(){
     </div>
 
     <div class="cta-bullets reveal">
-      <span>14 天免費</span>
+      <span>永久免費</span>
       <span>不留信用卡</span>
       <span>不裝 App</span>
-      <span>每日 100 次</span>
+      <span>每日 50 次</span>
       <span>30 秒上手</span>
     </div>
   </div>
@@ -741,22 +780,7 @@ window.addEventListener('DOMContentLoaded', function(){
       <a href="https://ching-tech.com" target="_blank" rel="noreferrer">擎添工業官網</a>
       <a href="https://ching-tech.github.io/">產品總覽</a>
       <a href="https://ching-tech.github.io/ctos-lite.html">CTOS-Lite 詳細介紹</a>
-      <a href="https://www.facebook.com/1143490635504625" target="_blank" rel="noreferrer">Facebook 粉專</a>
       <a href="mailto:chieu@ms43.hinet.net">聯絡我們</a>
-    </div>
-    <div style="display:flex;gap:14px;justify-content:center;margin-bottom:14px">
-      <a href="https://www.facebook.com/1143490635504625" target="_blank" rel="noreferrer" aria-label="Facebook"
-         style="width:36px;height:36px;border-radius:50%;background:rgba(34,211,238,.1);border:1px solid var(--line);display:grid;place-items:center;color:var(--cyan-2);transition:transform .15s">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
-      </a>
-      <a href="https://line.me/R/ti/p/@285fjkky" target="_blank" rel="noreferrer" aria-label="LINE"
-         style="width:36px;height:36px;border-radius:50%;background:rgba(6,199,85,.12);border:1px solid var(--line);display:grid;place-items:center;color:var(--line-green);transition:transform .15s">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
-      </a>
-      <a href="mailto:chieu@ms43.hinet.net" aria-label="Email"
-         style="width:36px;height:36px;border-radius:50%;background:rgba(240,240,240,.05);border:1px solid var(--line);display:grid;place-items:center;color:var(--paper);transition:transform .15s">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-      </a>
     </div>
     <p>&copy; 2026 擎添工業 ChingTech Industrial Co., Ltd. · (02) 2903-2788 · 新北市五股區成泰路一段194-8號 J棟</p>
   </div>
