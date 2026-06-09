@@ -303,6 +303,25 @@ html[data-theme="light"] .layoff-card .number .unit {
   color: #172033 !important;
 }
 
+html[data-theme="light"] .fomo-stat .l,
+html[data-theme="light"] .fomo-bottom,
+html[data-theme="light"] .layoff-bottom,
+html[data-theme="light"] .actual-card h3 {
+  color: #172033 !important;
+}
+
+html[data-theme="light"] .fomo-stat .src,
+html[data-theme="light"] .layoff-card .src,
+html[data-theme="light"] .layoff-source,
+html[data-theme="light"] .layoff-card p,
+html[data-theme="light"] .actual-card .saved {
+  color: #53657b !important;
+}
+
+html[data-theme="light"] .layoff-card.highlight {
+  background: linear-gradient(160deg, rgba(220, 38, 38, 0.08), rgba(255, 255, 255, 0.88)) !important;
+}
+
 html[data-theme="light"] .footer-col a:hover {
   color: #0891b2 !important;
 }
@@ -510,6 +529,84 @@ html[data-theme="light"] .btn-plan {
 html[data-theme="light"] .btn-plan.primary {
   background: linear-gradient(135deg, #0891b2, #22d3ee) !important;
   color: #ffffff !important;
+}
+
+html[data-theme="light"] .full-wrapper {
+  background: rgba(255, 255, 255, 0.88) !important;
+  border-color: rgba(21, 34, 54, 0.12) !important;
+  box-shadow: 0 18px 46px rgba(31, 52, 70, 0.10) !important;
+}
+
+html[data-theme="light"] .full-header .full-name,
+html[data-theme="light"] .recommended-hero .rec-name,
+html[data-theme="light"] .alt-tile .alt-len,
+html[data-theme="light"] .alt-tile .alt-price b {
+  color: #172033 !important;
+}
+
+html[data-theme="light"] .full-header .full-sub,
+html[data-theme="light"] .recommended-hero .rec-price .unit,
+html[data-theme="light"] .alt-options .alt-label,
+html[data-theme="light"] .alt-tile .alt-len small,
+html[data-theme="light"] .alt-tile .alt-price .u,
+html[data-theme="light"] .alt-tile .alt-detail,
+html[data-theme="light"] .payment-note {
+  color: #53657b !important;
+}
+
+html[data-theme="light"] .full-header .full-sub b,
+html[data-theme="light"] .payment-flow li strong,
+html[data-theme="light"] .payment-flow code,
+html[data-theme="light"] .product-desc [style*="color:#fbbf24"],
+html[data-theme="light"] .plan-features [style*="color:#fbbf24"] {
+  color: #c85016 !important;
+}
+
+html[data-theme="light"] .recommended-hero {
+  background: linear-gradient(160deg, rgba(251, 191, 36, 0.16), rgba(255, 255, 255, 0.92) 58%, rgba(8, 145, 178, 0.08)) !important;
+  border-color: rgba(234, 88, 12, 0.28) !important;
+  box-shadow: 0 18px 46px rgba(31, 52, 70, 0.10) !important;
+}
+
+html[data-theme="light"] .recommended-hero .rec-price .old,
+html[data-theme="light"] .alt-tile .alt-price s {
+  color: #8b98a8 !important;
+}
+
+html[data-theme="light"] .recommended-hero .meta-pill {
+  background: rgba(255, 255, 255, 0.72) !important;
+  border-color: rgba(21, 34, 54, 0.12) !important;
+  color: #2f4055 !important;
+}
+
+html[data-theme="light"] .recommended-hero .meta-pill.save {
+  background: rgba(251, 191, 36, 0.16) !important;
+  border-color: rgba(234, 88, 12, 0.22) !important;
+  color: #b45309 !important;
+}
+
+html[data-theme="light"] .alt-options {
+  background: rgba(237, 243, 248, 0.76) !important;
+  border-color: rgba(21, 34, 54, 0.10) !important;
+}
+
+html[data-theme="light"] .alt-tile {
+  background: rgba(255, 255, 255, 0.84) !important;
+  border-color: rgba(21, 34, 54, 0.12) !important;
+}
+
+html[data-theme="light"] .alt-tile:hover {
+  border-color: rgba(8, 145, 178, 0.28) !important;
+}
+
+html[data-theme="light"] .shared-features,
+html[data-theme="light"] .payment-flow {
+  border-top-color: rgba(21, 34, 54, 0.14) !important;
+}
+
+html[data-theme="light"] .payment-flow code {
+  background: rgba(234, 88, 12, 0.10) !important;
+  border: 1px solid rgba(234, 88, 12, 0.18) !important;
 }
 
 html[data-theme="light"] .info-row,
