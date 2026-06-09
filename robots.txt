@@ -1,6 +1,5 @@
 User-agent: *
 Allow: /
 Disallow: /google3e566334150c2f0b.html
-Disallow: /rotary.html
 
-Sitemap: https://ai.ching-tech.com/sitemap.xml
+Sitemap: https://ching-tech.github.io/sitemap.xml
