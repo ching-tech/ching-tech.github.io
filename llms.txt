@@ -1,0 +1,27 @@
+# 擎添工業 ChingTech
+
+> 1984 年成立於新北市五股的機電自動化工程公司，40 年 PLC、AGV、KUKA／FANUC／YASKAWA
+> 整合經驗。2025 年起推出企業 AI 工作平台 CTOS，把 40 年工程力與 AI 一起打包。
+> 不是 AI 新創在做 AI，是 40 年工程公司做 AI。
+
+## 公司
+- 名稱：擎添工業（ChingTech）
+- 成立：1984 年
+- 地址：新北市五股區成泰路一段 194-8 號 J 棟（248）
+- 電話：(02) 2903-2788
+- 服務信箱：chieu@ms43.hinet.net
+- 官網：https://ching-tech.com
+
+## 產品
+- ChingTech OS（CTOS）：企業 AI 工作平台，18 模組 + 知識庫 + Agent + LINE Bot。https://ching-tech.github.io/ching-tech-os.html
+- 擎添助理 CTOS-Lite：住在 LINE 裡的 AI 員工，上傳公司文件即可問答，每日免費 50 次。LINE @285fjkky。https://ching-tech.github.io/ctos-lite.html
+
+## 部署模式（資料主權）
+- 雲版：知識庫由台灣公司託管，API 走 zero retention（不訓練模型）。
+- Hybrid／NAS 版：檔案存客戶 NAS，查詢時才把相關段落送 API。
+- 全離線版：連 LLM 都跑在客戶機房。
+
+## 連結
+- 官網：https://ching-tech.com
+- 平台介紹：https://ching-tech.github.io/ching-tech-os.html
+- LINE AI 員工：https://ching-tech.github.io/ctos-lite.html
